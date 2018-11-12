@@ -1,5 +1,5 @@
 package elems;
 
-public class Deportista {
+public class Deportista extends GameObject {
 
 }

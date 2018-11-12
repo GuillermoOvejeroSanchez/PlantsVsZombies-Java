@@ -12,8 +12,7 @@ public class NoneCommand extends NoParamsCommand {
 
 	@Override
 	public void execute(Game game, Controller controler) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 }

@@ -1,20 +1,22 @@
 package commands;
 
-import commands.NoParamsCommand;
 import src.Controller;
 import src.Game;
 
 public class ExitCommand extends NoParamsCommand {
-	
+	public final static String commandName = "exit";
+	public final static String commandInfo = "[E]xit";
+	public final static String helpInfo = "Terminates the program.";
+
 	public ExitCommand() {
-		super("exit", "[E]xit", "Terminates the program."); 
+		super(commandName, commandInfo, helpInfo);
+		// TODO Auto-generated constructor stub
 	}
 
-	
 	@Override
-	public void execute(Game game, Controller controler) {
-		// TODO Auto-generated method stub
-		
+	public void execute(Game game, Controller controller) {
+		controller.setNoSalir();
+		controller.setNoPrintGameState();
 	}
 
 }

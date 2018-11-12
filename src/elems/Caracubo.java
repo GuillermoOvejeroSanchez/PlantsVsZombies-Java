@@ -1,5 +1,5 @@
 package elems;
 
-public class Caracubo {
+public class Caracubo extends GameObject {
 
 }

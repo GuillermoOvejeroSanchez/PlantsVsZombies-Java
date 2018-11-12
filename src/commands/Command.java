@@ -1,41 +1,29 @@
 package commands;
+
 import src.Controller;
 import src.Game;
 
-
 public abstract class Command {
-	
-	private String textoAtyuda; 
-	private String textoInfo; 
-	protected final String nombreComando; 
-	
-	public Command(String nombreComando, String textoInfo, String textoAyuda) {
-		this.textoAtyuda = textoAyuda;
-		this.textoInfo = textoInfo; 
-		this.nombreComando = nombreComando; 
-		
+
+	private String helpText;
+	private String commandText;
+	protected final String commandName;
+
+	public Command(String commandText, String commandInfo, String helpInfo) {
+		this.commandText = commandInfo;
+		this.helpText = helpInfo;
+		String[] commandInfoWords = commandText.split("\\s+");
+		commandName = commandInfoWords[0];
 	}
-	
-	public abstract Command parse(String[] comando, Controller controller); 
-	
-	public abstract void execute(Game game,Controller controler); 
-	
+
+	public abstract Command parse(String[] comando, Controller controller);
+
+	public abstract void execute(Game game, Controller controller);
+
 	public String helpText() {
-		String t = " "; 
-		
-		
-		
-		return t; 
+		StringBuilder helpText = new StringBuilder();
+		helpText.append(commandText + "\t: " + this.helpText);
+		return helpText.toString();
 	}
-	
-	public boolean verificarComando(String[] comando) {
-		boolean ok = false; 
-		
-		if(comando.length == 0 || comando.length > 4) {
-			ok = true; 
-		}
-		
-		return ok; 
-	}
-	
+
 }

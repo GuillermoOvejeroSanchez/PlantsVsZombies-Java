@@ -1,15 +1,17 @@
 package elems;
+
 import src.Game;
-public class Sunflower {
+
+public class Sunflower extends GameObject {
 	public final static int COST = 20;
 	public final static int DMG = 0;
 	private final int FREC = 2;
 	private final int RES = 1;
 	private int res;
 	private int frec;
-	private int x,y;
+	private int x, y;
 	private Game game;
-	
+
 	public Sunflower(int x, int y, Game game) {
 		this.res = RES;
 		this.x = x;
@@ -20,11 +22,11 @@ public class Sunflower {
 
 	public void takeDmg(int dmg) {
 		this.res -= dmg;
-		if(this.res <= 0) {
+		if (this.res <= 0) {
 			game.quitarElem(this.x, this.y);
 		}
 	}
-	
+
 	public int getRes() {
 		return res;
 	}
@@ -36,19 +38,19 @@ public class Sunflower {
 	public int getY() {
 		return this.y;
 	}
-	
+
 	public void addSunCoin() {
 		game.modifySuncoins(10);
 	}
-	
+
 	public boolean update() {
 		boolean updated = false;
-		if(this.frec == 1) {
+		if (this.frec == 1) {
 			updated = true;
 			this.frec = FREC;
-		}
-		else this.frec--;
-		
+		} else
+			this.frec--;
+
 		return updated;
 	}
 }
