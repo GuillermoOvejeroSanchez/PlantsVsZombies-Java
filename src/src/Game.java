@@ -121,7 +121,7 @@ public class Game {
     public boolean addZombie(int x, int y) {
     	boolean added = false;
     	if(this.board[x][y].equals(Elements.VACIO)) {
-    		Zombie zombie = new Zombie(x, y, this);
+    		ZombieBasico zombie = new ZombieBasico(x, y, this);
     		this.zList.addZombie(zombie);
     		this.board[x][y] = Elements.ZOMBIE;
     		added = true;

@@ -12,7 +12,25 @@ public class Controller {
 		this.in = new Scanner(System.in); 
 		this.gamePrinter = new GamePrinter(game, Game.FILAS,Game.COLUMNAS);
 	}
-
+	
+/*
+	while (!game.isFinished() && !exit) {
+		printGame();
+		noPrint = false;
+		System.out.print(prompt);
+		String[] words = scanner.nextLine().toLowerCase().trim().split("\\
+		s+");
+		Command command = CommandParser.parseCommand(words, this);
+		if (command != null) {
+		command.execute(game, this);
+		}
+		else {
+		System.err.println(unknownCommandMsg);
+		setNoPrintGameState();
+		}
+		}
+*/
+	
     public void run(Game game){
     	
     	boolean noSalir = true; 

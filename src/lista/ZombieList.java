@@ -1,20 +1,20 @@
 package lista;
 
-import elems.Zombie;
+import elems.ZombieBasico;
 public class ZombieList {
 
 private int contador;
-private Zombie zombieList[];
+private ZombieBasico zombieList[];
     public ZombieList(int numZombies){
         
-    	zombieList = new Zombie[numZombies]; 
+    	zombieList = new ZombieBasico[numZombies]; 
     	this.contador = 0; 
     }
     public int getSize() {
 		return this.contador;
 	}
     
-	public Zombie getZombie(int i) {
+	public ZombieBasico getZombie(int i) {
 		return this.zombieList[i];
 	}
 	
@@ -37,7 +37,7 @@ private Zombie zombieList[];
 		return i; 
 	}
 	
-	public void addZombie(Zombie zombie) {
+	public void addZombie(ZombieBasico zombie) {
 		zombieList[contador] = zombie; 
 		contador++; 
 	}
