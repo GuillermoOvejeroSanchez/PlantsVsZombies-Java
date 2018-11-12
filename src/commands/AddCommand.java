@@ -1,4 +1,4 @@
-package command;
+package commands;
 
 import src.Controller;
 import src.Game;
@@ -14,7 +14,7 @@ public class AddCommand extends Command {
 	}
 	
 	public AddCommand(int x, int y, String planta) {
-		//super("add", "[A]dd", "Add <plant> <x> <y>: Adds a plant in position x, y.");
+		super("add", "[A]dd", "Add <plant> <x> <y>: Adds a plant in position x, y.");
 		
 		this.x = x; 
 		this.y = y; 

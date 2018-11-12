@@ -1,4 +1,4 @@
-package command;
+package commands;
 import src.Controller;
 import src.Game;
 

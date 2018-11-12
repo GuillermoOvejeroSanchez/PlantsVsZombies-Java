@@ -1,5 +1,6 @@
-package command;
+package commands;
 
+import commands.NoParamsCommand;
 import src.Controller;
 import src.Game;
 
