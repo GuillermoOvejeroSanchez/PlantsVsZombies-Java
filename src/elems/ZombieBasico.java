@@ -2,7 +2,7 @@ package elems;
 
 import src.Game;
 
-public class ZombieBasico extends GameObject {
+public class ZombieBasico extends Zombie {
 
 	// private final int VEL = 1;
 	final int DMG = 1;
@@ -13,14 +13,13 @@ public class ZombieBasico extends GameObject {
 	private int x, y;
 	private Game game;
 
-	public ZombieBasico(int x, int y, Game game) {
-		this.res = RES;
-		this.x = x;
-		this.y = y;
-		this.game = game;
-		this.frec = FREC;
+	public ZombieBasico() {
+		
 	}
 
+	public int getResistance() {
+		return this.RES;
+	}
 	public int getRes() {
 		return this.res;
 	}

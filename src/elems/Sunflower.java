@@ -2,7 +2,7 @@ package elems;
 
 import src.Game;
 
-public class Sunflower extends GameObject {
+public class Sunflower extends Plant {
 	public final static int COST = 20;
 	public final static int DMG = 0;
 	private final int FREC = 2;

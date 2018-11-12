@@ -1,5 +1,5 @@
 package elems;
 
-public class Deportista extends GameObject {
+public class Deportista extends Zombie {
 
 }

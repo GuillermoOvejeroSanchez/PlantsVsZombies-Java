@@ -1,5 +1,5 @@
 package elems;
 
-public class Petacereza extends GameObject {
+public class Petacereza extends Plant {
 
 }

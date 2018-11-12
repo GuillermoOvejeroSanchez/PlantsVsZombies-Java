@@ -4,6 +4,7 @@ import java.util.Random;
 
 import elems.Elements;
 import elems.Peashooter;
+import elems.Plant;
 import elems.Sunflower;
 import elems.ZombieBasico;
 import lista.PeashooterList;
@@ -135,7 +136,7 @@ public class Game {
 	public boolean addZombie(int x, int y) {
 		boolean added = false;
 		if (this.board[x][y].equals(Elements.VACIO)) {
-			ZombieBasico zombie = new ZombieBasico(x, y, this);
+			ZombieBasico zombie = new ZombieBasico();
 			this.zList.addZombie(zombie);
 			this.board[x][y] = Elements.ZOMBIE;
 			added = true;
@@ -224,6 +225,11 @@ public class Game {
 		for (int i = 0; i < FILAS; i++)
 			for (int j = 0; j < COLUMNAS; j++)
 				board[i][j] = Elements.VACIO;
+	}
+//TODO
+	public void addPlantToGame(Plant plant, int x, int y) {
+		
+		
 	}
 
 }

@@ -1,5 +1,5 @@
 package elems;
 
-public class Caracubo extends GameObject {
+public class Caracubo extends Zombie {
 
 }

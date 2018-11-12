@@ -1,11 +1,13 @@
 package commands;
 
+import elems.Plant;
+import factory.PlantsFactory;
 import src.Controller;
 import src.Game;
 
 public class AddCommand extends Command {
 	private int x, y;
-	private String planta;
+	private String plantName;
 	// Implentar planta
 	public final static String commandName = "add";
 	public final static String commandInfo = "[A]dd";
@@ -20,7 +22,7 @@ public class AddCommand extends Command {
 
 		this.x = x;
 		this.y = y;
-		this.planta = planta;
+		this.plantName = planta;
 	}
 
 	@Override
@@ -29,13 +31,13 @@ public class AddCommand extends Command {
 
 		if (comando.length == 4 && (comando[0].equals(commandName) || comando[0].equals(commandName.substring(0, 1)))) {
 			if (comando[1].equals("sunflower") || comando[1].equals("s")) {
-				c = new AddCommand(string2Number(comando[2]), string2Number(comando[3]), "sunflower");
+				c = new AddCommand(Integer.parseInt(comando[2]), Integer.parseInt(comando[3]), "sunflower");
 			} else if (comando[1].equals("peashooter") || comando[1].equals("p")) {
-				c = new AddCommand(string2Number(comando[2]), string2Number(comando[3]), "peashooter");
+				c = new AddCommand(Integer.parseInt(comando[2]), Integer.parseInt(comando[3]), "peashooter");
 			}
 
-			this.x = string2Number(comando[2]);
-			this.y = string2Number(comando[3]);
+			this.x = Integer.parseInt(comando[2]);
+			this.y = Integer.parseInt(comando[3]);
 
 		}
 
@@ -45,21 +47,15 @@ public class AddCommand extends Command {
 	@Override
 	public void execute(Game game, Controller controler) {
 
-		if (planta == "peashooter") {
-			game.addPea(this.x, this.y);
-		} else if (planta == "sunflower") {
-			game.addSunflo(this.x, this.y);
-		}
-
+//		if (plantName == "peashooter") {
+//			game.addPea(this.x, this.y);
+//		} else if (plantName == "sunflower") {
+//			game.addSunflo(this.x, this.y);
+//		}
+		Plant plant = PlantsFactory.getPlant(plantName);
+		game.addPlantToGame(plant, x, y);
 	}
 
-	public int string2Number(String string) {
-		int n = 0;
-
-		n = Integer.parseInt(string);
-
-		return n;
-	}
 
 	public int getX() {
 		return x;

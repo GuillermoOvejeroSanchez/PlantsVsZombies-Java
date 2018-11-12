@@ -2,7 +2,7 @@ package elems;
 
 import src.Game;
 
-public class Peashooter extends GameObject {
+public class Peashooter extends Plant {
 
 	public final static int COST = 50;
 	public final static int DMG = 1;
