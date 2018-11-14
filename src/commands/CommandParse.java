@@ -40,10 +40,22 @@ public class CommandParse {
 		return c; 
 	}
 	
-	public static String CommandHelp() {
-		String ayuda = " "; 
+public static String CommandHelp() {
 		
-		return ayuda; 
+		StringBuilder ayudaTxt = new StringBuilder(); 
+		
+		ayudaTxt.append("he avaliable commands are:"); 
+		ayudaTxt.append("\n");
+		
+		for(int i = 0; i < avaliableCommands.length; i++) {
+			
+			ayudaTxt.append("  ");
+			ayudaTxt.append(avaliableCommands[i].helpText());
+			ayudaTxt.append("\n");
+		}
+		
+		
+		return ayudaTxt.toString(); 
 	}
 	
 }
