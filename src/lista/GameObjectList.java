@@ -85,10 +85,9 @@ public class GameObjectList {
 	
 	public void update() {
 		
-		for(int i = 0; i < ObjectList.length; i++)
-			if(ObjectList[i].update()) {
-				
-			}
+		for(int i = 0; i < ObjectList.length; i++) {
+			ObjectList[i].update();
+		}
 		
 	}
 	
