@@ -8,8 +8,8 @@ import elems.Sunflower;
 
 public class PlantsFactory {
 
-	private static Plant[] availabePlants = { new Nuez(), new Peashooter(0, 0, null), new Petacereza(),
-			new Sunflower(0, 0, null) };
+	private static Plant[] availabePlants = { new Nuez(), new Peashooter(), new Petacereza(),
+			new Sunflower() };
 
 	public static String listOfAvailablePlants() {
 		StringBuilder str = new StringBuilder();

@@ -12,7 +12,7 @@ public class ZombieBasico extends Zombie {
 	private int frec;
 	private int x, y;
 	private Game game;
-
+	
 	public ZombieBasico() {
 		
 	}

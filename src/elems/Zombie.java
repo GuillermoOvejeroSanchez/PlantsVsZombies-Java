@@ -1,30 +1,24 @@
 package elems;
 
-public class Zombie extends GameObject{
+public class Zombie extends GameObject {
 
-	public String getName() {
-		// TODO Auto-generated method stub
+	public Zombie(int x, int y, int cycles, String name) {
+		super(x, y, cycles, name);
+	}
+
+	public Zombie clone() {
 		return null;
 	}
 
-	public int getResistance() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void update() {
+
 	}
 
-	public String getCycles() {
-		// TODO Auto-generated method stub
-		return null;
+	public void damage(GameObject gameObject) {
+
 	}
 
-	public String getDamage() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public void attack() {
 
-	public Zombie parse(String zombieName) {
-		// TODO Auto-generated method stub
-		return null;
 	}
-
 }
