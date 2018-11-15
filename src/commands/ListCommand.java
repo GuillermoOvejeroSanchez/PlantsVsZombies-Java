@@ -1,7 +1,6 @@
 package commands;
 
 import factory.PlantsFactory;
-import factory.ZombieFactory;
 import src.Controller;
 import src.Game;
 
@@ -18,7 +17,6 @@ public class ListCommand extends NoParamsCommand {
 	@Override
 	public void execute(Game game, Controller controller) {
 		System.out.println(PlantsFactory.listOfAvailablePlants());
-		System.out.println(ZombieFactory.listofAvailableZombies());
 		controller.setNoPrintGameState();
 
 	}

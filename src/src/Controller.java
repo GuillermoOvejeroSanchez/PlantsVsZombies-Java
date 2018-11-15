@@ -3,7 +3,7 @@ package src;
 import java.util.Scanner;
 
 import commands.Command;
-import util.CommandParser;
+import commands.CommandParse;
 
 public class Controller {
 
@@ -33,7 +33,7 @@ public class Controller {
 				print = true;
 				System.out.print("Command >");
 				String[] comando = in.nextLine().toLowerCase().trim().split("\\s+");
-				Command command = CommandParser.parseCommand(comando, this);
+				Command command = CommandParse.parseCommand(comando, this);
 
 				if (command != null) {
 					command.execute(game, this);

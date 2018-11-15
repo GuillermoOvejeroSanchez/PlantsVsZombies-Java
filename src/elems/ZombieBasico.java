@@ -1,73 +1,46 @@
 package elems;
 
-import src.Game;
-
 public class ZombieBasico extends Zombie {
 
-	// private final int VEL = 1;
-	final int DMG = 1;
-	final int FREC = 2;
-	final int RES = 5;
-	private int res;
-	private int frec;
-	private int x, y;
-	private Game game;
-	
+	final static int COST = 50;
+	final static int CICLOS = 0;
+	final static int FREC = 2;
+	final static int DMG = 1;
+	final static int RES = 5;
+	final static String NAME = "[Z]ombie";
+
 	public ZombieBasico() {
-		
+		super(RES, FREC, DMG, NAME);
 	}
 
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return NAME;
+	}
+
+	@Override
+	public int getDamage() {
+		// TODO Auto-generated method stub
+		return DMG;
+	}
+
+	@Override
+	public int getCycles() {
+		// TODO Auto-generated method stub
+		return CICLOS;
+	}
+
+	@Override
 	public int getResistance() {
-		return this.RES;
-	}
-	public int getRes() {
-		return this.res;
+		// TODO Auto-generated method stub
+		return RES;
 	}
 
-	public void takeDmg(int dmg) {
-		this.res -= dmg;
-		if (this.res < 1) {
-			game.quitarElem(this.x, this.y);
-		}
+	@Override
+	public int getCost() {
+		// TODO Auto-generated method stub
+		return COST;
 	}
 
-	public int getX() {
-		return this.x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public int getY() {
-		return this.y;
-	}
-
-	public boolean attack() {
-		boolean ataca = game.atacaZombie(this.x, this.y, this.DMG);
-		return ataca;
-	}
-
-	public boolean moveZombie(int x, int y) {
-		boolean move = false;
-		move = game.moveZombie(x, y);
-		if (move)
-			move();
-		return move;
-	}
-
-	private void move() {
-		this.y = this.y - 1;
-	}
-
-	public boolean update() {
-		boolean updated = false;
-		if (this.frec == 1) {
-			updated = true;
-			this.frec = FREC;
-		} else
-			this.frec--;
-
-		return updated;
-	}
 }

@@ -22,6 +22,6 @@ public class ZombieFactory {
 
 	public static Zombie getZombie() {
 		int zombie = new Random().nextInt(availabeZombies.length);
-		return availabeZombies[zombie];
+		return (Zombie) availabeZombies[zombie];
 	}
 }

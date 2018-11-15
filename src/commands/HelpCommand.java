@@ -2,7 +2,6 @@ package commands;
 
 import src.Controller;
 import src.Game;
-import util.CommandParser;
 
 public class HelpCommand extends NoParamsCommand {
 	public final static String commandName = "help";
@@ -16,7 +15,7 @@ public class HelpCommand extends NoParamsCommand {
 
 	@Override
 	public void execute(Game game, Controller controller) {
-		System.out.println(CommandParser.CommandHelp());
+		System.out.println(CommandParse.CommandHelp());
 		controller.setNoPrintGameState();
 	}
 

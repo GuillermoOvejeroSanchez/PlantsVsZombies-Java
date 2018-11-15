@@ -56,7 +56,6 @@ public class AddCommand extends Command {
 		game.addPlantToGame(plant, x, y);
 	}
 
-
 	public int getX() {
 		return x;
 	}

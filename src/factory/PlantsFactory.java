@@ -8,8 +8,7 @@ import elems.Sunflower;
 
 public class PlantsFactory {
 
-	private static Plant[] availabePlants = { new Nuez(), new Peashooter(), new Petacereza(),
-			new Sunflower() };
+	private static Plant[] availabePlants = { new Nuez(), new Peashooter(), new Petacereza(), new Sunflower() };
 
 	public static String listOfAvailablePlants() {
 		StringBuilder str = new StringBuilder();
@@ -25,8 +24,8 @@ public class PlantsFactory {
 		int i = 0;
 		boolean encontrado = false;
 		while (!encontrado && i < availabePlants.length) {
-				plant = plant.parse(plantName);
-			if(plant != null)
+			plant = plant.parse(plantName);
+			if (plant != null)
 				encontrado = true;
 			else
 				i++;
