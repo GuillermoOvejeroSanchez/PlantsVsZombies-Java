@@ -16,7 +16,7 @@ public class UpdateCommand extends NoParamsCommand {
 
 	@Override
 	public void execute(Game game, Controller controler) {
-
+		
 	}
 
 }

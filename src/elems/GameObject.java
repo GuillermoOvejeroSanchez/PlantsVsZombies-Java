@@ -24,4 +24,17 @@ public abstract class GameObject {
 	public abstract int getResistance();
 
 	public abstract int getCost();
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public boolean update() {
+
+		return true;
+	}
 }
