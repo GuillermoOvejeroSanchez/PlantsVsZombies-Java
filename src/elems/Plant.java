@@ -5,8 +5,8 @@ public abstract class Plant extends GameObject {
 	int cost;
 	int freq;
 
-	public Plant(int x, int y, int cycles, String name, int cost, int freq) {
-		super(x, y, cycles, name);
+	public Plant(int x, int y, int cycles, String name, String shortName, int cost, int freq) {
+		super(x, y, cycles, name, shortName);
 		this.cost = cost;
 		this.freq = freq;
 	}
@@ -15,9 +15,10 @@ public abstract class Plant extends GameObject {
 
 	}
 
-	public Plant parse(String plantName) {
-		// TODO Auto-generated method stub
-		return null;
+	public abstract Plant parse(String plantName); 
+	
+	public int getCost() {
+		return this.cost; 
 	}
 
 }

@@ -8,28 +8,25 @@ public class Sunflower extends Plant {
 	final static int DMG = 0;
 	final static int RES = 1;
 	final static String NAME = "[S]unflower";
+	final static String SHORTNA = "S"; 
 
 	public Sunflower() {
-		super(RES, FREC, DMG, NAME, COST, CICLOS);
+		super(RES, FREC, DMG, NAME, SHORTNA, COST, CICLOS);
 	}
 
-	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
-		return NAME;
+	
+	public Plant parse(String plantName) {
+	Plant p = null; 
+		
+		if(plantName.equalsIgnoreCase(getName()) || plantName.equalsIgnoreCase(getShortName()) ) {
+			p = this; 
+		}
+	
+		return p; 
 	}
+	
 
-	@Override
-	public int getDamage() {
-		// TODO Auto-generated method stub
-		return DMG;
-	}
 
-	@Override
-	public int getCycles() {
-		// TODO Auto-generated method stub
-		return CICLOS;
-	}
 
 	@Override
 	public int getResistance() {
@@ -41,6 +38,13 @@ public class Sunflower extends Plant {
 	public int getCost() {
 		// TODO Auto-generated method stub
 		return COST;
+	}
+
+
+	@Override
+	public int getDamage() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
