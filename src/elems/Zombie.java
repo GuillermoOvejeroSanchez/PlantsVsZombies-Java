@@ -2,11 +2,12 @@ package elems;
 
 public abstract class Zombie extends GameObject {
 
-	public Zombie(int x, int y, int cycles, String name) {
-		super(x, y, cycles, name);
+	public Zombie(int x, int y, int cycles, String name, String nameShort) {
+		super(x, y, cycles, name, nameShort);
 	}
 
-	public void update() {
+	public boolean update() {
+		return false;
 
 	}
 
@@ -16,5 +17,9 @@ public abstract class Zombie extends GameObject {
 
 	public void attack() {
 
+	}
+	
+	public void move() {
+		
 	}
 }

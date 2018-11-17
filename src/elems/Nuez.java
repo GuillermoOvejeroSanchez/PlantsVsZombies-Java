@@ -6,40 +6,11 @@ public class Nuez extends Plant {
 	final static int FREC = 0;
 	final static int DMG = 0;
 	final static int RES = 10;
-	final static String NAME = "[N]uez";
+	final static String INFONAME = "[N]uez";
+	final static String NAME = "nuez";
+	final static String SHORTNA = "N";
 
 	public Nuez() {
-		super(RES, FREC, DMG, NAME, COST, CICLOS);
+		super(RES, FREC, DMG, NAME, SHORTNA, COST, CICLOS);
 	}
-
-	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
-		return NAME;
-	}
-
-	@Override
-	public int getDamage() {
-		// TODO Auto-generated method stub
-		return DMG;
-	}
-
-	@Override
-	public int getCycles() {
-		// TODO Auto-generated method stub
-		return CICLOS;
-	}
-
-	@Override
-	public int getResistance() {
-		// TODO Auto-generated method stub
-		return RES;
-	}
-
-	@Override
-	public int getCost() {
-		// TODO Auto-generated method stub
-		return COST;
-	}
-
 }

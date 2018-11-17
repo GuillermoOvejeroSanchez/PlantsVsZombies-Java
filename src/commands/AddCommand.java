@@ -7,9 +7,8 @@ import src.Game;
 
 public class AddCommand extends Command {
 	private int x, y;
-	private Plant plant;  
-	
-	
+	private Plant plant;
+
 	// Implentar planta
 	public final static String commandName = "add";
 	public final static String commandInfo = "[A]dd";
@@ -24,11 +23,10 @@ public class AddCommand extends Command {
 
 		this.x = x;
 		this.y = y;
-		this.plant = plant; 
+		this.plant = plant;
 	}
-// Cambiarlo, se comprueba a la hora de añadier una planta 
-	
-	
+// Cambiarlo, se comprueba a la hora de aniadir una planta 
+
 	@Override
 	public Command parse(String[] comando, Controller controler) {
 		Command c = null;
@@ -37,13 +35,12 @@ public class AddCommand extends Command {
 
 			this.x = Integer.parseInt(comando[2]);
 			this.y = Integer.parseInt(comando[3]);
-			
-			PlantsFactory.getPlant(comando[1]); 
-			Plant p = PlantsFactory.getPlant(comando[1]); 
-			
-			c = new AddCommand(x,y, p);
+			if (this.x < 3 || this.y < 6 || this.x >= 0 || this.y >= 0) {
+				PlantsFactory.getPlant(comando[1]);
+				Plant p = PlantsFactory.getPlant(comando[1]);
 
-
+				c = new AddCommand(x, y, p);
+			}
 		}
 
 		return c;
@@ -51,7 +48,7 @@ public class AddCommand extends Command {
 
 	@Override
 	public void execute(Game game, Controller controler) {
-			game.addPlantToGame(plant, x, y);
+		game.addPlantToGame(plant, x, y);
 	}
 
 	public int getX() {

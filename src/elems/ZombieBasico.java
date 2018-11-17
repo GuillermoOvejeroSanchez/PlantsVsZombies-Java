@@ -7,40 +7,13 @@ public class ZombieBasico extends Zombie {
 	final static int FREC = 2;
 	final static int DMG = 1;
 	final static int RES = 5;
-	final static String NAME = "[Z]ombie";
+	final static String INFONAME = "[Z]ombie";
+	final static String NAME = "zombie";
+	final static String SHORTNA = "Z";
 
 	public ZombieBasico() {
-		super(RES, FREC, DMG, NAME);
+		super(RES, FREC, DMG, NAME, SHORTNA);
 	}
 
-	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
-		return NAME;
-	}
-
-	@Override
-	public int getDamage() {
-		// TODO Auto-generated method stub
-		return DMG;
-	}
-
-	@Override
-	public int getCycles() {
-		// TODO Auto-generated method stub
-		return CICLOS;
-	}
-
-	@Override
-	public int getResistance() {
-		// TODO Auto-generated method stub
-		return RES;
-	}
-
-	@Override
-	public int getCost() {
-		// TODO Auto-generated method stub
-		return COST;
-	}
 
 }

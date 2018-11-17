@@ -10,12 +10,23 @@ public abstract class Plant extends GameObject {
 		this.cost = cost;
 		this.freq = freq;
 	}
+	public Plant() {
+		super();
+	}
 
 	public void damage(GameObject gameObject) {
 
 	}
 
-	public abstract Plant parse(String plantName); 
+	public Plant parse(String plantName) {
+	Plant p = null; 
+		
+		if(plantName.equalsIgnoreCase(getName()) || plantName.equalsIgnoreCase(getShortName()) ) {
+			p = this; 
+		}
+	
+		return p;
+	}
 	
 	public int getCost() {
 		return this.cost; 

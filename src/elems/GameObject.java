@@ -8,39 +8,44 @@ public abstract class GameObject {
 	int cycles;
 	int cyclesLeft;
 	String name;
-	String nameShort; 
+	String nameShort;
 
 	public GameObject(int x, int y, int cycles, String name, String nameShort) {
 		this.x = x;
 		this.y = y;
 		this.cyclesLeft = cycles;
-		this.name = name; 
-		this.nameShort = nameShort; 
+		this.name = name;
+		this.nameShort = nameShort;
 	}
 
+	public GameObject() {
 
-	public abstract int getDamage();
+	}
+
+	public int getDamage() {
+
+		return this.dmg;
+	}
 
 	public int getCycles() {
-		return this.cycles; 
+		return this.cycles;
 	}
-	
+
 	public int getRemainigCycles() {
-		return this.cyclesLeft; 
+		return this.cyclesLeft;
 	}
-	
+
 	public void setRemainigCycles(int cycles) {
-		this.cyclesLeft = cycles; 
+		this.cyclesLeft = cycles;
 	}
 
 	public int getResistance() {
-		return this.res; 
-	}
-	
-	public void setResistance(int resistance) {
-		this.res = resistance; 
+		return this.res;
 	}
 
+	public void setResistance(int resistance) {
+		this.res = resistance;
+	}
 
 	public int getX() {
 		return x;
@@ -49,26 +54,25 @@ public abstract class GameObject {
 	public int getY() {
 		return y;
 	}
-	
+
 	public void setX(int x) {
-		this.x = x; 
+		this.x = x;
 	}
-	
+
 	public void setY(int y) {
-		this.y = y; 
+		this.y = y;
 	}
 
 	public boolean update() {
 
 		return true;
 	}
-	
+
 	public String getName() {
-		return this.name; 
+		return this.name;
 	}
-	
+
 	public String getShortName() {
-		return this.nameShort; 
+		return this.nameShort;
 	}
 }
-
