@@ -3,7 +3,6 @@ package elems;
 public class ZombieBasico extends Zombie {
 
 	final static int COST = 50;
-	final static int CICLOS = 2;
 	final static int FREC = 2;
 	final static int DMG = 1;
 	final static int RES = 5;
@@ -20,7 +19,7 @@ public class ZombieBasico extends Zombie {
 	}
 
 	public Zombie inPosition(int x, int y) {
-		Zombie zombie = new ZombieBasico(x,y);
+		Zombie zombie = new ZombieBasico(x, y);
 		return zombie;
 	}
 

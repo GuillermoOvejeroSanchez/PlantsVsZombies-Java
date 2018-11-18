@@ -3,8 +3,6 @@ package lista;
 import elems.GameObject;
 
 public class GameObjectList {
-	
-	
 
 	private GameObject[] ObjectList;
 	private int contador;
@@ -86,20 +84,21 @@ public class GameObjectList {
 		return this.contador == ObjectList.length;
 	}
 
-	// tam lista
-	
-	public String getString(int x, int y) {
+
+	public String toString(int x, int y) {
 		StringBuilder elem = new StringBuilder();
-		if(encontrar(x,y)) {
-			GameObject go = this.getObject(buscarPos(x,y));
+		if (encontrar(x, y)) {
+			GameObject go = this.getObject(buscarPos(x, y));
 			elem.append(go.getShortName().toUpperCase());
 			elem.append("[");
 			elem.append(go.getResistance());
 			elem.append("]");
-			
+
 		}
 		return elem.toString();
 	}
+
+	// tam lista
 	public int getSize() {
 		return contador;
 	}
@@ -107,9 +106,12 @@ public class GameObjectList {
 	// update
 
 	public void update() {
-
-		for (int i = 0; i < ObjectList.length; i++) {
-			ObjectList[i].update();
+		int cycles;
+		for (int i = 0; i < contador; i++) {
+			 cycles = ObjectList[i].update();
+			if(cycles == 0) {
+				ObjectList[i].accion();
+			}
 		}
 
 	}

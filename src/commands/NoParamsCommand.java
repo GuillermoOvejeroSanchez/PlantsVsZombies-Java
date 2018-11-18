@@ -13,6 +13,7 @@ public abstract class NoParamsCommand extends Command {
 		Command c = null;
 
 		if (comando.length == 1) {
+
 			if (comando[0].equals(ExitCommand.commandName)
 					|| comando[0].equals(ExitCommand.commandName.substring(0, 1))) {
 				c = new ExitCommand();
@@ -31,8 +32,11 @@ public abstract class NoParamsCommand extends Command {
 			} else if (comando[0].equals(ZombieListCommand.commandName)
 					|| comando[0].equals(ZombieListCommand.commandName.substring(0, 1))) {
 				c = new ZombieListCommand();
+			} else if (comando[0].equals(PrintModeCommand.commandName)
+					|| comando[0].equals(PrintModeCommand.commandName.substring(0, 1))) {
+				c = new PrintModeCommand();
 			}
-			
+
 		}
 
 		return c;

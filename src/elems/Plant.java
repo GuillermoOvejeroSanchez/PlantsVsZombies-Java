@@ -3,19 +3,13 @@ package elems;
 public abstract class Plant extends GameObject {
 
 	int cost;
-	int freq;
 
-	public Plant(int x, int y, int res, int dmg, int cycles, String name, String shortName, int cost, int freq) {
+	public Plant(int x, int y, int res, int dmg, int cycles, String name, String shortName, int cost) {
 		super(x, y, res, dmg, cycles, name, shortName);
 		this.cost = cost;
-		this.freq = freq;
 	}
 
 	public Plant() {
-	}
-
-	public void damage(GameObject gameObject) {
-
 	}
 
 	public Plant parse(String plantName, int x, int y) {

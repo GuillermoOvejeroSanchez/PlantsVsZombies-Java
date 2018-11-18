@@ -66,9 +66,12 @@ public abstract class GameObject {
 		this.y = y;
 	}
 
-	public boolean update() {
-
-		return true;
+	public int update() {
+		int ciclos = --this.cyclesLeft;
+		if(this.cyclesLeft == 0) {
+			this.cyclesLeft = this.cycles;
+		}
+		return ciclos;
 	}
 
 	public String getName() {
@@ -78,4 +81,14 @@ public abstract class GameObject {
 	public String getShortName() {
 		return this.nameShort;
 	}
+	
+	public void takeDmg(GameObject gameObject) {
+		this.setResistance(this.res - gameObject.dmg);
+	}
+	
+	public boolean isDead() {
+		return this.res == 0;
+	}
+
+	public abstract void accion();
 }

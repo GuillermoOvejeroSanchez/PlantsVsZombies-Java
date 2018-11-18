@@ -18,6 +18,7 @@ public class Game {
 	private ZombieManager zombieManager;
 	private int seed;
 	private boolean fin;
+	private boolean zombieWin;
 	private int ciclos;
 	private Random rand;
 
@@ -28,6 +29,7 @@ public class Game {
 		this.ciclos = 0;
 		this.level = level;
 		this.fin = false;
+		this.zombieWin = false;
 		zombieManager = new ZombieManager(this.level, this.seed, this.rand);
 		suncoinManager = new SuncoinManager();
 		zombieList = new GameObjectList(zombieManager.getNumZombies());
@@ -36,13 +38,17 @@ public class Game {
 
 	public void update() {
 		aumentarCiclos();
+		plantList.update();
+		zombieList.update();
+		zombieWin = checkZombieWin();
+	}
 
-		if (!fin)
-			this.fin = zombieManager.finPartida();
+	public boolean getZombieWin() {
+		return zombieWin;
 	}
 
 	public int getCiclos() {
-		return this.ciclos;
+		return ciclos;
 	}
 
 	public int getSuncoins() {
@@ -58,7 +64,7 @@ public class Game {
 	}
 
 	public void modifySuncoins(int i) {
-		this.suncoinManager.modifySuncoins(i);
+		suncoinManager.modifySuncoins(i);
 	}
 
 	public boolean getFin() {
@@ -67,35 +73,44 @@ public class Game {
 
 	public String getCharacterInCoordante(int x, int y) {
 		String elem = " ";
-		if(plantList.encontrar(x,y)) {
-			elem = plantList.getString(x, y);
+		if (plantList.encontrar(x, y)) {
+			elem = plantList.toString(x, y);
 		}
-		if(zombieList.encontrar(x,y)) {
-			elem = zombieList.getString(x, y);
+		if (zombieList.encontrar(x, y)) {
+			elem = zombieList.toString(x, y);
 		}
-			
-			return elem;
+
+		return elem;
+	}
+
+	public boolean checkZombieWin() {
+		boolean theyWin = false;
+		for (int i = 0; i < FILAS; i++) {
+			if (zombieList.encontrar(FILAS, 0))
+				theyWin = true;
+		}
+		return theyWin;
 	}
 
 	public void accionOrdenador() {
 
 		if (this.zombieManager.isZombieAdded()) {
 			int x = new Random().nextInt(FILAS);
-			while(!isEmpty(x, COLUMNAS - 1))
-				x = new Random().nextInt(FILAS); //Si hay 4 al principio peta el juego
+			while (!isEmpty(x, COLUMNAS - 1))
+				x = new Random().nextInt(FILAS); // Si hay 4 al principio peta el juego
 			addZombie(ZombieFactory.getZombie(x, COLUMNAS - 1));
 		}
 	}
 
 	public void aumentarCiclos() {
-		this.ciclos++;
+		ciclos++;
 	}
 
 	public void reset() {
 		zombieManager = new ZombieManager(level, seed, rand);
 		suncoinManager = new SuncoinManager();
-		this.fin = false;
-		this.ciclos = 0;
+		fin = false;
+		ciclos = 0;
 		zombieList = new GameObjectList(zombieManager.getNumZombies());
 		plantList = new GameObjectList(MAX_PLANTAS);
 	}
@@ -117,6 +132,7 @@ public class Game {
 
 		return empty;
 	}
+
 //
 //	public boolean dispararPea(int x, int y, int dmg) {
 //		boolean zombieEncontrado = false;
@@ -167,20 +183,6 @@ public class Game {
 //		}
 //
 //		return moved;
-//	}
-//
-//	public void quitarElem(int x, int y) {
-//		if (this.board[x][y].equals(Elements.PEASHOOTER)) {
-//			this.pList.eliminarPeashooter(x, y);
-//			this.board[x][y] = Elements.VACIO;
-//		} else if (this.board[x][y].equals(Elements.SUNFLOWER)) {
-//			this.sList.eliminarSunflower(x, y);
-//			this.board[x][y] = Elements.VACIO;
-//		} else if (this.board[x][y].equals(Elements.ZOMBIE)) {
-//			this.zList.eliminarZombie(x, y);
-//			this.zombieManager.setNumZombies(this.zombieManager.getNumZombies() - 1);
-//			this.board[x][y] = Elements.VACIO;
-//		}
 //	}
 
 }
