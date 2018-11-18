@@ -4,6 +4,7 @@ import java.util.Random;
 
 import elems.Plant;
 import elems.Zombie;
+import factory.ZombieFactory;
 import lista.GameObjectList;
 
 public class Game {
@@ -79,6 +80,10 @@ public class Game {
 	public void accionOrdenador() {
 
 		if (this.zombieManager.isZombieAdded()) {
+			int x = new Random().nextInt(FILAS);
+			while(!isEmpty(x, COLUMNAS - 1))
+				x = new Random().nextInt(FILAS); //Si hay 4 al principio peta el juego
+			addZombie(ZombieFactory.getZombie(x, COLUMNAS - 1));
 		}
 	}
 
@@ -95,11 +100,11 @@ public class Game {
 		plantList = new GameObjectList(MAX_PLANTAS);
 	}
 
-	public void addPlant(Plant plant, int x, int y) {
+	public void addPlant(Plant plant) {
 		plantList.addObject(plant);
 	}
 
-	public void addZombie(Zombie zombie, int x, int y) {
+	public void addZombie(Zombie zombie) {
 		zombieList.addObject(zombie);
 	};
 

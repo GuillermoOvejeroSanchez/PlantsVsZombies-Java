@@ -19,5 +19,9 @@ public class ZombieBasico extends Zombie {
 		super(-1, -1, RES, DMG, FREC, INFONAME, SHORTNA);
 	}
 
+	public Zombie inPosition(int x, int y) {
+		Zombie zombie = new ZombieBasico(x,y);
+		return zombie;
+	}
 
 }

@@ -20,8 +20,8 @@ public class ZombieFactory {
 		return str.toString();
 	}
 
-	public static Zombie getZombie() {
+	public static Zombie getZombie(int x,int y) {
 		int zombie = new Random().nextInt(availabeZombies.length);
-		return (Zombie) availabeZombies[zombie];
+		return availabeZombies[zombie].inPosition(x, y);
 	}
 }

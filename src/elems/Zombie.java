@@ -22,4 +22,9 @@ public abstract class Zombie extends GameObject {
 	public void move() {
 		
 	}
+
+	public abstract Zombie inPosition(int x, int y);
+	
+	
+
 }
