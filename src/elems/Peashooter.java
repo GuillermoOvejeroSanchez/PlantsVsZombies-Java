@@ -10,8 +10,22 @@ public class Peashooter extends Plant {
 	final static String NAME = "peashooter";
 	final static String SHORTNA = "p";
 
+	public Peashooter(int x, int y) {
+		super(x, y, RES, DMG, FREC, NAME, SHORTNA, COST, CICLOS);
+	}
+	
 	public Peashooter() {
-		super(RES, FREC, DMG, NAME, SHORTNA, COST, CICLOS);
+		super(-1, -1, RES, DMG, CICLOS, INFONAME, SHORTNA, COST, FREC);
 	}
 
+	
+	@Override
+	public Plant parse(String plantName, int x, int y) {
+	Plant p = null; 
+		
+		if(plantName.equalsIgnoreCase(NAME) || plantName.equalsIgnoreCase(SHORTNA) ) {
+			p = new Peashooter(x,y); 
+		}
+		return p;
+	}
 }

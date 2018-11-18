@@ -10,11 +10,14 @@ public abstract class GameObject {
 	String name;
 	String nameShort;
 
-	public GameObject(int x, int y, int cycles, String name, String nameShort) {
+	public GameObject(int x, int y, int res,int dmg,int cycles, String name, String nameShort) {
 		this.x = x;
 		this.y = y;
+		this.cycles = cycles;
 		this.cyclesLeft = cycles;
 		this.name = name;
+		this.res = res;
+		this.dmg = dmg;
 		this.nameShort = nameShort;
 	}
 

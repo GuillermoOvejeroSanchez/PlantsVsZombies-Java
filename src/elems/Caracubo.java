@@ -9,9 +9,12 @@ public class Caracubo extends Zombie {
 	final static String INFONAME = "[C]aracubo";
 	final static String SHORTNA = "W"; 
 
-	public Caracubo() {
-		super(RES, FREC, DMG, NAME, SHORTNA);
+	public Caracubo(int x, int y) {
+		super(x, y, RES, DMG, FREC, INFONAME, SHORTNA);
 	}
 
+	public Caracubo() {
+		super(-1, -1, RES, DMG, FREC, INFONAME, SHORTNA);
+	}
 
 }

@@ -2,8 +2,8 @@ package elems;
 
 public abstract class Zombie extends GameObject {
 
-	public Zombie(int x, int y, int cycles, String name, String nameShort) {
-		super(x, y, cycles, name, nameShort);
+	public Zombie(int x, int y, int res,int dmg,int cycles, String name, String nameShort) {
+		super(x, y, res, dmg, cycles, name, nameShort);
 	}
 
 	public boolean update() {

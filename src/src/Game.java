@@ -3,13 +3,16 @@ package src;
 import java.util.Random;
 
 import elems.Plant;
+import elems.Zombie;
+import lista.GameObjectList;
 
 public class Game {
 	static public final int COLUMNAS = 8;
 	static public final int FILAS = 4;
-	public final int MAX_PLANTAS = 32;
+	public final int MAX_PLANTAS = 24;
 	private Level level;
-	// private Elements[][] board;
+	private GameObjectList zombieList;
+	private GameObjectList plantList;
 	private SuncoinManager suncoinManager;
 	private ZombieManager zombieManager;
 	private int seed;
@@ -26,6 +29,8 @@ public class Game {
 		this.fin = false;
 		zombieManager = new ZombieManager(this.level, this.seed, this.rand);
 		suncoinManager = new SuncoinManager();
+		zombieList = new GameObjectList(zombieManager.getNumZombies());
+		plantList = new GameObjectList(MAX_PLANTAS);
 	}
 
 	public void update() {
@@ -57,6 +62,55 @@ public class Game {
 
 	public boolean getFin() {
 		return fin;
+	}
+
+	public String getCharacterInCoordante(int x, int y) {
+		String elem = " ";
+		if(plantList.encontrar(x,y)) {
+			elem = plantList.getString(x, y);
+		}
+		if(zombieList.encontrar(x,y)) {
+			elem = zombieList.getString(x, y);
+		}
+			
+			return elem;
+	}
+
+	public void accionOrdenador() {
+
+		if (this.zombieManager.isZombieAdded()) {
+		}
+	}
+
+	public void aumentarCiclos() {
+		this.ciclos++;
+	}
+
+	public void reset() {
+		zombieManager = new ZombieManager(level, seed, rand);
+		suncoinManager = new SuncoinManager();
+		this.fin = false;
+		this.ciclos = 0;
+		zombieList = new GameObjectList(zombieManager.getNumZombies());
+		plantList = new GameObjectList(MAX_PLANTAS);
+	}
+
+	public void addPlant(Plant plant, int x, int y) {
+		plantList.addObject(plant);
+	}
+
+	public void addZombie(Zombie zombie, int x, int y) {
+		zombieList.addObject(zombie);
+	};
+
+	public boolean isEmpty(int x, int y) {
+		boolean empty = false;
+
+		if (!plantList.encontrar(x, y))
+			if (!zombieList.encontrar(x, y))
+				empty = true;
+
+		return empty;
 	}
 //
 //	public boolean dispararPea(int x, int y, int dmg) {
@@ -91,41 +145,7 @@ public class Game {
 //		}
 //		return ataca;
 //	}
-
-//	public boolean addPea(int x, int y) {
-//		boolean added = false;
-//		if (this.board[x][y].equals(Elements.VACIO) && this.suncoinManager.getSuncoins() >= Peashooter.COST) {
-//			Peashooter peashooter = new Peashooter(x, y, this);
-//			this.pList.addPeashooter(peashooter);
-//			this.board[x][y] = Elements.PEASHOOTER;
-//			this.suncoinManager.modifySuncoins(-Peashooter.COST);
-//			added = true;
-//		}
-//		return added;
-//	}
 //
-//	public boolean addSunflo(int x, int y) {
-//		boolean added = false;
-//		if (this.board[x][y].equals(Elements.VACIO) && this.suncoinManager.getSuncoins() >= Sunflower.COST) {
-//			Sunflower sunflower = new Sunflower(x, y, this);
-//			this.sList.addSunflower(sunflower);
-//			this.board[x][y] = Elements.SUNFLOWER;
-//			this.suncoinManager.modifySuncoins(-Sunflower.COST);
-//			added = true;
-//		}
-//		return added;
-//	}
-//
-//	public boolean addZombie(int x, int y) {
-//		boolean added = false;
-//		if (this.board[x][y].equals(Elements.VACIO)) {
-//			ZombieBasico zombie = new ZombieBasico();
-//			this.zList.addZombie(zombie);
-//			this.board[x][y] = Elements.ZOMBIE;
-//			added = true;
-//		}
-//		return added;
-//	}
 //
 //	public boolean moveZombie(int x, int y) {
 //		boolean moved = false;
@@ -157,41 +177,5 @@ public class Game {
 //			this.board[x][y] = Elements.VACIO;
 //		}
 //	}
-
-	public String getCharacterInCoordante(int x, int y) {
-		String elemento = " ";
-//TODO encode
-		return elemento;
-	}
-
-	public void accionOrdenador() {
-
-		if (this.zombieManager.isZombieAdded()) {
-		}
-	}
-
-	public void aumentarCiclos() {
-		this.ciclos++;
-	}
-
-	public void reset() {
-		zombieManager = new ZombieManager(level, seed, rand);
-		suncoinManager = new SuncoinManager();
-		this.fin = false;
-		this.ciclos = 0;
-		// TODO Crear listas
-	}
-
-//
-//	public void iniciarTablero() {
-//		board = new Elements[FILAS][COLUMNAS];
-//		for (int i = 0; i < FILAS; i++)
-//			for (int j = 0; j < COLUMNAS; j++)
-//				board[i][j] = Elements.VACIO;
-//	}
-//TODO
-	public void addPlantToGame(Plant plant, int x, int y) {
-
-	}
 
 }

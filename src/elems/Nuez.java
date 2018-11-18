@@ -10,7 +10,21 @@ public class Nuez extends Plant {
 	final static String NAME = "nuez";
 	final static String SHORTNA = "N";
 
+	public Nuez(int x, int y) {
+		super(x, y, RES, DMG, CICLOS, NAME, SHORTNA, COST, FREC);
+	}
+
 	public Nuez() {
-		super(RES, FREC, DMG, NAME, SHORTNA, COST, CICLOS);
+		super(-1, -1, RES, DMG, CICLOS, INFONAME, SHORTNA, COST, FREC);
+	}
+	
+	@Override
+	public Plant parse(String plantName, int x, int y) {
+	Plant p = null; 
+		
+		if(plantName.equalsIgnoreCase(NAME) || plantName.equalsIgnoreCase(SHORTNA) ) {
+			p = new Nuez(x,y); 
+		}
+		return p;
 	}
 }

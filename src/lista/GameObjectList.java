@@ -3,9 +3,8 @@ package lista;
 import elems.GameObject;
 
 public class GameObjectList {
-
-	// private final static int MAX_ELEMS = 32; aqui no lookooo en donde se vaya a
-	// crear
+	
+	
 
 	private GameObject[] ObjectList;
 	private int contador;
@@ -19,11 +18,11 @@ public class GameObjectList {
 
 	// encontrar
 
-	public int encontrar(int x, int y) {
+	public boolean encontrar(int x, int y) {
 		int i = 0;
 		boolean encontrado = false;
 
-		while (i < ObjectList.length && !encontrado) {
+		while (i < this.contador && !encontrado) {
 
 			if (this.ObjectList[i].getX() == x && this.ObjectList[i].getY() == y) {
 				encontrado = true;
@@ -32,19 +31,33 @@ public class GameObjectList {
 
 		}
 
-		return i;
+		return encontrado;
+	}
+
+	private int buscarPos(int x, int y) {
+		int pos = 0;
+		boolean encontrado = false;
+
+		while (pos < contador && !encontrado) {
+
+			if (this.ObjectList[pos].getX() == x && this.ObjectList[pos].getY() == y) {
+				encontrado = true;
+			} else
+				pos++;
+
+		}
+
+		return pos;
 	}
 
 	// add
-	public boolean addObjeto(GameObject objeto) {
+	public boolean addObject(GameObject objeto) {
 		boolean insertado = false;
 
 		if (!llena()) {
-
 			ObjectList[this.contador] = objeto;
 			this.contador++;
 			insertado = true;
-
 		}
 
 		return insertado;
@@ -53,15 +66,12 @@ public class GameObjectList {
 
 	// delete
 	public void delete(int x, int y) {
-		int pos;
-
-		pos = encontrar(x, y);
-
-		for (int i = pos; i < ObjectList.length - 1; i++) {
-			ObjectList[i] = ObjectList[i + 1];
+		if (encontrar(x, y)) {
+			for (int i = buscarPos(x, y); i < contador - 1; i++) {
+				ObjectList[i] = ObjectList[i + 1];
+			}
+			this.contador--;
 		}
-		this.contador--;
-
 	}
 
 	// get objeto
@@ -77,33 +87,31 @@ public class GameObjectList {
 	}
 
 	// tam lista
+	
+	public String getString(int x, int y) {
+		StringBuilder elem = new StringBuilder();
+		if(encontrar(x,y)) {
+			GameObject go = this.getObject(buscarPos(x,y));
+			elem.append(go.getShortName().toUpperCase());
+			elem.append("[");
+			elem.append(go.getResistance());
+			elem.append("]");
+			
+		}
+		return elem.toString();
+	}
 	public int getSize() {
 		return contador;
 	}
 
 	// update
-	
+
 	public void update() {
-		
-		for(int i = 0; i < ObjectList.length; i++) {
+
+		for (int i = 0; i < ObjectList.length; i++) {
 			ObjectList[i].update();
 		}
-		
+
 	}
-	
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

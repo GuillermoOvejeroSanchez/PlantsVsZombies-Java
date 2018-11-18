@@ -13,21 +13,21 @@ public class PlantsFactory {
 	public static String listOfAvailablePlants() {
 		StringBuilder str = new StringBuilder();
 		for (Plant plant : availablePlants) {
-			str.append(plant.getName() + ": Cost " + plant.getCost() + " suncoins " + "Harm " + plant.getDamage()
+			str.append(plant.getName() + ": \tCost " + plant.getCost() + " SunCoins " + "Harm: " + plant.getDamage()
 					+ System.lineSeparator());
 		}
 		return str.toString();
 	}
 
-	public static Plant getPlant(String plantName) {
+	public static Plant getPlant(String plantName, int x, int y) {
 		Plant plant = null;
 		int i = 0;
 		boolean encontrado = false;
 		while (!encontrado && i < availablePlants.length) {
-			plant = availablePlants[i].parse(plantName);
-			if (plant != null)
+			plant = availablePlants[i].parse(plantName, x, y);
+			if (plant != null) {
 				encontrado = true;
-			else
+			} else
 				i++;
 		}
 

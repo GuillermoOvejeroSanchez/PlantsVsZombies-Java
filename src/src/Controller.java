@@ -65,5 +65,12 @@ public class Controller {
 		this.gamePrinter.printBoard(game);
 
 	}
+	
+
+
+
+	public boolean isEmpty(int x, int y) {
+		return game.isEmpty(x, y);
+	}
 
 }

@@ -10,8 +10,23 @@ public class Petacereza extends Plant {
 	final static String NAME = "petacereza";
 	final static String SHORTNA = "c";
 
+	public Petacereza(int x, int y) {
+		super(x, y, RES, DMG, CICLOS, NAME, SHORTNA, COST, FREC);
+	}
+
 	public Petacereza() {
-		super(RES, FREC, DMG, NAME, SHORTNA, COST, CICLOS);
+		super(-1, -1, RES, DMG, CICLOS, INFONAME, SHORTNA, COST, FREC);
+	}
+	
+	
+	@Override
+	public Plant parse(String plantName, int x, int y) {
+	Plant p = null; 
+		
+		if(plantName.equalsIgnoreCase(NAME) || plantName.equalsIgnoreCase(SHORTNA) ) {
+			p = new Petacereza(x,y); 
+		}
+		return p;
 	}
 
 }

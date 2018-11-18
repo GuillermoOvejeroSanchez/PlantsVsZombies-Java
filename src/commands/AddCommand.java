@@ -7,7 +7,7 @@ import src.Game;
 
 public class AddCommand extends Command {
 	private int x, y;
-	private Plant plant;
+	private String plant;
 
 	// Implentar planta
 	public final static String commandName = "add";
@@ -18,7 +18,7 @@ public class AddCommand extends Command {
 		super(commandName, commandInfo, helpInfo);
 	}
 
-	public AddCommand(int x, int y, Plant plant) {
+	public AddCommand(int x, int y, String plant) {
 		super(commandName, commandInfo, helpInfo);
 
 		this.x = x;
@@ -28,7 +28,7 @@ public class AddCommand extends Command {
 // Cambiarlo, se comprueba a la hora de aniadir una planta 
 
 	@Override
-	public Command parse(String[] comando, Controller controler) {
+	public Command parse(String[] comando, Controller controller) {
 		Command c = null;
 
 		if (comando.length == 4 && (comando[0].equals(commandName) || comando[0].equals(commandName.substring(0, 1)))) {
@@ -36,10 +36,9 @@ public class AddCommand extends Command {
 			this.x = Integer.parseInt(comando[2]);
 			this.y = Integer.parseInt(comando[3]);
 			if (this.x < 3 || this.y < 6 || this.x >= 0 || this.y >= 0) {
-				PlantsFactory.getPlant(comando[1]);
-				Plant p = PlantsFactory.getPlant(comando[1]);
-
-				c = new AddCommand(x, y, p);
+				if (controller.isEmpty(x, y)) {
+					c = new AddCommand(x, y, comando[1]);
+				}
 			}
 		}
 
@@ -47,8 +46,12 @@ public class AddCommand extends Command {
 	}
 
 	@Override
-	public void execute(Game game, Controller controler) {
-		game.addPlantToGame(plant, x, y);
+	public void execute(Game game, Controller controller) {
+		Plant p = PlantsFactory.getPlant(plant, x, y);
+		if (p != null)
+			game.addPlant(p, x, y);
+		else
+			controller.setNoPrintGameState();
 	}
 
 	public int getX() {

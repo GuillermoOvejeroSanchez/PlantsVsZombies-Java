@@ -8,8 +8,13 @@ public class Deportista extends Zombie {
 	final static String NAME = "deportista";
 	final static String INFONAME = "[D]eportista";
 	final static String SHORTNA = "D";
+
+	public Deportista(int x, int y) {
+		super(x, y, RES, DMG, FREC, INFONAME, SHORTNA);
+	}
+
 	public Deportista() {
-		super(RES, FREC, DMG, NAME, SHORTNA);
+		super(-1, -1, RES, DMG, FREC, INFONAME, SHORTNA);
 	}
 
 }
