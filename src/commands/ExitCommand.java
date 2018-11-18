@@ -10,7 +10,7 @@ public class ExitCommand extends NoParamsCommand {
 
 	public ExitCommand() {
 		super(commandName, commandInfo, helpInfo);
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@Override

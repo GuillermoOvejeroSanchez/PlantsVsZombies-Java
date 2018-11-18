@@ -6,11 +6,8 @@ public abstract class Zombie extends GameObject {
 		super(x, y, res, dmg, cycles, name, nameShort);
 	}
 
-	public void attack() {
-
-	}
-
 	public void accion() {
+
 		setY(this.y - 1);
 	}
 

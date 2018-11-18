@@ -9,7 +9,6 @@ public class AddCommand extends Command {
 	private int x, y;
 	private String name;
 
-	// Implentar namea
 	public final static String commandName = "add";
 	public final static String commandInfo = "[A]dd";
 	public final static String helpInfo = "<name> <x> <y>: Adds a name in position x, y.";
@@ -25,7 +24,6 @@ public class AddCommand extends Command {
 		this.y = y;
 		this.name = name;
 	}
-// Cambiarlo, se comprueba a la hora de aniadir una namea 
 
 	@Override
 	public Command parse(String[] comando, Controller controller) {
@@ -35,11 +33,7 @@ public class AddCommand extends Command {
 
 			this.x = Integer.parseInt(comando[2]);
 			this.y = Integer.parseInt(comando[3]);
-			if (this.x < 4 && this.y < 7 && this.x > -1 && this.y > -1) {
-				if (controller.isEmpty(x, y)) {
-					c = new AddCommand(x, y, comando[1]);
-				}
-			}
+			c = new AddCommand(x, y, comando[1]);
 		}
 
 		return c;
@@ -48,10 +42,13 @@ public class AddCommand extends Command {
 	@Override
 	public void execute(Game game, Controller controller) {
 		Plant p = PlantsFactory.getPlant(name, x, y);
-		if (p != null)
+		if (p != null && controller.isEmpty(x, y))
 			game.addPlant(p);
-		else
+		// TODO modifySuncoins(p.getCost());
+		else {
+			System.err.println("Invalid Plant or Position out of Bounds");
 			controller.setNoPrintGameState();
+		}
 	}
 
 	public int getX() {

@@ -22,7 +22,6 @@ public class PrintModeCommand extends NoParamsCommand {
 	public void execute(Game game, Controller controller) {
 		System.out.println("Modo de Print cambiado");
 		// TODO execute swapPrintMode();
-		
 
 	}
 

@@ -20,17 +20,19 @@ public class PlantsFactory {
 	}
 
 	public static Plant getPlant(String plantName, int x, int y) {
+		// TODO Check enough suncoins
 		Plant plant = null;
 		int i = 0;
 		boolean encontrado = false;
-		while (!encontrado && i < availablePlants.length) {
-			plant = availablePlants[i].parse(plantName, x, y);
-			if (plant != null) {
-				encontrado = true;
-			} else
-				i++;
+		if (x < 4 && y < 7 && x > -1 && y > -1) {
+			while (!encontrado && i < availablePlants.length) {
+				plant = availablePlants[i].parse(plantName, x, y);
+				if (plant != null) {
+					encontrado = true;
+				} else
+					i++;
+			}
 		}
-
 		return plant;
 	}
 }

@@ -10,7 +10,6 @@ public class HelpCommand extends NoParamsCommand {
 
 	public HelpCommand() {
 		super(commandName, commandInfo, helpInfo);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

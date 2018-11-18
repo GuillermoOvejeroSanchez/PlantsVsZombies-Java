@@ -7,7 +7,7 @@ public class Petacereza extends Plant {
 	final static int RES = 2;
 	final static String INFONAME = "Peta[c]ereza";
 	final static String NAME = "petacereza";
-	final static String SHORTNA = "c";
+	final static String SHORTNA = "C";
 
 	public Petacereza(int x, int y) {
 		super(x, y, RES, DMG, CICLOS, NAME, SHORTNA, COST);
@@ -29,7 +29,7 @@ public class Petacereza extends Plant {
 
 //Explota
 	public void accion() {
-
+//TODO accion Petacereza
 	}
 
 }

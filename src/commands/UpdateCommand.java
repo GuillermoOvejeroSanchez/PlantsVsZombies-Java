@@ -11,12 +11,11 @@ public class UpdateCommand extends NoParamsCommand {
 
 	public UpdateCommand() {
 		super(commandName, commandInfo, helpInfo);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void execute(Game game, Controller controler) {
-		
+
 	}
 
 }

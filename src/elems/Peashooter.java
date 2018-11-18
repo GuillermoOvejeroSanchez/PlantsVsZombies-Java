@@ -7,7 +7,7 @@ public class Peashooter extends Plant {
 	final static int RES = 3;
 	final static String INFONAME = "[P]eashooter";
 	final static String NAME = "peashooter";
-	final static String SHORTNA = "p";
+	final static String SHORTNA = "P";
 
 	public Peashooter(int x, int y) {
 		super(x, y, RES, DMG, CICLOS, NAME, SHORTNA, COST);
@@ -27,8 +27,7 @@ public class Peashooter extends Plant {
 		return p;
 	}
 
-	//Dispara
 	public void accion() {
-
+//TODO Accion peashooter
 	}
 }

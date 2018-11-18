@@ -10,7 +10,7 @@ public abstract class GameObject {
 	String name;
 	String nameShort;
 
-	public GameObject(int x, int y, int res,int dmg,int cycles, String name, String nameShort) {
+	public GameObject(int x, int y, int res, int dmg, int cycles, String name, String nameShort) {
 		this.x = x;
 		this.y = y;
 		this.cycles = cycles;
@@ -26,7 +26,6 @@ public abstract class GameObject {
 	}
 
 	public int getDamage() {
-
 		return this.dmg;
 	}
 
@@ -46,8 +45,8 @@ public abstract class GameObject {
 		return this.res;
 	}
 
-	public void setResistance(int resistance) {
-		this.res = resistance;
+	public void setResistance(int newRes) {
+		this.res = newRes;
 	}
 
 	public int getX() {
@@ -68,7 +67,7 @@ public abstract class GameObject {
 
 	public int update() {
 		int ciclos = --this.cyclesLeft;
-		if(this.cyclesLeft == 0) {
+		if (this.cyclesLeft == 0) {
 			this.cyclesLeft = this.cycles;
 		}
 		return ciclos;
@@ -81,11 +80,11 @@ public abstract class GameObject {
 	public String getShortName() {
 		return this.nameShort;
 	}
-	
+
 	public void takeDmg(GameObject gameObject) {
 		this.setResistance(this.res - gameObject.dmg);
 	}
-	
+
 	public boolean isDead() {
 		return this.res == 0;
 	}

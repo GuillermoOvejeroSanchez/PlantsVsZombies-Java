@@ -1,9 +1,11 @@
 package elems;
 
+import src.Game;
+
 public class Sunflower extends Plant {
 
 	final static int COST = 20;
-	final static int CICLOS = 1;
+	final static int CICLOS = 2;
 	final static int DMG = 0;
 	final static int RES = 1;
 	final static String INFONAME = "[S]unflower";
@@ -35,6 +37,6 @@ public class Sunflower extends Plant {
 
 	// Gana Soles
 	public void accion() {
-
+		Game.modifySuncoins(10);
 	}
 }

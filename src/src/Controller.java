@@ -22,32 +22,35 @@ public class Controller {
 
 	public void run(Game game) {
 
-		noSalir = true;
-
-		while (noSalir && !game.getFin()) {
+		while (!game.getFin() && !game.getZombieWin()) {
 			if (print) {
 				game.update();
 				printGame();
 			}
+			print = true;
+			System.out.print("Command >");
+			String[] comando = in.nextLine().toLowerCase().trim().split("\\s+");
+			Command command = CommandParse.parseCommand(comando, this);
+
+			if (command != null) {
+				command.execute(game, this);
+			} else {
+				System.err.println("Unknown Command");
+				setNoPrintGameState();
+			}
+
 			if (!game.getFin()) {
-				print = true;
-				System.out.print("Command >");
-				String[] comando = in.nextLine().toLowerCase().trim().split("\\s+");
-				Command command = CommandParse.parseCommand(comando, this);
-
-				if (command != null) {
-					command.execute(game, this);
-				}
-
-				else {
-					System.err.println("Unknown Command");
-					setNoPrintGameState();
-				}
-				if (noSalir) {
-					game.accionOrdenador();
-				}
+				game.accionOrdenador();
 			}
 		}
+		if (game.getFin()) {
+			System.out.println("YOU WIN");
+			setNoPrintGameState();
+		} else if (game.checkZombieWin()) {
+			System.out.println("YOU LOST");
+			setNoPrintGameState();
+		}
+
 		System.out.println("GAME OVER");
 	}
 
@@ -65,9 +68,6 @@ public class Controller {
 		this.gamePrinter.printBoard(game);
 
 	}
-	
-
-
 
 	public boolean isEmpty(int x, int y) {
 		return game.isEmpty(x, y);

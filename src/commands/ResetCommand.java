@@ -11,7 +11,6 @@ public class ResetCommand extends NoParamsCommand {
 
 	public ResetCommand() {
 		super(commandName, commandInfo, helpInfo);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

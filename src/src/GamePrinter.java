@@ -23,7 +23,6 @@ public class GamePrinter {
 	}
 
 	private String toStringBoard() {
-
 		int cellSize = 7;
 		int marginSize = 2;
 		String vDelimiter = "|";
@@ -37,9 +36,11 @@ public class GamePrinter {
 		str.append(lineDelimiter);
 
 		for (int i = 0; i < dimX; i++) {
+			str.append(i);
 			str.append(margin).append(vDelimiter);
 			for (int j = 0; j < dimY; j++) {
 				str.append(MyStringUtils.centre(board[i][j], cellSize)).append(vDelimiter);
+
 			}
 			str.append(lineDelimiter);
 		}

@@ -72,18 +72,13 @@ public class GameObjectList {
 		}
 	}
 
-	// get objeto
-
-	public GameObject getObject(int i) {
+	private GameObject getObject(int i) {
 		return this.ObjectList[i];
 	}
-
-	// llena
 
 	public boolean llena() {
 		return this.contador == ObjectList.length;
 	}
-
 
 	public String toString(int x, int y) {
 		StringBuilder elem = new StringBuilder();
@@ -104,15 +99,20 @@ public class GameObjectList {
 	}
 
 	// update
-
 	public void update() {
 		int cycles;
 		for (int i = 0; i < contador; i++) {
-			 cycles = ObjectList[i].update();
-			if(cycles == 0) {
+			cycles = ObjectList[i].update();
+			if (cycles == 0) {
+				// TODO Zombie tiene que atacar pero no se si se le puede pasar el game
 				ObjectList[i].accion();
 			}
 		}
+
+	}
+
+	public void getAttacked(int x, int y, GameObject go) {
+		ObjectList[buscarPos(x, y)].takeDmg(go);
 
 	}
 

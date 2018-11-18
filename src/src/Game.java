@@ -2,6 +2,7 @@ package src;
 
 import java.util.Random;
 
+import elems.GameObject;
 import elems.Plant;
 import elems.Zombie;
 import factory.ZombieFactory;
@@ -14,7 +15,7 @@ public class Game {
 	private Level level;
 	private GameObjectList zombieList;
 	private GameObjectList plantList;
-	private SuncoinManager suncoinManager;
+	private static SuncoinManager suncoinManager;
 	private ZombieManager zombieManager;
 	private int seed;
 	private boolean fin;
@@ -40,6 +41,7 @@ public class Game {
 		aumentarCiclos();
 		plantList.update();
 		zombieList.update();
+		fin = getFin();
 		zombieWin = checkZombieWin();
 	}
 
@@ -63,13 +65,16 @@ public class Game {
 		return zombieManager.getRemainingZombies();
 	}
 
-	public void modifySuncoins(int i) {
+	// TODO Esto es static????
+	public static void modifySuncoins(int i) {
 		suncoinManager.modifySuncoins(i);
 	}
 
 	public boolean getFin() {
 		return fin;
 	}
+
+	// TODO Die method
 
 	public String getCharacterInCoordante(int x, int y) {
 		String elem = " ";
@@ -86,7 +91,7 @@ public class Game {
 	public boolean checkZombieWin() {
 		boolean theyWin = false;
 		for (int i = 0; i < FILAS; i++) {
-			if (zombieList.encontrar(FILAS, 0))
+			if (zombieList.encontrar(i, 0))
 				theyWin = true;
 		}
 		return theyWin;
@@ -100,6 +105,15 @@ public class Game {
 				x = new Random().nextInt(FILAS); // Si hay 4 al principio peta el juego
 			addZombie(ZombieFactory.getZombie(x, COLUMNAS - 1));
 		}
+	}
+
+	public boolean attack(int x, int y, GameObject go) {
+		boolean attacked = false;
+		if (plantList.encontrar(x, y - 1)) {
+			plantList.getAttacked(x, y - 1, go);
+		}
+		return attacked;
+
 	}
 
 	public void aumentarCiclos() {
@@ -148,41 +162,5 @@ public class Game {
 //		return zombieEncontrado;
 //	}
 //
-//	public boolean atacaZombie(int x, int y, int dmg) {
-//		boolean ataca = false;
-//
-//		if (y - 1 >= 0) {
-//
-//			if (this.board[x][y - 1].equals(Elements.SUNFLOWER)) {
-//				sList.atacado(x, y, dmg);
-//				ataca = true;
-//			}
-//
-//			else if (this.board[x][y - 1].equals(Elements.PEASHOOTER)) {
-//				this.pList.atacado(x, y, dmg);
-//				ataca = true;
-//			}
-//
-//		}
-//		return ataca;
-//	}
-//
-//
-//	public boolean moveZombie(int x, int y) {
-//		boolean moved = false;
-//
-//		if (y - 1 >= 0) {
-//			if (board[x][y - 1].equals(Elements.VACIO)) {
-//				board[x][y - 1] = Elements.ZOMBIE;
-//				board[x][y] = Elements.VACIO;
-//				moved = true;
-//			}
-//		} else {
-//			this.fin = true;
-//			System.out.println("YOU LOST");
-//		}
-//
-//		return moved;
-//	}
 
 }
