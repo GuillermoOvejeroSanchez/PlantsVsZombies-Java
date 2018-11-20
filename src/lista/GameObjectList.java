@@ -1,17 +1,20 @@
 
 package lista;
 
+import java.util.Arrays;
+
 import elems.GameObject;
 
 public class GameObjectList {
 	// prueba
-
+	public final static int TAM = 1; 
+	
 	private GameObject[] ObjectList;
 	private int contador;
 
 	public GameObjectList(int tam) {
 		this.contador = 0;
-		this.ObjectList = new GameObject[tam];
+		this.ObjectList = new GameObject[TAM];
 
 	}
 
@@ -62,6 +65,24 @@ public class GameObjectList {
 		return insertado;
 
 	}
+	
+	/* ARRAY DINAMICO
+	public boolean addObjectRedi(GameObject objeto) {
+		boolean insertado = true; 
+		
+		if(contador + 1 == ObjectList.length)
+		{
+			GameObject[]aux =Arrays.copyOf(ObjectList, ObjectList.length*2);
+			this.ObjectList = aux; 
+		}
+		
+		ObjectList[contador] = objeto; 
+		contador++; 
+		
+		
+		return insertado; 
+	}
+	*/
 
 	// delete
 	public void delete(int i) {
