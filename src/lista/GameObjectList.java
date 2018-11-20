@@ -4,7 +4,7 @@ package lista;
 import elems.GameObject;
 
 public class GameObjectList {
-	//prueba
+	// prueba
 
 	private GameObject[] ObjectList;
 	private int contador;
@@ -64,21 +64,15 @@ public class GameObjectList {
 	}
 
 	// delete
-	public void delete(int x, int y) {
-		if (encontrar(x, y)) {
-			for (int i = buscarPos(x, y); i < contador - 1; i++) {
-				ObjectList[i] = ObjectList[i + 1];
-			}
-			this.contador--;
+	public void delete(int i) {
+		for (; i < contador - 1; i++) {
+			ObjectList[i] = ObjectList[i + 1];
 		}
+		this.contador--;
 	}
 
 	private GameObject getObject(int i) {
 		return this.ObjectList[i];
-	}
-
-	public boolean llena() {
-		return this.contador == ObjectList.length;
 	}
 
 	public String toString(int x, int y) {
@@ -99,17 +93,29 @@ public class GameObjectList {
 		return contador;
 	}
 
-
 	public void update() {
 		for (int i = 0; i < contador; i++) {
 			ObjectList[i].update();
 		}
 	}
 
+	public boolean llena() {
+		return this.contador == ObjectList.length;
+	}
+
 	public void getAttacked(int x, int y, GameObject go) {
-		if (encontrar(x, y - 1)) {
-			getObject(buscarPos(x, y - 1)).takeDmg(go);
+		if (encontrar(x, y)) {
+			getObject(buscarPos(x, y)).takeDmg(go);
 		}
+	}
+
+	public void clean() {
+		for (int i = 0; i < contador; i++) {
+			if (ObjectList[i].isDead()) {
+				delete(i);
+			}
+		}
+
 	}
 
 }

@@ -41,8 +41,27 @@ public class Game {
 		aumentarCiclos();
 		plantList.update();
 		zombieList.update();
+		cleanBoard();
 		fin = getFin();
 		zombieWin = checkZombieWin();
+	}
+
+	private void cleanBoard() {
+		plantList.clean();
+		zombieList.clean();
+
+	}
+
+	public void peashooterAttack(int x, int y, GameObject go) {
+		boolean encontrado =false;
+		int i = 0;
+		while(!encontrado && y < COLUMNAS){
+			if(zombieList.encontrar(x, y + i)) {
+				zombieList.getAttacked(x, y + i, go);
+				encontrado = true;
+			}
+			i++;
+		}
 	}
 
 	public boolean getZombieWin() {
@@ -73,7 +92,7 @@ public class Game {
 		return fin;
 	}
 
-	// TODO Die method
+
 
 	public String getCharacterInCoordante(int x, int y) {
 		String elem = " ";
@@ -108,8 +127,9 @@ public class Game {
 
 	public boolean attack(int x, int y, GameObject go) {
 		boolean attacked = false;
-		if (plantList.encontrar(x, y - 1) && zombieList.encontrar(x, y)) {
+		if (plantList.encontrar(x, y - 1)) {
 			plantList.getAttacked(x, y - 1, go);
+			attacked = true;
 		}
 		return attacked;
 
@@ -145,9 +165,8 @@ public class Game {
 		return empty;
 	}
 
-	
-	//TODO hacer un level to string para el modo debug 
-	
+	// TODO hacer un level to string para el modo debug
+
 //
 //	public boolean dispararPea(int x, int y, int dmg) {
 //		boolean zombieEncontrado = false;

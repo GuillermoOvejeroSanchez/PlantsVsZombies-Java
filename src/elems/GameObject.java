@@ -16,7 +16,7 @@ public abstract class GameObject {
 
 	protected GameObject(int x, int y, Game game) {
 		this.x = x;
-		this.y = y;	
+		this.y = y;
 		this.game = game;
 	}
 
@@ -64,14 +64,7 @@ public abstract class GameObject {
 		this.y = y;
 	}
 
-	public boolean update() {
-		 int ciclos = --this.cyclesLeft;
-		if (this.cyclesLeft == 0) {
-			this.accion();
-			this.cyclesLeft = this.cycles;
-		}
-		return ciclos == 0;
-	}
+	public abstract boolean update();
 
 	public String getName() {
 		return this.name;
@@ -86,9 +79,8 @@ public abstract class GameObject {
 	}
 
 	public boolean isDead() {
-		return this.res == 0;
+		return this.res <= 0;
 	}
 
 	protected abstract void accion();
-	public abstract boolean attack();
 }

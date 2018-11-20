@@ -38,7 +38,7 @@ public class Peashooter extends Plant {
 	}
 
 	public void accion() {
-//TODO Accion peashooter
+		game.peashooterAttack(this.x, this.y, this);
 	}
 	
 	public boolean attack() {

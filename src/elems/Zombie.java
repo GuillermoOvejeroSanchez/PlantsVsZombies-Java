@@ -17,11 +17,24 @@ public abstract class Zombie extends GameObject {
 		return false;
 	}
 
+	public boolean update() {
+		int ciclos = -1;
+		if (!(game.attack(this.x, this.y, this)))
+			if (game.isEmpty(x, y - 1)) {
+				ciclos = --this.cyclesLeft;
+				if (this.cyclesLeft == 0) {
+					this.accion();
+					this.cyclesLeft = this.cycles;
+				}
+			}
+		return ciclos == 0;
+	}
+
 	protected void accion() {
-		if (game.isEmpty(x, y - 1))
+		if (!(game.attack(this.x, this.y, this)))
 			setY(this.y - 1);
 	}
 
-	public abstract Zombie inPosition(int x, int y,Game game);
+	public abstract Zombie inPosition(int x, int y, Game game);
 
 }

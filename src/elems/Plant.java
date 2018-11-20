@@ -23,6 +23,14 @@ public abstract class Plant extends GameObject {
 		return p;
 	}
 
+	public boolean update() {
+		 int ciclos = --this.cyclesLeft;
+		if (this.cyclesLeft == 0) {
+			this.accion();
+			this.cyclesLeft = this.cycles;
+		}
+		return ciclos == 0;
+	}
 	public int getCost() {
 		return this.cost;
 	}

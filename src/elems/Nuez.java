@@ -27,7 +27,7 @@ public class Nuez extends Plant {
 		Plant p = null;
 
 		if (plantName.equalsIgnoreCase(name) || plantName.equalsIgnoreCase(nameShort)) {
-			p = new Petacereza(x, y, game);
+			p = new Nuez(x, y, game);
 		}
 		return p;
 	}
@@ -36,7 +36,4 @@ public class Nuez extends Plant {
 
 	}
 	
-	public boolean attack() {
-		return false;
-	}
 }
