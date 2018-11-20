@@ -1,6 +1,27 @@
 package elems;
 
+import src.Game;
+
 public class Deportista extends Zombie {
+	
+	public Deportista(int x, int y, Game game) {
+		super(x, y, game);
+		inicializar();
+	}
+
+	public Deportista() {
+		inicializar();
+	}
+	
+	private void inicializar() {
+		res = 2;
+		cycles = 1;
+		cyclesLeft = cycles;
+		dmg = 1;
+		nameShort = "D";
+		name = "deportista";
+		infoName = "[D]eportist";
+	}
 	final static int FREC = 1;
 	final static int DMG = 1;
 	final static int RES = 2;
@@ -8,16 +29,9 @@ public class Deportista extends Zombie {
 	final static String INFONAME = "[D]eportista";
 	final static String SHORTNA = "D";
 
-	public Deportista(int x, int y) {
-		super(x, y, RES, DMG, FREC, INFONAME, SHORTNA);
-	}
 
-	public Deportista() {
-		super(-1, -1, RES, DMG, FREC, INFONAME, SHORTNA);
-	}
-
-	public Zombie inPosition(int x, int y) {
-		Zombie zombie = new Deportista(x, y);
+	public Zombie inPosition(int x, int y, Game game) {
+		Zombie zombie = new Deportista(x, y, game);
 		return zombie;
 	}
 

@@ -41,8 +41,27 @@ public class Game {
 		aumentarCiclos();
 		plantList.update();
 		zombieList.update();
+		cleanBoard();
 		fin = getFin();
 		zombieWin = checkZombieWin();
+	}
+
+	private void cleanBoard() {
+		plantList.clean();
+		zombieList.clean();
+
+	}
+
+	public void peashooterAttack(int x, int y, GameObject go) {
+		boolean encontrado =false;
+		int i = 0;
+		while(!encontrado && y < COLUMNAS){
+			if(zombieList.encontrar(x, y + i)) {
+				zombieList.getAttacked(x, y + i, go);
+				encontrado = true;
+			}
+			i++;
+		}
 	}
 
 	public boolean getZombieWin() {
@@ -65,8 +84,7 @@ public class Game {
 		return zombieManager.getRemainingZombies();
 	}
 
-	// TODO Esto es static????
-	public static void modifySuncoins(int i) {
+	public void modifySuncoins(int i) {
 		suncoinManager.modifySuncoins(i);
 	}
 
@@ -74,7 +92,7 @@ public class Game {
 		return fin;
 	}
 
-	// TODO Die method
+
 
 	public String getCharacterInCoordante(int x, int y) {
 		String elem = " ";
@@ -103,7 +121,7 @@ public class Game {
 			int x = new Random().nextInt(FILAS);
 			while (!isEmpty(x, COLUMNAS - 1))
 				x = new Random().nextInt(FILAS); // Si hay 4 al principio peta el juego
-			addZombie(ZombieFactory.getZombie(x, COLUMNAS - 1));
+			addZombie(ZombieFactory.getZombie(x, COLUMNAS - 1, this));
 		}
 	}
 
@@ -111,6 +129,7 @@ public class Game {
 		boolean attacked = false;
 		if (plantList.encontrar(x, y - 1)) {
 			plantList.getAttacked(x, y - 1, go);
+			attacked = true;
 		}
 		return attacked;
 
@@ -139,7 +158,6 @@ public class Game {
 
 	public boolean isEmpty(int x, int y) {
 		boolean empty = false;
-
 		if (!plantList.encontrar(x, y))
 			if (!zombieList.encontrar(x, y))
 				empty = true;
@@ -154,9 +172,8 @@ public class Game {
 		return seed;
 	}
 
-	
-	//TODO hacer un level to string para el modo debug 
-	
+	// TODO hacer un level to string para el modo debug
+
 //
 //	public boolean dispararPea(int x, int y, int dmg) {
 //		boolean zombieEncontrado = false;

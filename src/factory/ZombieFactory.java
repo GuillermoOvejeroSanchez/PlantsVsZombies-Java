@@ -6,6 +6,7 @@ import elems.Caracubo;
 import elems.Deportista;
 import elems.Zombie;
 import elems.ZombieBasico;
+import src.Game;
 
 public class ZombieFactory {
 
@@ -20,8 +21,8 @@ public class ZombieFactory {
 		return str.toString();
 	}
 
-	public static Zombie getZombie(int x, int y) {
+	public static Zombie getZombie(int x, int y, Game game) {
 		int zombie = new Random().nextInt(availabeZombies.length);
-		return availabeZombies[zombie].inPosition(x, y);
+		return availabeZombies[zombie].inPosition(x, y, game);
 	}
 }

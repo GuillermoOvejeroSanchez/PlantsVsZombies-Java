@@ -1,23 +1,30 @@
 package elems;
 
-public class Caracubo extends Zombie {
-	final static int FREC = 4;
-	final static int DMG = 1;
-	final static int RES = 8;
-	final static String NAME = "caracubo";
-	final static String INFONAME = "[C]aracubo";
-	final static String SHORTNA = "W";
+import src.Game;
 
-	public Caracubo(int x, int y) {
-		super(x, y, RES, DMG, FREC, INFONAME, SHORTNA);
+public class Caracubo extends Zombie {
+
+	public Caracubo(int x, int y, Game game) {
+		super(x, y, game);
+		inicializar();
 	}
 
 	public Caracubo() {
-		super(-1, -1, RES, DMG, FREC, INFONAME, SHORTNA);
+		inicializar();
+	}
+	
+	private void inicializar() {
+		res = 8;
+		cycles = 4;
+		cyclesLeft = cycles;
+		dmg = 1;
+		nameShort = "B";
+		name = "caracubo";
+		infoName = "[C]aracubo";
 	}
 
-	public Zombie inPosition(int x, int y) {
-		Zombie zombie = new Caracubo(x, y);
+	public Zombie inPosition(int x, int y, Game game) {
+		Zombie zombie = new Caracubo(x, y, game);
 		return zombie;
 	}
 }

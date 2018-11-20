@@ -1,27 +1,26 @@
 package elems;
 
-public abstract class GameObject {
-	int x;
-	int y;
-	int res;
-	int dmg;
-	int cycles;
-	int cyclesLeft;
-	String name;
-	String nameShort;
+import src.Game;
 
-	public GameObject(int x, int y, int res, int dmg, int cycles, String name, String nameShort) {
+public abstract class GameObject {
+	protected int x;
+	protected int y;
+	protected int res;
+	protected int dmg;
+	protected int cycles;
+	protected int cyclesLeft;
+	protected String name;
+	protected String nameShort;
+	protected String infoName;
+	protected Game game;
+
+	protected GameObject(int x, int y, Game game) {
 		this.x = x;
 		this.y = y;
-		this.cycles = cycles;
-		this.cyclesLeft = cycles;
-		this.name = name;
-		this.res = res;
-		this.dmg = dmg;
-		this.nameShort = nameShort;
+		this.game = game;
 	}
 
-	public GameObject() {
+	protected GameObject() {
 
 	}
 
@@ -65,13 +64,7 @@ public abstract class GameObject {
 		this.y = y;
 	}
 
-	public int update() {
-		int ciclos = --this.cyclesLeft;
-		if (this.cyclesLeft == 0) {
-			this.cyclesLeft = this.cycles;
-		}
-		return ciclos;
-	}
+	public abstract boolean update();
 
 	public String getName() {
 		return this.name;
@@ -86,8 +79,8 @@ public abstract class GameObject {
 	}
 
 	public boolean isDead() {
-		return this.res == 0;
+		return this.res <= 0;
 	}
 
-	public abstract void accion();
+	protected abstract void accion();
 }
