@@ -2,6 +2,8 @@ package src;
 
 import java.util.Random;
 
+//import com.sun.org.apache.xerces.internal.xs.datatypes.ObjectList;
+
 import elems.GameObject;
 import elems.Plant;
 import elems.Zombie;
@@ -102,6 +104,16 @@ public class Game {
 
 		return elem;
 	}
+	
+	public String getCharacterDebugModePlant(int i) {
+		
+		return plantList.toStringDebug(i); 
+	}
+public String getCharacterDebugModeZombie(int i) {
+		
+		return zombieList.toStringDebug(i); 
+	}
+	
 
 	public boolean checkZombieWin() {
 		boolean theyWin = false;
@@ -161,6 +173,22 @@ public class Game {
 
 		return empty;
 	}
+	
+	public String getDificultad() {
+		return this.level.getDif(); 
+	}
+	public int getSeed() {
+		return seed;
+	}
+	
+	public int GetSizeZombieList() {
+		return this.zombieList.getSize();
+	}
+
+	public int GetSizePlantList() {
+		return this.plantList.getSize();
+	}
+	
 
 	public void explode(int x, int y, GameObject go) {
 		for (int i = -1; i <= 1; i++) {

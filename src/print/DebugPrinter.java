@@ -3,18 +3,30 @@ import src.*;
 import util.MyStringUtils;
 
 public class DebugPrinter extends BoardPrinter {
-
+	
+	private int contador; 
+	
 	public DebugPrinter(int filas, int columnas, Game game) {
 		super(filas, columnas);
-		// TODO Auto-generated constructor stub
+		
+
 	}
 
 	@Override
 	public void encodeGame(Game game) {
-		board = new String[0][columnas]; 
+		this.contador = 0; 
+		int tam  =game.GetSizePlantList() + game.GetSizeZombieList(); 
 		
-		for(int i = 0; i < columnas; i++) {
-			board[0][i] = espacio; // implenatar bichos; 
+		board = new String[0][tam]; 
+		
+		for(int i = 0; i < game.GetSizePlantList(); i++) {
+			board[0][contador] = game.getCharacterDebugModePlant(i); 
+			this.contador++; 
+		}
+		for(int j = 0; j < game.GetSizeZombieList(); j++) {
+			board[0][contador] = game.getCharacterDebugModeZombie(j);
+			this.contador++; 
+			
 		}
 	}
 	
@@ -47,8 +59,9 @@ public class DebugPrinter extends BoardPrinter {
 		System.out.println("Number of cycles: " + game.getCiclos());
 		System.out.println("Sun Coins: " + game.getSuncoins());
 		System.out.println("Remaining Zombies: " + game.getRemainingZombies());
-		System.out.println(("Level" + game.getNumZombies()));
+		System.out.println("Level" + game.getDificultad());
 		System.out.print("Command > ");
+		System.out.print("See: "+ game.getSeed());
 	}
 	
 	
