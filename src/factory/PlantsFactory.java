@@ -21,7 +21,6 @@ public class PlantsFactory {
 	}
 
 	public static Plant getPlant(String plantName, int x, int y, Game game) {
-		// TODO Check enough suncoins
 		Plant plant = null;
 		int i = 0;
 		boolean encontrado = false;

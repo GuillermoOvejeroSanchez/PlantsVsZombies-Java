@@ -15,7 +15,7 @@ public class Deportista extends Zombie {
 	
 	private void inicializar() {
 		res = 2;
-		cycles = 1;
+		cycles = 2;
 		cyclesLeft = cycles;
 		dmg = 1;
 		nameShort = "D";

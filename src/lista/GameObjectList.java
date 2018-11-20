@@ -25,8 +25,7 @@ public class GameObjectList {
 
 			if (this.ObjectList[i].getX() == x && this.ObjectList[i].getY() == y) {
 				encontrado = true;
-			} else
-				i++;
+			} else i++;
 
 		}
 
@@ -109,12 +108,17 @@ public class GameObjectList {
 		}
 	}
 
-	public void clean() {
-		for (int i = 0; i < contador; i++) {
+	public int clean() {
+		int eliminados = 0;
+		int cont_aux = contador;
+		for (int i = 0; i < cont_aux;) {
 			if (ObjectList[i].isDead()) {
 				delete(i);
-			}
+				cont_aux--;
+				eliminados++;
+			} else i++;
 		}
+		return eliminados;
 
 	}
 

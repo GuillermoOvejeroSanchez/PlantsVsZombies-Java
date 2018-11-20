@@ -41,10 +41,15 @@ public class AddCommand extends Command {
 	@Override
 	public void execute(Game game, Controller controller) {
 		Plant p = PlantsFactory.getPlant(name, x, y, game);
-		if (p != null && controller.isEmpty(x, y))
-			game.addPlant(p);
-		// TODO modifySuncoins(p.getCost());
-		else {
+		if (p != null && controller.isEmpty(x, y)) {
+			if (game.getSuncoins() >= p.getCost()) {
+				game.addPlant(p);
+				game.modifySuncoins(-p.getCost());
+			} else {
+				System.err.println("Not Enough Suncoins");
+				controller.setNoPrintGameState();
+			}
+		} else {
 			System.err.println("Invalid Plant or Position out of Bounds");
 			controller.setNoPrintGameState();
 		}

@@ -16,7 +16,7 @@ public class Petacereza extends Plant {
 	private void inicializar() {
 		cost = 50;
 		res = 2;
-		cycles = 2;
+		cycles = 3;
 		cyclesLeft = cycles;
 		dmg = 10;
 		nameShort = "C";
@@ -35,11 +35,9 @@ public class Petacereza extends Plant {
 
 //Explota
 	public void accion() {
-//TODO accion Petacereza
+		game.explode(this.x,this.y,this);
+		res = 0;
 	}
 	
-	public boolean attack() {
-		return false;
-	}
 
 }

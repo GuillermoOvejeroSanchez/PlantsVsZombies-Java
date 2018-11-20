@@ -19,7 +19,7 @@ public class Sunflower extends Plant {
 
 	private void inicializar() {
 		cost = 20;
-		res = 1;
+		res = 2;
 		cycles = 2;
 		cyclesLeft = cycles;
 		nameShort = "S";

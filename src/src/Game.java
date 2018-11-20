@@ -18,7 +18,7 @@ public class Game {
 	private static SuncoinManager suncoinManager;
 	private ZombieManager zombieManager;
 	private int seed;
-	private boolean fin;
+	//private boolean fin;
 	private boolean zombieWin;
 	private int ciclos;
 	private Random rand;
@@ -29,7 +29,7 @@ public class Game {
 		this.seed = seed;
 		this.ciclos = 0;
 		this.level = level;
-		this.fin = false;
+		//this.fin = false;
 		this.zombieWin = false;
 		zombieManager = new ZombieManager(this.level, this.seed, this.rand);
 		suncoinManager = new SuncoinManager();
@@ -42,21 +42,20 @@ public class Game {
 		plantList.update();
 		zombieList.update();
 		cleanBoard();
-		fin = getFin();
+		getFin();
 		zombieWin = checkZombieWin();
 	}
 
 	private void cleanBoard() {
 		plantList.clean();
-		zombieList.clean();
-
+		zombieManager.setNumZombies(zombieManager.getNumZombies() - zombieList.clean());
 	}
 
 	public void peashooterAttack(int x, int y, GameObject go) {
-		boolean encontrado =false;
+		boolean encontrado = false;
 		int i = 0;
-		while(!encontrado && y < COLUMNAS){
-			if(zombieList.encontrar(x, y + i)) {
+		while (!encontrado && y < COLUMNAS) {
+			if (zombieList.encontrar(x, y + i)) {
 				zombieList.getAttacked(x, y + i, go);
 				encontrado = true;
 			}
@@ -89,10 +88,8 @@ public class Game {
 	}
 
 	public boolean getFin() {
-		return fin;
+		return zombieManager.getNumZombies() == 0;
 	}
-
-
 
 	public String getCharacterInCoordante(int x, int y) {
 		String elem = " ";
@@ -142,7 +139,7 @@ public class Game {
 	public void reset() {
 		zombieManager = new ZombieManager(level, seed, rand);
 		suncoinManager = new SuncoinManager();
-		fin = false;
+		//fin = false;
 		ciclos = 0;
 		zombieList = new GameObjectList(zombieManager.getNumZombies());
 		plantList = new GameObjectList(MAX_PLANTAS);
@@ -163,6 +160,16 @@ public class Game {
 				empty = true;
 
 		return empty;
+	}
+
+	public void explode(int x, int y, GameObject go) {
+		for (int i = -1; i <= 1; i++) {
+			for (int j = -1; j <= 1; j++) {
+				if (!isEmpty(x - i, y - j))
+					if (zombieList.encontrar(x - i, y - j))
+						zombieList.getAttacked(x - i, y - j, go);
+			}
+		}
 	}
 
 	// TODO hacer un level to string para el modo debug
