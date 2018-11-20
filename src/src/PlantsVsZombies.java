@@ -2,6 +2,7 @@ package src;
 
 import java.util.Random;
 
+import print.GamePrinter;
 import print.ReleasePrinter;
 
 public class PlantsVsZombies {
@@ -27,7 +28,7 @@ public class PlantsVsZombies {
 				Game game = new Game(level, seed);
 				GamePrinter gamePrinter = new ReleasePrinter(game.getFilas(), game.getColumnas(), game);
 				Controller controller = new Controller(game, gamePrinter);
-				controller.run(game);
+				controller.run();
 			}
 		} else {
 			System.out.println("ERROR: NO HAY SUFICIENTES PARAMETROS");

@@ -24,7 +24,7 @@ public class ReleasePrinter extends BoardPrinter {
 
 		for (int i = 0; i < filas; i++) {
 			for (int j = 0; j < columnas; j++) {
-				board[i][j] = game.getString(i, j); // TODO pintar bichos
+				board[i][j] = game.getString(i, j);
 			}
 		}
 
@@ -36,19 +36,25 @@ public class ReleasePrinter extends BoardPrinter {
 		int marginSize = 2;
 		String vDelimiter = "|";
 		String hDelimiter = "-";
-		String rowDelimiter = MyStringUtils.repeat(hDelimiter, (filas * (cellSize + 1)) - 1);
+		String rowDelimiter = MyStringUtils.repeat(hDelimiter, (columnas * (cellSize + 1)) - 1);
 		String margin = MyStringUtils.repeat(espacio, marginSize);
 		String lineDelimiter = String.format("%n%s%s%n", margin + espacio, rowDelimiter);
 
 		StringBuilder str = new StringBuilder();
 
-		str.append("Number of cycles: " + cycle + "\nCoins: " + suncoins + "\nRemaining zombies: " + remZombies + "\n");
+		str.append("Number of cycles: " + cycle + "\nCoins: " + suncoins + "\nRemaining zombies: " + remZombies + "\n\n");
 
+		for (int j = 0; j < columnas; j++) {
+			str.append(MyStringUtils.centre("", cellSize)).append(j);
+		}
+		
 		str.append(lineDelimiter);
 
-		for (int i = 0; i < columnas; i++) {
+
+		for (int i = 0; i < filas; i++) {
+			str.append(i);
 			str.append(margin).append(vDelimiter);
-			for (int j = 0; j < filas; j++) {
+			for (int j = 0; j < columnas; j++) {
 				str.append(MyStringUtils.centre(board[i][j], cellSize)).append(vDelimiter);
 			}
 			str.append(lineDelimiter);

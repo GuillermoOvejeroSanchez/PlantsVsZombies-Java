@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import commands.Command;
 import commands.CommandParse;
+import print.GamePrinter;
 
 public class Controller {
 
@@ -20,12 +21,12 @@ public class Controller {
 		this.print = true;
 	}
 
-	public void run(Game game) {
+	public void run() {
 
 		while (!game.getFin() && !game.getZombieWin()) {
 			if (print) {
 				game.update();
-				gamePrinter.printGame();
+				gamePrinter.printGame(game);
 			}
 			print = true;
 			System.out.print("Command >");
@@ -61,16 +62,6 @@ public class Controller {
 
 	public void setNoSalir() {
 		noSalir = false;
-	}
-
-	private void printGame() {
-		this.gamePrinter.encodeGame(game);
-		this.gamePrinter.printBoard(game);
-
-	}
-
-	public boolean isEmpty(int x, int y) {
-		return game.isEmpty(x, y);
 	}
 
 }

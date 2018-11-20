@@ -14,7 +14,7 @@ public class PlantsFactory {
 	public static String listOfAvailablePlants() {
 		StringBuilder str = new StringBuilder();
 		for (Plant plant : availablePlants) {
-			str.append(plant.getName() + ": \tCost " + plant.getCost() + " SunCoins " + "Harm: " + plant.getDamage()
+			str.append(plant.getInfoName() + ": \tCost " + plant.getCost() + " SunCoins " + "Harm: " + plant.getDamage()
 					+ System.lineSeparator());
 		}
 		return str.toString();

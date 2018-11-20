@@ -71,4 +71,5 @@ public class DebugPrinter extends BoardPrinter {
 		return str.toString();
 	}
 
+
 }

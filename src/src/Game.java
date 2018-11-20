@@ -93,17 +93,6 @@ public class Game {
 		return zombieManager.getNumZombies() == 0;
 	}
 
-	public String getCharacterInCoordante(int x, int y) {
-		String elem = " ";
-		if (plantList.encontrar(x, y)) {
-			elem = plantList.toString(x, y);
-		}
-		if (zombieList.encontrar(x, y)) {
-			elem = zombieList.toString(x, y);
-		}
-
-		return elem;
-	}
 
 	public String getCharacterDebugModePlant(int i) {
 
@@ -200,9 +189,8 @@ public class Game {
 		}
 	}
 
-	public String getString(int i, int j) {
-		// TODO Auto-generated method stub
-		return null;
+	public String getString(int x, int y) {
+		return (plantList.getString(x, y)+ zombieList.getString(x, y));
 	}
 
 	public int getNumPlants() {
@@ -213,9 +201,12 @@ public class Game {
 		return level.name();
 	}
 
-	public String getPlantsStringDebug(int i) {
-		// TODO Auto-generated method stub
-		return null;
+	public String getPlantsStringDebug(int pos) {
+		return plantList.getStringDebug(pos);
+	}
+	
+	public String getZombiesStringDebug(int pos) {
+		return zombieList.getStringDebug(pos);
 	}
 
 	public int getFilas() {

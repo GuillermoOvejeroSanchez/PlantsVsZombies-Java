@@ -41,7 +41,7 @@ public class AddCommand extends Command {
 	@Override
 	public void execute(Game game, Controller controller) {
 		Plant p = PlantsFactory.getPlant(name, x, y, game);
-		if (p != null && controller.isEmpty(x, y)) {
+		if (p != null && game.isEmpty(x, y)) {
 			if (game.getSuncoins() >= p.getCost()) {
 				game.addPlant(p);
 				game.modifySuncoins(-p.getCost());

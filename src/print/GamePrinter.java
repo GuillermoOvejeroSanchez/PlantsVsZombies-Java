@@ -1,7 +1,9 @@
 package print;
 
+import src.Game;
+
 public interface GamePrinter {
 
-	public void printGame();
+	public void printGame(Game game);
 
 }

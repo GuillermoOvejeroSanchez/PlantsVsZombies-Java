@@ -1,8 +1,6 @@
 
 package lista;
 
-import java.util.Arrays;
-
 import elems.GameObject;
 
 public class GameObjectList {
@@ -89,17 +87,15 @@ public class GameObjectList {
 		return this.ObjectList[i];
 	}
 
-	public String toString(int x, int y) {
-		StringBuilder elem = new StringBuilder();
-		if (encontrar(x, y)) {
-			GameObject go = this.getObject(buscarPos(x, y));
-			elem.append(go.getShortName().toUpperCase());
-			elem.append("[");
-			elem.append(go.getResistance());
-			elem.append("]");
+	public String getString(int x, int y) {
+		if (encontrar(x, y))
+			return getObject(buscarPos(x, y)).toString();
+		else
+			return "";
+	}
 
-		}
-		return elem.toString();
+	public String getStringDebug(int pos) {
+		return ObjectList[pos].toStringDebug();
 	}
 
 	// tam lista
