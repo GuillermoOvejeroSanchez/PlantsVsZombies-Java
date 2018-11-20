@@ -147,6 +147,9 @@ public class Game {
 		return empty;
 	}
 
+	
+	//TODO hacer un level to string para el modo debug 
+	
 //
 //	public boolean dispararPea(int x, int y, int dmg) {
 //		boolean zombieEncontrado = false;
