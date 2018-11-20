@@ -146,6 +146,13 @@ public class Game {
 
 		return empty;
 	}
+	
+	public String getDificultad() {
+		return this.level.getDif(); 
+	}
+	public int getSeed() {
+		return seed;
+	}
 
 	
 	//TODO hacer un level to string para el modo debug 
