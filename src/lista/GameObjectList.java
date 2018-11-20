@@ -116,5 +116,25 @@ public class GameObjectList {
 		ObjectList[buscarPos(x, y)].takeDmg(go);
 
 	}
+	
+	public String toStringDebug(int x, int y) {
+		StringBuilder elem = new StringBuilder();
+		if (encontrar(x, y)) {
+			GameObject go = this.getObject(buscarPos(x, y));
+			elem.append(go.getShortName().toUpperCase());
+			elem.append("[ L: ");
+			elem.append(go.getResistance());
+			elem.append(",x: ");
+			elem.append(go.getX());
+			elem.append(",y; "); 
+			elem.append(go.getY());
+			elem.append(",t: ");
+			elem.append(go.getRemainigCycles());
+			elem.append("]");
+
+		}
+		return elem.toString();
+	}
+
 
 }
