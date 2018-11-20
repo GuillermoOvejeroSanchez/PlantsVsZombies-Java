@@ -59,8 +59,9 @@ public class DebugPrinter extends BoardPrinter {
 		System.out.println("Number of cycles: " + game.getCiclos());
 		System.out.println("Sun Coins: " + game.getSuncoins());
 		System.out.println("Remaining Zombies: " + game.getRemainingZombies());
-		System.out.println(("Level" + game.getNumZombies()));
+		System.out.println("Level" + game.getDificultad());
 		System.out.print("Command > ");
+		System.out.print("See: "+ game.getSeed());
 	}
 	
 	
