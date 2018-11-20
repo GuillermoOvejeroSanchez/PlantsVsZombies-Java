@@ -11,8 +11,8 @@ import factory.ZombieFactory;
 import lista.GameObjectList;
 
 public class Game {
-	static public final int COLUMNAS = 8;
-	static public final int FILAS = 4;
+	public final int COLUMNAS = 8;
+	public final int FILAS = 4;
 	public final int MAX_PLANTAS = 24;
 	private Level level;
 	private GameObjectList zombieList;
@@ -20,7 +20,7 @@ public class Game {
 	private static SuncoinManager suncoinManager;
 	private ZombieManager zombieManager;
 	private int seed;
-	//private boolean fin;
+	// private boolean fin;
 	private boolean zombieWin;
 	private int ciclos;
 	private Random rand;
@@ -31,7 +31,7 @@ public class Game {
 		this.seed = seed;
 		this.ciclos = 0;
 		this.level = level;
-		//this.fin = false;
+		// this.fin = false;
 		this.zombieWin = false;
 		zombieManager = new ZombieManager(this.level, this.seed, this.rand);
 		suncoinManager = new SuncoinManager();
@@ -104,16 +104,16 @@ public class Game {
 
 		return elem;
 	}
-	
+
 	public String getCharacterDebugModePlant(int i) {
-		
-		return plantList.toStringDebug(i); 
+
+		return plantList.toStringDebug(i);
 	}
-public String getCharacterDebugModeZombie(int i) {
-		
-		return zombieList.toStringDebug(i); 
+
+	public String getCharacterDebugModeZombie(int i) {
+
+		return zombieList.toStringDebug(i);
 	}
-	
 
 	public boolean checkZombieWin() {
 		boolean theyWin = false;
@@ -151,7 +151,7 @@ public String getCharacterDebugModeZombie(int i) {
 	public void reset() {
 		zombieManager = new ZombieManager(level, seed, rand);
 		suncoinManager = new SuncoinManager();
-		//fin = false;
+		// fin = false;
 		ciclos = 0;
 		zombieList = new GameObjectList(zombieManager.getNumZombies());
 		plantList = new GameObjectList(MAX_PLANTAS);
@@ -173,14 +173,15 @@ public String getCharacterDebugModeZombie(int i) {
 
 		return empty;
 	}
-	
+
 	public String getDificultad() {
-		return this.level.getDif(); 
+		return this.level.getDif();
 	}
+
 	public int getSeed() {
 		return seed;
 	}
-	
+
 	public int GetSizeZombieList() {
 		return this.zombieList.getSize();
 	}
@@ -188,7 +189,6 @@ public String getCharacterDebugModeZombie(int i) {
 	public int GetSizePlantList() {
 		return this.plantList.getSize();
 	}
-	
 
 	public void explode(int x, int y, GameObject go) {
 		for (int i = -1; i <= 1; i++) {
@@ -200,22 +200,30 @@ public String getCharacterDebugModeZombie(int i) {
 		}
 	}
 
-	// TODO hacer un level to string para el modo debug
+	public String getString(int i, int j) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-//
-//	public boolean dispararPea(int x, int y, int dmg) {
-//		boolean zombieEncontrado = false;
-//
-//		while (y < COLUMNAS && !zombieEncontrado) {
-//			zombieEncontrado = (board[x][y].equals(Elements.ZOMBIE));
-//			y++;
-//		}
-//
-//		if (zombieEncontrado)
-//			zList.atacado(x, y - 1, dmg);
-//
-//		return zombieEncontrado;
-//	}
-//
+	public int getNumPlants() {
+		return plantList.getSize();
+	}
+
+	public String getLevel() {
+		return level.name();
+	}
+
+	public String getPlantsStringDebug(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int getFilas() {
+		return this.FILAS;
+	}
+
+	public int getColumnas() {
+		return this.COLUMNAS;
+	}
 
 }

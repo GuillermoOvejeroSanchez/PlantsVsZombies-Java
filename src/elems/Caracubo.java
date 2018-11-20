@@ -12,7 +12,7 @@ public class Caracubo extends Zombie {
 	public Caracubo() {
 		inicializar();
 	}
-	
+
 	private void inicializar() {
 		res = 8;
 		cycles = 4;

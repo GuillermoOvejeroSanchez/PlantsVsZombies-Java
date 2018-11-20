@@ -3,13 +3,13 @@ package elems;
 import src.Game;
 
 public class Peashooter extends Plant {
-	
+
 	final static int COST = 50;
 
 	public Peashooter(int x, int y, Game game) {
 		super(x, y, game);
 		inicializar();
-		
+
 	}
 
 	public Peashooter() {
@@ -26,7 +26,7 @@ public class Peashooter extends Plant {
 		name = "peashooter";
 		infoName = "[P]eashooter";
 	}
-	
+
 	@Override
 	public Plant parse(String plantName, int x, int y, Game game) {
 		Plant p = null;
@@ -40,7 +40,7 @@ public class Peashooter extends Plant {
 	public void accion() {
 		game.peashooterAttack(this.x, this.y, this);
 	}
-	
+
 	public boolean attack() {
 		return false;
 	}

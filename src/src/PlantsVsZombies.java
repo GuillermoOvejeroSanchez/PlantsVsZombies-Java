@@ -2,6 +2,8 @@ package src;
 
 import java.util.Random;
 
+import print.ReleasePrinter;
+
 public class PlantsVsZombies {
 
 	public static void main(String[] args) {
@@ -23,7 +25,8 @@ public class PlantsVsZombies {
 																												// del
 																												// game
 				Game game = new Game(level, seed);
-				Controller controller = new Controller(game);
+				GamePrinter gamePrinter = new ReleasePrinter(game.getFilas(), game.getColumnas(), game);
+				Controller controller = new Controller(game, gamePrinter);
 				controller.run(game);
 			}
 		} else {

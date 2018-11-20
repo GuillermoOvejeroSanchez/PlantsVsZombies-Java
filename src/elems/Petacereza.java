@@ -3,7 +3,7 @@ package elems;
 import src.Game;
 
 public class Petacereza extends Plant {
-	
+
 	public Petacereza(int x, int y, Game game) {
 		super(x, y, game);
 		inicializar();
@@ -23,6 +23,7 @@ public class Petacereza extends Plant {
 		name = "petacereza";
 		infoName = "Peta[c]ereza";
 	}
+
 	@Override
 	public Plant parse(String plantName, int x, int y, Game game) {
 		Plant p = null;
@@ -35,9 +36,8 @@ public class Petacereza extends Plant {
 
 //Explota
 	public void accion() {
-		game.explode(this.x,this.y,this);
+		game.explode(this.x, this.y, this);
 		res = 0;
 	}
-	
 
 }

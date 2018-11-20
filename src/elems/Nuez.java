@@ -3,10 +3,9 @@ package elems;
 import src.Game;
 
 public class Nuez extends Plant {
-	
-	
+
 	public Nuez(int x, int y, Game game) {
-		super(x, y,game);
+		super(x, y, game);
 		inicializar();
 	}
 
@@ -22,6 +21,7 @@ public class Nuez extends Plant {
 		name = "nuez";
 		infoName = "[N]uez";
 	}
+
 	@Override
 	public Plant parse(String plantName, int x, int y, Game game) {
 		Plant p = null;
@@ -31,9 +31,9 @@ public class Nuez extends Plant {
 		}
 		return p;
 	}
-	
+
 	public void accion() {
 
 	}
-	
+
 }

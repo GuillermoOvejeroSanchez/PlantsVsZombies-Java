@@ -6,15 +6,13 @@ import java.util.Arrays;
 import elems.GameObject;
 
 public class GameObjectList {
-	// prueba
-	public final static int TAM = 1; 
-	
+
 	private GameObject[] ObjectList;
 	private int contador;
 
 	public GameObjectList(int tam) {
 		this.contador = 0;
-		this.ObjectList = new GameObject[TAM];
+		this.ObjectList = new GameObject[tam];
 
 	}
 
@@ -28,7 +26,8 @@ public class GameObjectList {
 
 			if (this.ObjectList[i].getX() == x && this.ObjectList[i].getY() == y) {
 				encontrado = true;
-			} else i++;
+			} else
+				i++;
 
 		}
 
@@ -64,24 +63,19 @@ public class GameObjectList {
 		return insertado;
 
 	}
-	
-	/* ARRAY DINAMICO
-	public boolean addObjectRedi(GameObject objeto) {
-		boolean insertado = true; 
-		
-		if(contador + 1 == ObjectList.length)
-		{
-			GameObject[]aux =Arrays.copyOf(ObjectList, ObjectList.length*2);
-			this.ObjectList = aux; 
-		}
-		
-		ObjectList[contador] = objeto; 
-		contador++; 
-		
-		
-		return insertado; 
-	}
-	*/
+
+	/*
+	 * //ARRAY DINAMICO public boolean addObjectRedi(GameObject objeto) { boolean
+	 * insertado = true;
+	 * 
+	 * if(contador + 1 == ObjectList.length) { GameObject[]aux
+	 * =Arrays.copyOf(ObjectList, ObjectList.length*2); this.ObjectList = aux; }
+	 * 
+	 * ObjectList[contador] = objeto; contador++;
+	 * 
+	 * 
+	 * return insertado; }
+	 */
 
 	// delete
 	public void delete(int i) {
@@ -137,22 +131,23 @@ public class GameObjectList {
 				delete(i);
 				cont_aux--;
 				eliminados++;
-			} else i++;
+			} else
+				i++;
 		}
 		return eliminados;
 
 	}
-	
+
 	public String toStringDebug(int i) {
 		StringBuilder elem = new StringBuilder();
 		if (this.contador > 0) {
-			GameObject go = ObjectList[i]; 
+			GameObject go = ObjectList[i];
 			elem.append(go.getShortName().toUpperCase());
 			elem.append("[ L: ");
 			elem.append(go.getResistance());
 			elem.append(",x: ");
 			elem.append(go.getX());
-			elem.append(",y; "); 
+			elem.append(",y; ");
 			elem.append(go.getY());
 			elem.append(",t: ");
 			elem.append(go.getRemainigCycles());
@@ -161,6 +156,5 @@ public class GameObjectList {
 		}
 		return elem.toString();
 	}
-
 
 }

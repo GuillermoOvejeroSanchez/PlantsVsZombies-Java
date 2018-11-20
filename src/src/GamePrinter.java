@@ -54,4 +54,9 @@ public class GamePrinter {
 		System.out.println("Remaining Zombies: " + game.getRemainingZombies());
 		System.out.println(("Total Zombies: " + game.getNumZombies()));
 	}
+
+	public void printGame() {
+		// TODO Auto-generated method stub
+
+	}
 }

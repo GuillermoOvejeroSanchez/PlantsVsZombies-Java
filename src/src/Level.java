@@ -6,12 +6,12 @@ public enum Level {
 
 	private int numZombies;
 	private double frecuencia;
-	private String dif; 
+	private String dif;
 
 	Level(int numZombies, double frecuencia, String dif) {
 		this.numZombies = numZombies;
 		this.frecuencia = frecuencia;
-		this.dif = dif; 
+		this.dif = dif;
 	}
 
 	public int getNumZombies() {
@@ -21,7 +21,7 @@ public enum Level {
 	public double getFrecuencia() {
 		return this.frecuencia;
 	}
-	
+
 	public String getDif() {
 		return dif;
 	}

@@ -9,14 +9,14 @@ public class Controller {
 
 	private Game game;
 	private Scanner in;
-	private GamePrinter gamePrinter;
+	public GamePrinter gamePrinter;
 	boolean print;
 	boolean noSalir;
 
-	public Controller(Game game) {
+	public Controller(Game game, GamePrinter printer) {
 		this.game = game;
 		this.in = new Scanner(System.in);
-		this.gamePrinter = new GamePrinter(game, Game.FILAS, Game.COLUMNAS);
+		this.gamePrinter = printer;
 		this.print = true;
 	}
 
@@ -25,7 +25,7 @@ public class Controller {
 		while (!game.getFin() && !game.getZombieWin()) {
 			if (print) {
 				game.update();
-				printGame();
+				gamePrinter.printGame();
 			}
 			print = true;
 			System.out.print("Command >");

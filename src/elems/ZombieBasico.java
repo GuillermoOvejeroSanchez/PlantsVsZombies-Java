@@ -3,7 +3,6 @@ package elems;
 import src.Game;
 
 public class ZombieBasico extends Zombie {
-	
 
 	public ZombieBasico(int x, int y, Game game) {
 		super(x, y, game);
@@ -13,7 +12,7 @@ public class ZombieBasico extends Zombie {
 	public ZombieBasico() {
 		inicializar();
 	}
-	
+
 	private void inicializar() {
 		res = 5;
 		cycles = 2;
