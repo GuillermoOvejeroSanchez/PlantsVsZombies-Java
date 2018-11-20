@@ -54,10 +54,12 @@ public class PrintModeCommand extends Command{
 		if(comando.length == 2 && (comando[0].equals(commandName) || comando[0].equals(commandName.substring(0, 1)))) {
 			
 			modo = comando[1]; 
+			
+			c = new PrintModeCommand(); 
 		}
 				
 				
-		return null;
+		return c;
 	}
 
 }
