@@ -1,28 +1,34 @@
 package elems;
 
-public class Petacereza extends Plant {
-	final static int COST = 50;
-	final static int CICLOS = 2;
-	final static int DMG = 10;
-	final static int RES = 2;
-	final static String INFONAME = "Peta[c]ereza";
-	final static String NAME = "petacereza";
-	final static String SHORTNA = "C";
+import src.Game;
 
-	public Petacereza(int x, int y) {
-		super(x, y, RES, DMG, CICLOS, NAME, SHORTNA, COST);
+public class Petacereza extends Plant {
+	
+	public Petacereza(int x, int y, Game game) {
+		super(x, y, game);
+		inicializar();
 	}
 
 	public Petacereza() {
-		super(-1, -1, RES, DMG, CICLOS, INFONAME, SHORTNA, COST);
+		inicializar();
 	}
 
+	private void inicializar() {
+		cost = 50;
+		res = 2;
+		cycles = 2;
+		cyclesLeft = cycles;
+		dmg = 10;
+		nameShort = "C";
+		name = "petacereza";
+		infoName = "Peta[c]ereza";
+	}
 	@Override
-	public Plant parse(String plantName, int x, int y) {
+	public Plant parse(String plantName, int x, int y, Game game) {
 		Plant p = null;
 
-		if (plantName.equalsIgnoreCase(NAME) || plantName.equalsIgnoreCase(SHORTNA)) {
-			p = new Petacereza(x, y);
+		if (plantName.equalsIgnoreCase(name) || plantName.equalsIgnoreCase(nameShort)) {
+			p = new Petacereza(x, y, game);
 		}
 		return p;
 	}
@@ -30,6 +36,10 @@ public class Petacereza extends Plant {
 //Explota
 	public void accion() {
 //TODO accion Petacereza
+	}
+	
+	public boolean attack() {
+		return false;
 	}
 
 }

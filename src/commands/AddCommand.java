@@ -19,7 +19,6 @@ public class AddCommand extends Command {
 
 	public AddCommand(int x, int y, String name) {
 		super(commandName, commandInfo, helpInfo);
-
 		this.x = x;
 		this.y = y;
 		this.name = name;
@@ -41,7 +40,7 @@ public class AddCommand extends Command {
 
 	@Override
 	public void execute(Game game, Controller controller) {
-		Plant p = PlantsFactory.getPlant(name, x, y);
+		Plant p = PlantsFactory.getPlant(name, x, y, game);
 		if (p != null && controller.isEmpty(x, y))
 			game.addPlant(p);
 		// TODO modifySuncoins(p.getCost());

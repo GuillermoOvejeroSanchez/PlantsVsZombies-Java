@@ -5,6 +5,7 @@ import elems.Peashooter;
 import elems.Petacereza;
 import elems.Plant;
 import elems.Sunflower;
+import src.Game;
 
 public class PlantsFactory {
 
@@ -19,14 +20,14 @@ public class PlantsFactory {
 		return str.toString();
 	}
 
-	public static Plant getPlant(String plantName, int x, int y) {
+	public static Plant getPlant(String plantName, int x, int y, Game game) {
 		// TODO Check enough suncoins
 		Plant plant = null;
 		int i = 0;
 		boolean encontrado = false;
 		if (x < 4 && y < 7 && x > -1 && y > -1) {
 			while (!encontrado && i < availablePlants.length) {
-				plant = availablePlants[i].parse(plantName, x, y);
+				plant = availablePlants[i].parse(plantName, x, y, game);
 				if (plant != null) {
 					encontrado = true;
 				} else

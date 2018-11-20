@@ -1,18 +1,19 @@
 package elems;
 
+import src.Game;
+
 public abstract class Plant extends GameObject {
 
-	int cost;
+	protected int cost;
 
-	public Plant(int x, int y, int res, int dmg, int cycles, String name, String shortName, int cost) {
-		super(x, y, res, dmg, cycles, name, shortName);
-		this.cost = cost;
+	protected Plant(int x, int y, Game game) {
+		super(x, y, game);
 	}
 
-	public Plant() {
+	protected Plant() {
 	}
 
-	public Plant parse(String plantName, int x, int y) {
+	public Plant parse(String plantName, int x, int y, Game game) {
 		Plant p = null;
 
 		if (plantName.equalsIgnoreCase(getName()) || plantName.equalsIgnoreCase(getShortName())) {
@@ -26,4 +27,5 @@ public abstract class Plant extends GameObject {
 		return this.cost;
 	}
 
+	
 }

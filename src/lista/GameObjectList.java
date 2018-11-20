@@ -1,3 +1,4 @@
+
 package lista;
 
 import elems.GameObject;
@@ -8,7 +9,6 @@ public class GameObjectList {
 	private int contador;
 
 	public GameObjectList(int tam) {
-
 		this.contador = 0;
 		this.ObjectList = new GameObject[tam];
 
@@ -98,22 +98,17 @@ public class GameObjectList {
 		return contador;
 	}
 
-	// update
-	public void update() {
-		int cycles;
-		for (int i = 0; i < contador; i++) {
-			cycles = ObjectList[i].update();
-			if (cycles == 0) {
-				// TODO Zombie tiene que atacar pero no se si se le puede pasar el game
-				ObjectList[i].accion();
-			}
-		}
 
+	public void update() {
+		for (int i = 0; i < contador; i++) {
+			ObjectList[i].update();
+		}
 	}
 
 	public void getAttacked(int x, int y, GameObject go) {
-		ObjectList[buscarPos(x, y)].takeDmg(go);
-
+		if (encontrar(x, y - 1)) {
+			getObject(buscarPos(x, y - 1)).takeDmg(go);
+		}
 	}
 
 }

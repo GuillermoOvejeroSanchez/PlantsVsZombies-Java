@@ -1,33 +1,47 @@
 package elems;
 
-public class Peashooter extends Plant {
-	final static int COST = 50;
-	final static int CICLOS = 1;
-	final static int DMG = 1;
-	final static int RES = 3;
-	final static String INFONAME = "[P]eashooter";
-	final static String NAME = "peashooter";
-	final static String SHORTNA = "P";
+import src.Game;
 
-	public Peashooter(int x, int y) {
-		super(x, y, RES, DMG, CICLOS, NAME, SHORTNA, COST);
+public class Peashooter extends Plant {
+	
+	final static int COST = 50;
+
+	public Peashooter(int x, int y, Game game) {
+		super(x, y, game);
+		inicializar();
+		
 	}
 
 	public Peashooter() {
-		super(-1, -1, RES, DMG, CICLOS, INFONAME, SHORTNA, COST);
+		inicializar();
 	}
 
+	private void inicializar() {
+		cost = 50;
+		res = 3;
+		cycles = 2;
+		cyclesLeft = cycles;
+		dmg = 1;
+		nameShort = "P";
+		name = "peashooter";
+		infoName = "[P]eashooter";
+	}
+	
 	@Override
-	public Plant parse(String plantName, int x, int y) {
+	public Plant parse(String plantName, int x, int y, Game game) {
 		Plant p = null;
 
-		if (plantName.equalsIgnoreCase(NAME) || plantName.equalsIgnoreCase(SHORTNA)) {
-			p = new Peashooter(x, y);
+		if (plantName.equalsIgnoreCase(name) || plantName.equalsIgnoreCase(nameShort)) {
+			p = new Peashooter(x, y, game);
 		}
 		return p;
 	}
 
 	public void accion() {
 //TODO Accion peashooter
+	}
+	
+	public boolean attack() {
+		return false;
 	}
 }

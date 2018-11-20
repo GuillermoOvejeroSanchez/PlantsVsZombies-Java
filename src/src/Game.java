@@ -65,8 +65,7 @@ public class Game {
 		return zombieManager.getRemainingZombies();
 	}
 
-	// TODO Esto es static????
-	public static void modifySuncoins(int i) {
+	public void modifySuncoins(int i) {
 		suncoinManager.modifySuncoins(i);
 	}
 
@@ -103,13 +102,13 @@ public class Game {
 			int x = new Random().nextInt(FILAS);
 			while (!isEmpty(x, COLUMNAS - 1))
 				x = new Random().nextInt(FILAS); // Si hay 4 al principio peta el juego
-			addZombie(ZombieFactory.getZombie(x, COLUMNAS - 1));
+			addZombie(ZombieFactory.getZombie(x, COLUMNAS - 1, this));
 		}
 	}
 
 	public boolean attack(int x, int y, GameObject go) {
 		boolean attacked = false;
-		if (plantList.encontrar(x, y - 1)) {
+		if (plantList.encontrar(x, y - 1) && zombieList.encontrar(x, y)) {
 			plantList.getAttacked(x, y - 1, go);
 		}
 		return attacked;
@@ -139,7 +138,6 @@ public class Game {
 
 	public boolean isEmpty(int x, int y) {
 		boolean empty = false;
-
 		if (!plantList.encontrar(x, y))
 			if (!zombieList.encontrar(x, y))
 				empty = true;
