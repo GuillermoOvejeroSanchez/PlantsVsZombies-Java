@@ -3,6 +3,7 @@ package lista;
 import elems.GameObject;
 
 public class GameObjectList {
+	//prueba
 
 	private GameObject[] ObjectList;
 	private int contador;
