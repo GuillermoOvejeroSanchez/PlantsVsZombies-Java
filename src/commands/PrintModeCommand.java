@@ -3,6 +3,7 @@ package commands;
 import src.Controller;
 import src.Game;
 import print.*;
+import print.*;
 
 public class PrintModeCommand extends Command{
 

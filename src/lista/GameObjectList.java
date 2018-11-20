@@ -118,10 +118,10 @@ public class GameObjectList {
 
 	}
 	
-	public String toStringDebug(int x, int y) {
+	public String toStringDebug(int i) {
 		StringBuilder elem = new StringBuilder();
-		if (encontrar(x, y)) {
-			GameObject go = this.getObject(buscarPos(x, y));
+		if (this.contador > 0) {
+			GameObject go = ObjectList[i]; 
 			elem.append(go.getShortName().toUpperCase());
 			elem.append("[ L: ");
 			elem.append(go.getResistance());
