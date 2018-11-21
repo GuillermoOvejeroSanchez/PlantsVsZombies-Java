@@ -15,8 +15,8 @@ public class ZombieFactory {
 	public static String listofAvailableZombies() {
 		StringBuilder str = new StringBuilder();
 		for (Zombie zombie : availabeZombies) {
-			str.append(zombie.getInfoName() + ":\tSpeed: " + zombie.getCycles() + " Harm: " + zombie.getDamage() + " Life: "
-					+ zombie.getResistance() + System.lineSeparator() + System.lineSeparator());
+			str.append(zombie.getInfoName() + ":\tSpeed: " + zombie.getCycles() + " Harm: " + zombie.getDamage()
+					+ " Life: " + zombie.getResistance() + System.lineSeparator() + System.lineSeparator());
 		}
 		return str.toString();
 	}

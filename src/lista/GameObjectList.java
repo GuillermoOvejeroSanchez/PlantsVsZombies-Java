@@ -46,7 +46,6 @@ public class GameObjectList {
 		return pos;
 	}
 
-	
 	public boolean addObject(GameObject objeto) {
 		boolean insertado = false;
 
@@ -73,7 +72,6 @@ public class GameObjectList {
 	 * return insertado; }
 	 */
 
-	
 	public void delete(int i) {
 		for (; i < contador - 1; i++) {
 			ObjectList[i] = ObjectList[i + 1];
@@ -96,7 +94,6 @@ public class GameObjectList {
 		return ObjectList[pos].toStringDebug();
 	}
 
-	
 	public int getSize() {
 		return contador;
 	}
@@ -107,7 +104,6 @@ public class GameObjectList {
 		}
 	}
 
-	
 	public boolean llena() {
 		return this.contador == ObjectList.length;
 	}

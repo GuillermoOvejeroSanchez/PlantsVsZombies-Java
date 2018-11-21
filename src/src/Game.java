@@ -59,7 +59,6 @@ public class Game {
 		}
 	}
 
-
 	public int getCiclos() {
 		return ciclos;
 	}
@@ -83,7 +82,6 @@ public class Game {
 	public boolean checkWin() {
 		return zombieManager.getNumZombies() == 0;
 	}
-
 
 	public String getCharacterDebugModePlant(int i) {
 
@@ -181,7 +179,7 @@ public class Game {
 	}
 
 	public String getString(int x, int y) {
-		return (plantList.getString(x, y)+ zombieList.getString(x, y));
+		return (plantList.getString(x, y) + zombieList.getString(x, y));
 	}
 
 	public int getNumPlants() {
@@ -191,15 +189,13 @@ public class Game {
 	public String getLevel() {
 		return level.name();
 	}
-/*
-	public String getPlantsStringDebug(int pos) {
-		return plantList.getStringDebug(pos);
-	}
-	
-	public String getZombiesStringDebug(int pos) {
-		return zombieList.getStringDebug(pos);
-	}
-	*/
+	/*
+	 * public String getPlantsStringDebug(int pos) { return
+	 * plantList.getStringDebug(pos); }
+	 * 
+	 * public String getZombiesStringDebug(int pos) { return
+	 * zombieList.getStringDebug(pos); }
+	 */
 
 	public int getFilas() {
 		return this.FILAS;

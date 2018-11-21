@@ -69,7 +69,6 @@ public abstract class GameObject {
 	public String getInfoName() {
 		return this.infoName;
 	}
-	
 
 	public String getShortName() {
 		return this.nameShort;
@@ -82,15 +81,14 @@ public abstract class GameObject {
 	public boolean isDead() {
 		return this.res <= 0;
 	}
-	
+
 	public String toString() {
 		return nameShort + " [" + res + "]";
 	}
-	
-	
+
 	public String toStringDebug() {
 		return nameShort + " [l:" + res + ",x:" + x + ",y:" + y + ",t:" + cyclesLeft + "]";
 	}
-	
+
 	protected abstract void accion();
 }

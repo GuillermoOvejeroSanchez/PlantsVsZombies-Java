@@ -42,14 +42,14 @@ public class ReleasePrinter extends BoardPrinter {
 
 		StringBuilder str = new StringBuilder();
 
-		str.append("Number of cycles: " + cycle + "\nCoins: " + suncoins + "\nRemaining zombies: " + remZombies + "\n\n");
+		str.append(
+				"Number of cycles: " + cycle + "\nCoins: " + suncoins + "\nRemaining zombies: " + remZombies + "\n\n");
 
 		for (int j = 0; j < columnas; j++) {
 			str.append(MyStringUtils.centre("", cellSize)).append(j);
 		}
-		
-		str.append(lineDelimiter);
 
+		str.append(lineDelimiter);
 
 		for (int i = 0; i < filas; i++) {
 			str.append(i);

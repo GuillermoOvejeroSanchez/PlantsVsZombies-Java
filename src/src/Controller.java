@@ -64,7 +64,7 @@ public class Controller {
 		print = false;
 
 	}
-	
+
 	public void setNoUpdateGameState() {
 		update = false;
 	}
