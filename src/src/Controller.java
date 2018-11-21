@@ -31,6 +31,7 @@ public class Controller {
 			if (print)
 				gamePrinter.printGame(game);
 			print = true;
+			update = true;
 			System.out.print("Command >");
 			String[] comando = in.nextLine().toLowerCase().trim().split("\\s+");
 			Command command = CommandParse.parseCommand(comando, this);
