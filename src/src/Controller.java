@@ -12,6 +12,7 @@ public class Controller {
 	private Scanner in;
 	public GamePrinter gamePrinter;
 	boolean print;
+	boolean update;
 	boolean noSalir;
 
 	public Controller(Game game, GamePrinter printer) {
@@ -19,15 +20,16 @@ public class Controller {
 		this.in = new Scanner(System.in);
 		this.gamePrinter = printer;
 		this.print = true;
+		this.update = true;
 	}
 
 	public void run() {
 
 		while (!game.getFin() && !game.getZombieWin()) {
-			if (print) {
+			if (update)
 				game.update();
+			if (print)
 				gamePrinter.printGame(game);
-			}
 			print = true;
 			System.out.print("Command >");
 			String[] comando = in.nextLine().toLowerCase().trim().split("\\s+");
@@ -35,17 +37,16 @@ public class Controller {
 
 			if (command != null) {
 				command.execute(game, this);
-				//game.accionOrdenador();
+				// game.accionOrdenador();
 			} else {
 				System.err.println("Unknown Command");
 				setNoPrintGameState();
 			}
 
-			
 			if (!game.getFin()) {
 				game.accionOrdenador();
 			}
-		
+
 		}
 		if (game.getFin()) {
 			System.out.println("YOU WIN");
@@ -61,6 +62,10 @@ public class Controller {
 	public void setNoPrintGameState() {
 		print = false;
 
+	}
+	
+	public void setNoUpdateGameState() {
+		update = false;
 	}
 
 	public void setNoSalir() {

@@ -22,6 +22,7 @@ public class ZombieListCommand extends NoParamsCommand {
 	public void execute(Game game, Controller controller) {
 		System.out.println(ZombieFactory.listofAvailableZombies());
 		controller.setNoPrintGameState();
+		controller.setNoUpdateGameState();
 	}
 
 }

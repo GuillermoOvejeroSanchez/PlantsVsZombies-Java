@@ -18,6 +18,7 @@ public class ListCommand extends NoParamsCommand {
 	public void execute(Game game, Controller controller) {
 		System.out.println(PlantsFactory.listOfAvailablePlants());
 		controller.setNoPrintGameState();
+		controller.setNoUpdateGameState();
 
 	}
 

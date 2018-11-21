@@ -40,15 +40,15 @@ public class PrintModeCommand extends Command {
 	@Override
 	public void execute(Game game, Controller controller) {
 		System.out.println("Modo de Print cambiado");
-
 		if (modo.equals("debug")) {
 			controller.gamePrinter = new DebugPrinter(game);
+			controller.setNoUpdateGameState();
 			
 		} 
 		
 		else if (modo.equals("release")) {
 			controller.gamePrinter = new ReleasePrinter(game.getFilas(), game.getColumnas(), game);
-			
+			controller.setNoUpdateGameState();
 		}
 	
 	
