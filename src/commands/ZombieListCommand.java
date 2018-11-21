@@ -13,11 +13,11 @@ public class ZombieListCommand extends NoParamsCommand {
 	public ZombieListCommand() {
 		super(commandName, commandInfo, helpInfo);
 	}
-
+/*
 	public ZombieListCommand(String nombreComando, String textoInfo, String textoAyuda) {
 		super(nombreComando, textoInfo, textoAyuda);
 	}
-
+*/
 	@Override
 	public void execute(Game game, Controller controller) {
 		System.out.println(ZombieFactory.listofAvailableZombies());

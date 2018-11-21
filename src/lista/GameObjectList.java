@@ -133,10 +133,13 @@ public class GameObjectList {
 		return eliminados;
 
 	}
-
+	
+/*
+  	
+ 
 	public String toStringDebug(int i) {
 		StringBuilder elem = new StringBuilder();
-		if (this.contador > 0) {
+	
 			GameObject go = ObjectList[i];
 			elem.append(go.getShortName().toUpperCase());
 			elem.append("[ L: ");
@@ -149,8 +152,8 @@ public class GameObjectList {
 			elem.append(go.getRemainigCycles());
 			elem.append("]");
 
-		}
+		
 		return elem.toString();
 	}
-
+*/
 }

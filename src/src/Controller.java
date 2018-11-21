@@ -35,14 +35,17 @@ public class Controller {
 
 			if (command != null) {
 				command.execute(game, this);
+				//game.accionOrdenador();
 			} else {
 				System.err.println("Unknown Command");
 				setNoPrintGameState();
 			}
 
+			
 			if (!game.getFin()) {
 				game.accionOrdenador();
 			}
+		
 		}
 		if (game.getFin()) {
 			System.out.println("YOU WIN");

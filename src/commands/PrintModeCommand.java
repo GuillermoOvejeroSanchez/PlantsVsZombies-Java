@@ -2,6 +2,7 @@ package commands;
 
 import src.Controller;
 import src.Game;
+
 import print.*;
 
 public class PrintModeCommand extends Command {
@@ -21,19 +22,7 @@ public class PrintModeCommand extends Command {
 		this.modo = modo;
 
 	}
-
-	@Override
-	public void execute(Game game, Controller controller) {
-		System.out.println("Modo de Print cambiado");
-
-		if (modo.equals("DEBUG")) {
-			controller.gamePrinter = new DebugPrinter(game);
-		} else if (modo.equals("RELEASE")) {
-			controller.gamePrinter = new ReleasePrinter(game.getFilas(), game.getColumnas(), game);
-		}
-
-	}
-
+	
 	@Override
 	public Command parse(String[] comando, Controller controller) {
 		Command c = null;
@@ -47,5 +36,25 @@ public class PrintModeCommand extends Command {
 
 		return c;
 	}
+
+	@Override
+	public void execute(Game game, Controller controller) {
+		System.out.println("Modo de Print cambiado");
+
+		if (modo.equals("debug")) {
+			controller.gamePrinter = new DebugPrinter(game);
+			
+		} 
+		
+		else if (modo.equals("release")) {
+			controller.gamePrinter = new ReleasePrinter(game.getFilas(), game.getColumnas(), game);
+			
+		}
+	
+	
+		
+	}
+
+	
 
 }

@@ -5,23 +5,23 @@ import util.MyStringUtils;
 
 public class DebugPrinter extends BoardPrinter {
 
-	private String[] board;
+	private String[][] board;
 	private long seed;
 	private String level;
-	private int numPlants;
-	private int numZombies;
+	
 	private int cycle, suncoins, remZombies;
 
 	private int tam;
+	private int contador; 
 
 	public DebugPrinter(Game game) {
 		super(game);
 	}
 
 	protected void encodeGame(Game game) {
-		this.numPlants = game.getNumPlants();
-		this.numZombies = game.getNumZombies();
-		this.tam = numPlants + numZombies;
+
+		this.contador = 0; 
+		this.tam = game.GetSizeZombieList() + game.GetSizePlantList(); 
 
 		this.level = game.getLevel();
 		this.seed = game.getSeed();
@@ -29,19 +29,21 @@ public class DebugPrinter extends BoardPrinter {
 		this.suncoins = game.getSuncoins();
 		this.remZombies = game.getRemainingZombies();
 
-		board = new String[tam];
+		board = new String[1][tam];
 
-		int i = 0;
-		while (i < numPlants) {
-			board[i] = game.getPlantsStringDebug(i);
-			i++;
+		for(int i = 0; i < game.GetSizePlantList(); i++) {
+			board[0][contador] = game.getCharacterDebugModePlant(i); 
+			contador++; 
 		}
-		int j = 0;
-		while (i < tam && j < (numZombies)) {
-			board[i] = game.getPlantsStringDebug(j);
-			i++;
-			j++;
+		
+		
+		for(int j = 0; j < game.GetSizeZombieList(); j++) {
+			board[0][contador] = game.getCharacterDebugModeZombie(j); 
+			contador++; 
 		}
+		
+		
+	
 	}
 
 	public String toString() {
@@ -64,7 +66,7 @@ public class DebugPrinter extends BoardPrinter {
 
 		for (int i = 0; i < tam; i++) {
 			str.append(margin).append(vDelimiter);
-			str.append(MyStringUtils.centre(board[i], cellSize)).append(vDelimiter);
+			str.append(MyStringUtils.centre(board[0][i], cellSize)).append(vDelimiter);
 		}
 		str.append(lineDelimiter);
 

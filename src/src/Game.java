@@ -40,9 +40,10 @@ public class Game {
 	}
 
 	public void update() {
-		aumentarCiclos();
+		//aumentarCiclos();
 		plantList.update();
 		zombieList.update();
+		aumentarCiclos();
 		cleanBoard();
 		getFin();
 		zombieWin = checkZombieWin();
@@ -96,12 +97,12 @@ public class Game {
 
 	public String getCharacterDebugModePlant(int i) {
 
-		return plantList.toStringDebug(i);
+		return plantList.getStringDebug(i);
 	}
 
 	public String getCharacterDebugModeZombie(int i) {
 
-		return zombieList.toStringDebug(i);
+		return zombieList.getStringDebug(i);
 	}
 
 	public boolean checkZombieWin() {
@@ -200,7 +201,7 @@ public class Game {
 	public String getLevel() {
 		return level.name();
 	}
-
+/*
 	public String getPlantsStringDebug(int pos) {
 		return plantList.getStringDebug(pos);
 	}
@@ -208,6 +209,7 @@ public class Game {
 	public String getZombiesStringDebug(int pos) {
 		return zombieList.getStringDebug(pos);
 	}
+	*/
 
 	public int getFilas() {
 		return this.FILAS;
