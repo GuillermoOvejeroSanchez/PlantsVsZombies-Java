@@ -22,39 +22,29 @@ public class PrintModeCommand extends Command {
 		this.modo = modo;
 
 	}
-	
+
 	@Override
 	public Command parse(String[] comando, Controller controller) {
 		Command c = null;
 
 		if (comando.length == 2 && (comando[0].equals(commandName) || comando[0].equals(commandName.substring(0, 1)))) {
-
 			modo = comando[1];
-
-			c = new PrintModeCommand(modo);
+			if (modo.equalsIgnoreCase("debug") || modo.equalsIgnoreCase("release"))
+				c = new PrintModeCommand(modo);
+			else
+				System.err.println("Unknown Print Mode");
 		}
-
 		return c;
 	}
 
 	@Override
 	public void execute(Game game, Controller controller) {
-		System.out.println("Modo de Print cambiado");
-		if (modo.equals("debug")) {
+		if (modo.equalsIgnoreCase("debug")) {
 			controller.gamePrinter = new DebugPrinter(game);
 			controller.setNoUpdateGameState();
-			
-		} 
-		
-		else if (modo.equals("release")) {
+		} else if (modo.equalsIgnoreCase("release")) {
 			controller.gamePrinter = new ReleasePrinter(game.getFilas(), game.getColumnas(), game);
 			controller.setNoUpdateGameState();
 		}
-	
-	
-		
 	}
-
-	
-
 }

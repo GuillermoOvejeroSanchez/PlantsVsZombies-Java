@@ -55,12 +55,4 @@ public class AddCommand extends Command {
 		}
 	}
 
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
 }
