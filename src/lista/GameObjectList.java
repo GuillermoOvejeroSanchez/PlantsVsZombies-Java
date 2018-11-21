@@ -14,8 +14,6 @@ public class GameObjectList {
 
 	}
 
-	// encontrar
-
 	public boolean encontrar(int x, int y) {
 		int i = 0;
 		boolean encontrado = false;
@@ -48,7 +46,7 @@ public class GameObjectList {
 		return pos;
 	}
 
-	// add
+	
 	public boolean addObject(GameObject objeto) {
 		boolean insertado = false;
 
@@ -75,7 +73,7 @@ public class GameObjectList {
 	 * return insertado; }
 	 */
 
-	// delete
+	
 	public void delete(int i) {
 		for (; i < contador - 1; i++) {
 			ObjectList[i] = ObjectList[i + 1];
@@ -98,7 +96,7 @@ public class GameObjectList {
 		return ObjectList[pos].toStringDebug();
 	}
 
-	// tam lista
+	
 	public int getSize() {
 		return contador;
 	}
@@ -109,6 +107,7 @@ public class GameObjectList {
 		}
 	}
 
+	
 	public boolean llena() {
 		return this.contador == ObjectList.length;
 	}
@@ -133,27 +132,5 @@ public class GameObjectList {
 		return eliminados;
 
 	}
-	
-/*
-  	
- 
-	public String toStringDebug(int i) {
-		StringBuilder elem = new StringBuilder();
-	
-			GameObject go = ObjectList[i];
-			elem.append(go.getShortName().toUpperCase());
-			elem.append("[ L: ");
-			elem.append(go.getResistance());
-			elem.append(",x: ");
-			elem.append(go.getX());
-			elem.append(",y; ");
-			elem.append(go.getY());
-			elem.append(",t: ");
-			elem.append(go.getRemainigCycles());
-			elem.append("]");
 
-		
-		return elem.toString();
-	}
-*/
 }

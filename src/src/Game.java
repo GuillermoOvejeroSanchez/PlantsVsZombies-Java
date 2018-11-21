@@ -20,8 +20,6 @@ public class Game {
 	private static SuncoinManager suncoinManager;
 	private ZombieManager zombieManager;
 	private int seed;
-	// private boolean fin;
-	private boolean zombieWin;
 	private int ciclos;
 	private Random rand;
 
@@ -31,8 +29,6 @@ public class Game {
 		this.seed = seed;
 		this.ciclos = 0;
 		this.level = level;
-		// this.fin = false;
-		this.zombieWin = false;
 		zombieManager = new ZombieManager(this.level, this.seed, this.rand);
 		suncoinManager = new SuncoinManager();
 		zombieList = new GameObjectList(zombieManager.getNumZombies());
@@ -40,13 +36,10 @@ public class Game {
 	}
 
 	public void update() {
-		//aumentarCiclos();
 		plantList.update();
 		zombieList.update();
 		aumentarCiclos();
 		cleanBoard();
-		getFin();
-		zombieWin = checkZombieWin();
 	}
 
 	private void cleanBoard() {
@@ -66,9 +59,6 @@ public class Game {
 		}
 	}
 
-	public boolean getZombieWin() {
-		return zombieWin;
-	}
 
 	public int getCiclos() {
 		return ciclos;
@@ -90,7 +80,7 @@ public class Game {
 		suncoinManager.modifySuncoins(i);
 	}
 
-	public boolean getFin() {
+	public boolean checkWin() {
 		return zombieManager.getNumZombies() == 0;
 	}
 

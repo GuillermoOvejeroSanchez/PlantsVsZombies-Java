@@ -8,11 +8,11 @@ public class DebugPrinter extends BoardPrinter {
 	private String[][] board;
 	private long seed;
 	private String level;
-	
+
 	private int cycle, suncoins, remZombies;
 
 	private int tam;
-	private int contador; 
+	private int contador;
 
 	public DebugPrinter(Game game) {
 		super(game);
@@ -20,8 +20,8 @@ public class DebugPrinter extends BoardPrinter {
 
 	protected void encodeGame(Game game) {
 
-		this.contador = 0; 
-		this.tam = game.GetSizeZombieList() + game.GetSizePlantList(); 
+		this.contador = 0;
+		this.tam = game.GetSizeZombieList() + game.GetSizePlantList();
 
 		this.level = game.getLevel();
 		this.seed = game.getSeed();
@@ -31,19 +31,15 @@ public class DebugPrinter extends BoardPrinter {
 
 		board = new String[1][tam];
 
-		for(int i = 0; i < game.GetSizePlantList(); i++) {
-			board[0][contador] = game.getCharacterDebugModePlant(i); 
-			contador++; 
+		for (int i = 0; i < game.GetSizePlantList(); i++) {
+			board[0][contador] = game.getCharacterDebugModePlant(i);
+			contador++;
 		}
-		
-		
-		for(int j = 0; j < game.GetSizeZombieList(); j++) {
-			board[0][contador] = game.getCharacterDebugModeZombie(j); 
-			contador++; 
+		for (int j = 0; j < game.GetSizeZombieList(); j++) {
+			board[0][contador] = game.getCharacterDebugModeZombie(j);
+			contador++;
 		}
-		
-		
-	
+
 	}
 
 	public String toString() {
@@ -72,6 +68,5 @@ public class DebugPrinter extends BoardPrinter {
 
 		return str.toString();
 	}
-
 
 }

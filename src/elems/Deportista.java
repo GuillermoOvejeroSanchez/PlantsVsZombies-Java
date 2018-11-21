@@ -20,15 +20,8 @@ public class Deportista extends Zombie {
 		dmg = 1;
 		nameShort = "D";
 		name = "deportista";
-		infoName = "[D]eportist";
+		infoName = "[D]eportista";
 	}
-
-	final static int FREC = 1;
-	final static int DMG = 1;
-	final static int RES = 2;
-	final static String NAME = "deportista";
-	final static String INFONAME = "[D]eportista";
-	final static String SHORTNA = "D";
 
 	public Zombie inPosition(int x, int y, Game game) {
 		Zombie zombie = new Deportista(x, y, game);

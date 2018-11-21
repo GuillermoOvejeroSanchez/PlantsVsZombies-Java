@@ -21,11 +21,12 @@ public class Controller {
 		this.gamePrinter = printer;
 		this.print = true;
 		this.update = true;
+		this.noSalir = true;
 	}
 
 	public void run() {
 
-		while (!game.getFin() && !game.getZombieWin()) {
+		while (!game.checkWin() && !game.checkZombieWin() && noSalir) {
 			if (update)
 				game.update();
 			if (print)
@@ -38,18 +39,17 @@ public class Controller {
 
 			if (command != null) {
 				command.execute(game, this);
-				// game.accionOrdenador();
 			} else {
 				System.err.println("Unknown Command");
 				setNoPrintGameState();
 			}
 
-			if (!game.getFin()) {
+			if (!game.checkWin()) {
 				game.accionOrdenador();
 			}
 
 		}
-		if (game.getFin()) {
+		if (game.checkWin()) {
 			System.out.println("YOU WIN");
 			setNoPrintGameState();
 		} else if (game.checkZombieWin()) {

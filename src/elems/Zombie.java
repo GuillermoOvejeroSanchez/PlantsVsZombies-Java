@@ -12,11 +12,6 @@ public abstract class Zombie extends GameObject {
 
 	}
 
-	public boolean attack() {
-		// game.zombieAttack(this);
-		return false;
-	}
-
 	public boolean update() {
 		int ciclos = -1;
 		if (!(game.attack(this.x, this.y, this)))
