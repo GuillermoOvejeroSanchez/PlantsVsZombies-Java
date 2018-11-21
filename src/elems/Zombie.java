@@ -22,12 +22,12 @@ public abstract class Zombie extends GameObject {
 		if (!(game.attack(this.x, this.y, this)))
 			if (game.isEmpty(x, y - 1)) {
 				ciclos = --this.cyclesLeft;
-				if (this.cyclesLeft == 1) {
+				if (this.cyclesLeft == 0) {
 					this.accion();
 					this.cyclesLeft = this.cycles;
 				}
 			}
-		return ciclos == 1;
+		return ciclos == 0;
 	}
 
 	protected void accion() {
