@@ -29,7 +29,7 @@ public abstract class NoParamsCommand extends Command {
 			} else if (comando[0].equals(ListCommand.commandName)
 					|| comando[0].equals(ListCommand.commandName.substring(0, 1))) {
 				c = new ListCommand();
-			} else if (comando[0].equals(ZombieListCommand.commandName)
+			} else if (comando[0].equalsIgnoreCase(ZombieListCommand.commandName)
 					|| comando[0].equals(ZombieListCommand.commandName.substring(0, 1))) {
 				c = new ZombieListCommand();
 			}
