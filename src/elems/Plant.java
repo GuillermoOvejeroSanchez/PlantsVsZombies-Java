@@ -5,6 +5,19 @@ import src.Game;
 public abstract class Plant extends GameObject {
 
 	protected int cost;
+	
+
+	/*
+	public final static int COST = 50;
+	public final static int DMG = 1;
+	private final static int FREC = 1;
+	
+	
+	private int res;
+	private int x,y;
+	private Game game;
+	private int frec;
+	private int cyclesLeft; 
 
 	protected Plant(int x, int y, Game game) {
 		super(x, y, game);

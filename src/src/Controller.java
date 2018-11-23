@@ -11,7 +11,7 @@ public class Controller {
 
 	private Game game;
 	private Scanner in;
-	public GamePrinter gamePrinter;
+	private GamePrinter gamePrinter;
 	boolean print;
 	boolean update;
 	boolean noSalir;
@@ -72,6 +72,10 @@ public class Controller {
 
 	public void setNoSalir() {
 		noSalir = false;
+	}	
+	
+	public void setPrinter(BoardPrinter boardPrinter) {
+		this.gamePrinter = boardPrinter;
 	}
 
 	public void setPrinter(BoardPrinter boardPrinter) {

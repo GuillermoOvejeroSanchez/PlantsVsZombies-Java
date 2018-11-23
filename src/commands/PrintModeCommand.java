@@ -44,7 +44,6 @@ public class PrintModeCommand extends Command {
 			controller.setNoUpdateGameState();
 		} else if (modo.equalsIgnoreCase("release")) {
 			controller.setPrinter(new ReleasePrinter(game.getFilas(), game.getColumnas(), game)); 
-			controller.setNoUpdateGameState();
-		}
+
 	}
 }
