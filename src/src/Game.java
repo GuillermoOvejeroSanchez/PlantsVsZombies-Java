@@ -135,8 +135,28 @@ public class Game {
 		plantList = new GameObjectList(MAX_PLANTAS);
 	}
 
-	public void addPlant(Plant plant) {
-		plantList.addObject(plant);
+	public boolean addPlant(Plant plant) {
+		boolean added = false;
+		if (plant != null) {
+			if (plant.getX() < 4 && plant.getY() < 7 && plant.getX() > -1 && plant.getY() > -1) {
+				if (isEmpty(plant.getX(), plant.getY())) {
+					if (getSuncoins() >= plant.getCost()) {
+						plantList.addObject(plant);
+						modifySuncoins(-plant.getCost());
+						added = true;
+					} else {
+						System.err.println("Not enough Suncoins");
+					}
+				} else {
+					System.err.println("Not empty position");
+				}
+			} else {
+				System.err.println("Position out of bounds");
+			}
+		} else {
+			System.err.println("Invalid Plant");
+		}
+		return added;
 	}
 
 	public void addZombie(Zombie zombie) {

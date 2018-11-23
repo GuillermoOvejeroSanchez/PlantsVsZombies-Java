@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import commands.Command;
 import commands.CommandParse;
+import print.BoardPrinter;
 import print.GamePrinter;
 
 public class Controller {
@@ -71,6 +72,11 @@ public class Controller {
 
 	public void setNoSalir() {
 		noSalir = false;
+	}
+
+	public void setPrinter(BoardPrinter boardPrinter) {
+		this.gamePrinter = boardPrinter;
+		
 	}
 
 }

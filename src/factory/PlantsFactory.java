@@ -24,7 +24,6 @@ public class PlantsFactory {
 		Plant plant = null;
 		int i = 0;
 		boolean encontrado = false;
-		if (x < 4 && y < 7 && x > -1 && y > -1) {
 			while (!encontrado && i < availablePlants.length) {
 				plant = availablePlants[i].parse(plantName, x, y, game);
 				if (plant != null) {
@@ -32,7 +31,6 @@ public class PlantsFactory {
 				} else
 					i++;
 			}
-		}
 		return plant;
 	}
 }
