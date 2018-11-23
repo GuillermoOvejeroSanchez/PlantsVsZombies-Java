@@ -1,7 +1,5 @@
 package elems;
 
-import src.Game;
-
 public class Sunflower extends Plant {
 
 
@@ -35,8 +33,9 @@ public class Sunflower extends Plant {
 	}
 
 	// Gana Soles
-	public void accion() {
+	public boolean accion() {
 		game.modifySuncoins(SUNCOINS);
+		return false;
 	}
 
 	public boolean attack() {

@@ -1,7 +1,5 @@
 package elems;
 
-import src.Game;
-
 public class Peashooter extends Plant {
 
 
@@ -45,8 +43,18 @@ public class Peashooter extends Plant {
 		return p;
 	}
 
-	public void accion() {
-		game.peashooterAttack(this.x, this.y, this);
+	public boolean accion() {
+		boolean encontrado = false;
+		int posY = y + 1;
+		
+		encontrado = game.isZombie(x, posY);
+		while (!encontrado && posY < game.getColumnas()) {
+			posY++;
+			encontrado = game.isZombie(x, posY);
+		}
+		if (encontrado)
+			game.peashooterAttack(this.x, posY, this);
+		return encontrado;
 	}
 
 	public boolean attack() {

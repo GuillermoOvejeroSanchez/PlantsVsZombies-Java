@@ -34,9 +34,10 @@ public abstract class Zombie extends GameObject {
 		return ciclos == 0;
 	}
 
-	protected void accion() {
+	protected boolean accion() {
 		if (!(game.attack(this.x, this.y, this)))
 			setY(this.y - 1);
+		return false;
 	}
 
 	public abstract Zombie inPosition(int x, int y, Game game);

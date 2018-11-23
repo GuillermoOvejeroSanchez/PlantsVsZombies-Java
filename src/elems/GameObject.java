@@ -119,5 +119,5 @@ public abstract class GameObject {
 	}
 	*/
 
-	protected abstract void accion();
+	protected abstract boolean accion();
 }

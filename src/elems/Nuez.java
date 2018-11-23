@@ -1,7 +1,5 @@
 package elems;
 
-import src.Game;
-
 public class Nuez extends Plant {
 /*
 	public Nuez(int x, int y, Game game) {
@@ -52,7 +50,8 @@ public class Nuez extends Plant {
 	
 	
 
-	public void accion() {
+	public boolean accion() {
+		return true;
 
 	}
 
