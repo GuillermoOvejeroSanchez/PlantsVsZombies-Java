@@ -78,9 +78,5 @@ public class Controller {
 		this.gamePrinter = boardPrinter;
 	}
 
-	public void setPrinter(BoardPrinter boardPrinter) {
-		this.gamePrinter = boardPrinter;
-		
-	}
-
+	
 }
