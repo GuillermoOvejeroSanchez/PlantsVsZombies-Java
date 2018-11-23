@@ -3,7 +3,7 @@ package elems;
 import src.Game;
 
 public abstract class Zombie extends GameObject {
-
+/*
 	protected Zombie(int x, int y, Game game) {
 		super(x, y, game);
 	}
@@ -11,7 +11,16 @@ public abstract class Zombie extends GameObject {
 	protected Zombie() {
 
 	}
+*/
+	public Zombie(int resistencia, int danyo, int ciclos, String name, String shortName) {
+		super(resistencia,  danyo,  ciclos,  name,  shortName);
+	
+	}
+	
+	
 
+	
+	
 	public boolean update() {
 		int ciclos = -1;
 		if (!(game.attack(this.x, this.y, this)))

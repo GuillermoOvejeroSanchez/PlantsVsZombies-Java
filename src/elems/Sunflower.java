@@ -4,35 +4,32 @@ import src.Game;
 
 public class Sunflower extends Plant {
 
-	final static int COST = 20;
+
 	final int SUNCOINS = 10;
+	
+	public final static int COSTE = 20;
+	public final static int CICLOS = 2; 
+	public final static int	FRECUENCIA = 1; // TODO REVISAR
+	public final static int DANYO = 0; 
+	public final static int RESISTENCIA = 2; 
+	
+	public final static String NOMBRE = "[S]unflower";
+	public final static String SHORT_NAME = "S";
 
-	public Sunflower(int x, int y, Game game) {
-		super(x, y, game);
-		inicializar();
-
-	}
-
+	
 	public Sunflower() {
-		inicializar();
+		super(COSTE, FRECUENCIA, RESISTENCIA, DANYO, CICLOS, NOMBRE, SHORT_NAME);
+		// TODO Auto-generated constructor stub
 	}
 
-	private void inicializar() {
-		cost = 20;
-		res = 2;
-		cycles = 2;
-		cyclesLeft = cycles;
-		nameShort = "S";
-		name = "sunflower";
-		infoName = "[S]unflower";
-	}
 
-	@Override
-	public Plant parse(String plantName, int x, int y, Game game) {
+	public Plant parse(String plantName) {
 		Plant p = null;
 
-		if (plantName.equalsIgnoreCase(name) || plantName.equalsIgnoreCase(nameShort)) {
-			p = new Sunflower(x, y, game);
+		if (plantName.equalsIgnoreCase(NOMBRE) || plantName.equalsIgnoreCase(SHORT_NAME)) {
+			p = new Sunflower();
+			
+			//TODO añadir x y 
 		}
 		return p;
 	}

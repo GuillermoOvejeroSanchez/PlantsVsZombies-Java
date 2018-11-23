@@ -4,18 +4,23 @@ import src.Game;
 
 public class Peashooter extends Plant {
 
-	final static int COST = 50;
 
-	public Peashooter(int x, int y, Game game) {
-		super(x, y, game);
-		inicializar();
+	public final static int COSTE = 50;
+	public final static int CICLOS = 2; 
+	public final static int	FRECUENCIA = 1; // TODO REVISAR
+	public final static int DANYO = 1; 
+	public final static int RESISTENCIA = 3; 
+	
+	public final static String NOMBRE = "[P]eashooter";
+	public final static String SHORT_NAME = "P";
 
-	}
-
+	
 	public Peashooter() {
-		inicializar();
+		super(COSTE, FRECUENCIA, RESISTENCIA, DANYO, CICLOS, NOMBRE, SHORT_NAME);
+		// TODO Auto-generated constructor stub
 	}
-
+	
+/*
 	private void inicializar() {
 		cost = 50;
 		res = 3;
@@ -26,13 +31,16 @@ public class Peashooter extends Plant {
 		name = "peashooter";
 		infoName = "[P]eashooter";
 	}
+*/
 
-	@Override
-	public Plant parse(String plantName, int x, int y, Game game) {
+
+	public Plant parse(String plantName) {
 		Plant p = null;
 
-		if (plantName.equalsIgnoreCase(name) || plantName.equalsIgnoreCase(nameShort)) {
-			p = new Peashooter(x, y, game);
+		if (plantName.equalsIgnoreCase(NOMBRE) || plantName.equalsIgnoreCase(SHORT_NAME)) {
+			p = new Peashooter();
+			
+			//TODO añadir x y 
 		}
 		return p;
 	}
@@ -44,4 +52,6 @@ public class Peashooter extends Plant {
 	public boolean attack() {
 		return false;
 	}
+	
+	
 }
