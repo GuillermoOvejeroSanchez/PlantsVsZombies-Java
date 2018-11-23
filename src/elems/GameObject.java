@@ -5,19 +5,26 @@ import src.Game;
 public abstract class GameObject {
 	protected int x;
 	protected int y;
+	
 	protected int res;
 	protected int dmg;
 	protected int cycles;
 	protected int cyclesLeft;
-	protected String name;
-	protected String nameShort;
-	protected String infoName;
+	
+	
+	protected String name; 
+	protected String shortName; 
+
 	protected Game game;
 
-	protected GameObject(int x, int y, Game game) {
-		this.x = x;
-		this.y = y;
-		this.game = game;
+	protected GameObject(int resistencia, int danyo, int ciclos, String name, String shortName) {
+		this.res = resistencia; 
+		 
+		this.dmg = danyo; 
+		this.cycles = ciclos; 
+		 
+		this.name = name; 
+		this.shortName = shortName; 
 	}
 
 	protected GameObject() {
@@ -67,11 +74,11 @@ public abstract class GameObject {
 	public abstract boolean update();
 
 	public String getInfoName() {
-		return this.infoName;
+		return this.name;
 	}
 
 	public String getShortName() {
-		return this.nameShort;
+		return this.shortName;
 	}
 
 	public void takeDmg(GameObject gameObject) {
@@ -83,12 +90,12 @@ public abstract class GameObject {
 	}
 
 	public String toString() {
-		return nameShort + " [" + res + "]";
+		return shortName + " [" + res + "]";
 	}
 
 
 	public String toStringDebug() {
-		return nameShort + " [l:" + res + ",x:" + x + ",y:" + y + ",t:" + cyclesLeft + "]";
+		return shortName + " [l:" + res + ",x:" + x + ",y:" + y + ",t:" + cyclesLeft + "]";
 	}
 	
 	/*

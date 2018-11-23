@@ -4,7 +4,15 @@ import src.Game;
 
 public abstract class Plant extends GameObject {
 
-	protected int cost;
+	protected int frec; 
+	protected int coste; 
+	
+	public Plant(int coste, int frec, int resistencia, int danyo, int ciclos, String name, String shortName) {
+		super(resistencia,  danyo,  ciclos,  name,  shortName);
+		this.coste = coste; 
+		this.frec = frec; 
+		
+	}
 	
 
 	/*
@@ -26,7 +34,7 @@ public abstract class Plant extends GameObject {
 	protected Plant() {
 	}
 */
-	public abstract Plant parse(String plantName, int x, int y, Game game);
+	public abstract Plant parse(String plantName);
 
 	/*
 	 * //TODO como hacer esto para no repetir el codigo en todos public Plant
@@ -46,7 +54,7 @@ public abstract class Plant extends GameObject {
 	}
 
 	public int getCost() {
-		return this.cost;
+		return this.coste;
 	}
 
 }

@@ -25,7 +25,9 @@ public class PlantsFactory {
 		int i = 0;
 		boolean encontrado = false;
 			while (!encontrado && i < availablePlants.length) {
-				plant = availablePlants[i].parse(plantName, x, y, game);
+				plant = availablePlants[i].parse(plantName);
+				//TODO set c, set y y set GAME
+				
 				if (plant != null) {
 					encontrado = true;
 				} else
