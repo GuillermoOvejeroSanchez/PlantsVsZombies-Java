@@ -48,16 +48,8 @@ public class Game {
 	}
 
 	public void peashooterAttack(int x, int y, GameObject go) {
-		boolean encontrado = false;
-		int i = 0;
-		while (!encontrado && y < COLUMNAS) {
-			if (zombieList.encontrar(x, y + i)) {
-				zombieList.getAttacked(x, y + i, go);
-				encontrado = true;
-			}
-			i++;
+			zombieList.getAttacked(x, y, go);
 		}
-	}
 
 	public int getCiclos() {
 		return ciclos;

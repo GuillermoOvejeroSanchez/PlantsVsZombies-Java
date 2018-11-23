@@ -32,7 +32,8 @@ public class Nuez extends Plant {
 		return p;
 	}
 
-	public void accion() {
+	public boolean accion() {
+		return true;
 
 	}
 

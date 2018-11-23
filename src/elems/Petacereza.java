@@ -35,9 +35,10 @@ public class Petacereza extends Plant {
 	}
 
 //Explota
-	public void accion() {
+	public boolean accion() {
 		game.explode(this.x, this.y, this);
 		res = 0;
+		return false;
 	}
 
 }

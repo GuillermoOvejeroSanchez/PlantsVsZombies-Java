@@ -7,7 +7,7 @@ public class Peashooter extends Plant {
 	final static int COST = 50;
 
 	public Peashooter(int x, int y, Game game) {
-		super(x, y, game);
+		// super(x, y, game);
 		inicializar();
 
 	}
@@ -37,8 +37,17 @@ public class Peashooter extends Plant {
 		return p;
 	}
 
-	public void accion() {
-		game.peashooterAttack(this.x, this.y, this);
+	public boolean accion() {
+		boolean encontrado = false;
+		int posY = y + 1;
+		encontrado = !game.isEmpty(x, posY);
+		while (!encontrado && posY < game.getColumnas()) {
+			posY++;
+			encontrado = !game.isEmpty(x, posY);
+		}
+		if (encontrado)
+			game.peashooterAttack(this.x, posY, this);
+		return encontrado;
 	}
 
 	public boolean attack() {

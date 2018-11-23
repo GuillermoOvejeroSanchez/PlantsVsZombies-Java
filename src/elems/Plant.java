@@ -25,7 +25,7 @@ public abstract class Plant extends GameObject {
 
 	protected Plant() {
 	}
-
+*/
 	public abstract Plant parse(String plantName, int x, int y, Game game);
 
 	/*
