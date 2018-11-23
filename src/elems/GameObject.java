@@ -22,7 +22,8 @@ public abstract class GameObject {
 		 
 		this.dmg = danyo; 
 		this.cycles = ciclos; 
-		 
+		this.cyclesLeft = cycles; 
+		
 		this.name = name; 
 		this.shortName = shortName; 
 	}

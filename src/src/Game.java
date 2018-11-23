@@ -90,6 +90,7 @@ public class Game {
 		for (int i = 0; i < FILAS; i++) {
 			if (zombieList.encontrar(i, 0))
 				theyWin = true;
+			
 		}
 		return theyWin;
 	}

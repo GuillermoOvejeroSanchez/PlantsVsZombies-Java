@@ -17,7 +17,7 @@ public class Sunflower extends Plant {
 	
 	public Sunflower() {
 		super(COSTE, FRECUENCIA, RESISTENCIA, DANYO, CICLOS, NOMBRE, SHORT_NAME);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 
@@ -41,4 +41,7 @@ public class Sunflower extends Plant {
 	public boolean attack() {
 		return false;
 	}
+	
+	
+	
 }
