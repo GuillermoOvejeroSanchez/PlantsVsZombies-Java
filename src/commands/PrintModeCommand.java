@@ -40,10 +40,10 @@ public class PrintModeCommand extends Command {
 	@Override
 	public void execute(Game game, Controller controller) {
 		if (modo.equalsIgnoreCase("debug")) {
-			controller.setPrinter(new DebugPrinter(game)); 
+			controller.setPrinter(new DebugPrinter(game));
 			controller.setNoUpdateGameState();
 		} else if (modo.equalsIgnoreCase("release")) {
-			controller.setPrinter(new DebugPrinter(game)); 
+			controller.setPrinter(new ReleasePrinter(game.getFilas(), game.getColumnas(), game));
 			controller.setNoUpdateGameState();
 		}
 	}
