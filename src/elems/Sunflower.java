@@ -1,7 +1,5 @@
 package elems;
 
-import src.Game;
-
 public class Sunflower extends Plant {
 
 

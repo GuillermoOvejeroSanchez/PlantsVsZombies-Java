@@ -1,7 +1,5 @@
 package elems;
 
-import src.Game;
-
 public class Nuez extends Plant {
 /*
 	public Nuez(int x, int y, Game game) {

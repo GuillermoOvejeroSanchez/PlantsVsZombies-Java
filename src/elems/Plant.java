@@ -1,7 +1,5 @@
 package elems;
 
-import src.Game;
-
 public abstract class Plant extends GameObject {
 
 	protected int frec; 

@@ -48,8 +48,8 @@ public class Game {
 	}
 
 	public void peashooterAttack(int x, int y, GameObject go) {
-			zombieList.getAttacked(x, y, go);
-		}
+		zombieList.getAttacked(x, y, go);
+	}
 
 	public int getCiclos() {
 		return ciclos;
@@ -179,7 +179,7 @@ public class Game {
 	public int GetSizePlantList() {
 		return this.plantList.getSize();
 	}
-
+/*
 	public void explode(int x, int y, GameObject go) {
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
@@ -190,6 +190,7 @@ public class Game {
 		}
 	}
 
+*/
 	public String getString(int x, int y) {
 		return (plantList.getString(x, y) + zombieList.getString(x, y));
 	}
@@ -215,6 +216,10 @@ public class Game {
 
 	public int getColumnas() {
 		return this.COLUMNAS;
+	}
+
+	public boolean isZombie(int x, int y) {
+		return zombieList.encontrar(x, y);
 	}
 
 }
