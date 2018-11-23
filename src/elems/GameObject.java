@@ -86,9 +86,31 @@ public abstract class GameObject {
 		return nameShort + " [" + res + "]";
 	}
 
+
 	public String toStringDebug() {
 		return nameShort + " [l:" + res + ",x:" + x + ",y:" + y + ",t:" + cyclesLeft + "]";
 	}
+	
+	/*
+	public String toStringDebug( ) {
+		StringBuilder elem = new StringBuilder();
+	
+			//this.getShortName();
+			elem.append(this.getShortName());
+			elem.append(" [ l: ");
+			elem.append(this.getResistance());
+			elem.append(",x: ");
+			elem.append(this.getX());
+			elem.append(",y; ");
+			elem.append(this.getY());
+			elem.append(",t: ");
+			elem.append(this.getRemainigCycles());
+			elem.append("]");
+
+		
+		return elem.toString();
+	}
+	*/
 
 	protected abstract void accion();
 }
