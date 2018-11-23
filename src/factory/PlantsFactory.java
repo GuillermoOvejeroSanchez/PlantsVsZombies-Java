@@ -30,6 +30,8 @@ public class PlantsFactory {
 				
 				if (plant != null) {
 					encontrado = true;
+					plant.setX(x);
+					plant.setY(y);
 				} else
 					i++;
 			}

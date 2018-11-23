@@ -27,8 +27,8 @@ public class Nuez extends Plant {
 	public final static int DANYO = 0; // TODO revisar 
 	public final static int RESISTENCIA = 10; 
 	
-	public final static String NOMBRE = "[S]unflower";
-	public final static String SHORT_NAME = "S";
+	public final static String NOMBRE = "[N]uez";
+	public final static String SHORT_NAME = "N";
 
 	
 	public Nuez() {
