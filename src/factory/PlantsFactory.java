@@ -31,6 +31,7 @@ public class PlantsFactory {
 					encontrado = true;
 					plant.setX(x);
 					plant.setY(y);
+					plant.setGame(game);
 				} else
 					i++;
 			}

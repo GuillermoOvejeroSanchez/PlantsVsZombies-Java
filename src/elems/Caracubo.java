@@ -39,6 +39,8 @@ public class Caracubo extends Zombie {
 	
 	public Zombie inPosition(int x, int y, Game game) {
 		Zombie zombie = new Caracubo();
+		zombie.setX(x);
+		zombie.setY(y);
 		return zombie;
 	}
 }

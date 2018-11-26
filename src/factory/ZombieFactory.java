@@ -22,7 +22,11 @@ public class ZombieFactory {
 	}
 
 	public static Zombie getZombie(int x, int y, Game game) {
-		int zombie = new Random().nextInt(availabeZombies.length);
-		return availabeZombies[zombie].inPosition(x, y, game);
+		int zombieType = new Random().nextInt(availabeZombies.length);
+		Zombie zombie = availabeZombies[zombieType].inPosition(x, y, game);
+		zombie.setX(x);
+		zombie.setY(y);
+		zombie.setGame(game);
+		return zombie;
 	}
 }

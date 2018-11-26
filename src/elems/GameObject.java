@@ -23,7 +23,6 @@ public abstract class GameObject {
 		this.dmg = danyo; 
 		this.cycles = ciclos; 
 		this.cyclesLeft = cycles; 
-		
 		this.name = name; 
 		this.shortName = shortName; 
 	}
@@ -55,7 +54,11 @@ public abstract class GameObject {
 	public void setResistance(int newRes) {
 		this.res = newRes;
 	}
-
+	
+	public void setGame(Game game)
+	{
+		this.game = game;
+	}
 	public int getX() {
 		return x;
 	}

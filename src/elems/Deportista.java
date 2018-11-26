@@ -39,6 +39,8 @@ public class Deportista extends Zombie {
 	
 	public Zombie inPosition(int x, int y, Game game) {
 		Zombie zombie = new Deportista();
+		zombie.setX(x);
+		zombie.setY(y);
 		return zombie;
 	}
 
