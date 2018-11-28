@@ -15,21 +15,8 @@ public class Peashooter extends Plant {
 	
 	public Peashooter() {
 		super(COSTE, FRECUENCIA, RESISTENCIA, DANYO, CICLOS, NOMBRE, SHORT_NAME);
-		// TODO Auto-generated constructor stub
 	}
 	
-/*
-	private void inicializar() {
-		cost = 50;
-		res = 3;
-		cycles = 2;
-		cyclesLeft = cycles;
-		dmg = 1;
-		nameShort = "P";
-		name = "peashooter";
-		infoName = "[P]eashooter";
-	}
-*/
 
 
 	public Plant parse(String plantName) {
@@ -37,8 +24,6 @@ public class Peashooter extends Plant {
 
 		if (plantName.equalsIgnoreCase(NOMBRE) || plantName.equalsIgnoreCase(SHORT_NAME)) {
 			p = new Peashooter();
-			
-			//TODO añadir x y 
 		}
 		return p;
 	}

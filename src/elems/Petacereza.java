@@ -1,16 +1,6 @@
 package elems;
 
 public class Petacereza extends Plant {
-	/*
-	 * public Petacereza(int x, int y, Game game) { super(x, y, game);
-	 * inicializar(); }
-	 * 
-	 * public Petacereza() { inicializar(); }
-	 * 
-	 * private void inicializar() { cost = 50; res = 2; cycles = 3; cyclesLeft =
-	 * cycles; dmg = 10; nameShort = "C"; name = "petacereza"; infoName =
-	 * "Peta[c]ereza"; }
-	 */
 
 	public final static int COSTE = 50;
 	public final static int CICLOS = 3;
@@ -39,12 +29,12 @@ public class Petacereza extends Plant {
 
 //Explota
 	public boolean accion() {
-		//game.explode(this.x, this.y, this);
+		// game.explode(this.x, this.y, this);
 
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
-				if (!game.isZombie(x - i, y - j)) {
-					game.attack(x, y, this);
+				if (game.isZombie(x - i, y - j)) {
+					game.attackZombie(x - i, y - j, this);
 				}
 			}
 		}

@@ -90,7 +90,7 @@ public class Game {
 		for (int i = 0; i < FILAS; i++) {
 			if (zombieList.encontrar(i, 0))
 				theyWin = true;
-			
+
 		}
 		return theyWin;
 	}
@@ -115,6 +115,16 @@ public class Game {
 
 	}
 
+	public boolean attackZombie(int x, int y, GameObject go) {
+		boolean attacked = false;
+		if (zombieList.encontrar(x, y)){
+		zombieList.getAttacked(x, y, go);
+		attacked = true;
+		}
+		
+		return attacked;
+	}
+
 	public void aumentarCiclos() {
 		ciclos++;
 	}
@@ -122,7 +132,6 @@ public class Game {
 	public void reset() {
 		zombieManager = new ZombieManager(level, seed, rand);
 		suncoinManager = new SuncoinManager();
-		// fin = false;
 		ciclos = 0;
 		zombieList = new GameObjectList(zombieManager.getNumZombies());
 		plantList = new GameObjectList(MAX_PLANTAS);
@@ -180,18 +189,14 @@ public class Game {
 	public int GetSizePlantList() {
 		return this.plantList.getSize();
 	}
-/*
-	public void explode(int x, int y, GameObject go) {
-		for (int i = -1; i <= 1; i++) {
-			for (int j = -1; j <= 1; j++) {
-				if (!isEmpty(x - i, y - j))
-					if (zombieList.encontrar(x - i, y - j))
-						zombieList.getAttacked(x - i, y - j, go);
-			}
-		}
-	}
 
-*/
+	/*
+	 * public void explode(int x, int y, GameObject go) { for (int i = -1; i <= 1;
+	 * i++) { for (int j = -1; j <= 1; j++) { if (!isEmpty(x - i, y - j)) if
+	 * (zombieList.encontrar(x - i, y - j)) zombieList.getAttacked(x - i, y - j,
+	 * go); } } }
+	 * 
+	 */
 	public String getString(int x, int y) {
 		return (plantList.getString(x, y) + zombieList.getString(x, y));
 	}

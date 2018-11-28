@@ -29,7 +29,7 @@ public class Caracubo extends Zombie {
 	public final static int RESISTENCIA = 8; 
 	
 	public final static String NOMBRE = "[C]aracubo";
-	public final static String SHORT_NAME = "C";
+	public final static String SHORT_NAME = "B";
 	
 	public Caracubo() {
 		super(RESISTENCIA, DANYO, CICLOS, NOMBRE, SHORT_NAME);
