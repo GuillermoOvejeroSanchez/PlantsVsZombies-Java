@@ -227,5 +227,44 @@ public class Game {
 	public boolean isZombie(int x, int y) {
 		return zombieList.encontrar(x, y);
 	}
+	
+	public String store() {
+		
+		StringBuilder datosJuego = new StringBuilder(); 
+		
+		datosJuego.append("cycles: "); 
+		datosJuego.append(getCiclos()); 
+		datosJuego.append("\n"); 
+		datosJuego.append("sunCoins: "); 
+		datosJuego.append(getSuncoins()); 
+		datosJuego.append("\n"); 
+		datosJuego.append("Level: ");
+		datosJuego.append(getLevel()); 
+		datosJuego.append("\n"); 
+		datosJuego.append("remZombies: ");
+		datosJuego.append(getRemainingZombies());
+		datosJuego.append("plantList: ");
+		datosJuego.append(plantList.datosLista());
+		datosJuego.append("zombieList: "); 
+		datosJuego.append(zombieList.datosLista()); 
+		
+		
+		return datosJuego.toString(); 
+		
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

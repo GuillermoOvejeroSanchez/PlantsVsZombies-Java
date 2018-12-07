@@ -122,6 +122,39 @@ public abstract class GameObject {
 		return elem.toString();
 	}
 	*/
+	
+	public String datosObjeto() {
+		StringBuilder datosObjeto = new StringBuilder(); 
+		
+		datosObjeto.append(getShortName()); 
+		datosObjeto.append(":");
+		datosObjeto.append(getResistance());
+		datosObjeto.append(":");
+		datosObjeto.append(getX());
+		datosObjeto.append(":");
+		datosObjeto.append(getY()); 
+		datosObjeto.append(":");
+		datosObjeto.append(getRemainigCycles());
+		
+		return datosObjeto.toString(); 
+	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	protected abstract boolean accion();
+	
+
 }

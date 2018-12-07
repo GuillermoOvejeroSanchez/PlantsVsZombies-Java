@@ -19,6 +19,8 @@ public abstract class Command {
 	public abstract Command parse(String[] comando, Controller controller);
 
 	public abstract void execute(Game game, Controller controller);
+	
+	
 
 	public String helpText() {
 		StringBuilder helpText = new StringBuilder();

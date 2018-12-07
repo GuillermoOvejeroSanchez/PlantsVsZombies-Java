@@ -128,5 +128,20 @@ public class GameObjectList {
 		return eliminados;
 
 	}
+	
+	public String datosLista() {
+		StringBuilder datosLista = new StringBuilder();
+		
+			
+		for(int i = 0; i < this.contador; i++) {
+			
+			datosLista.append(ObjectList[i].datosObjeto()); 
+			datosLista.append(", ");
+			
+		}
+		
+		
+		return datosLista.toString(); 
+	}
 
 }

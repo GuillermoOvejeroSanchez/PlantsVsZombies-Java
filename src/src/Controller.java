@@ -58,7 +58,7 @@ public class Controller {
 			setNoPrintGameState();
 		}
 
-		System.out.println("GAME OVER");
+		System.out.println("***** GAME OVER *****");
 	}
 
 	public void setNoPrintGameState() {
