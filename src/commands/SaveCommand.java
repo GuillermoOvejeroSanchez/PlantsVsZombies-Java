@@ -32,7 +32,8 @@ public class SaveCommand extends Command {
 		Command c = null;
 
 		if (comando.length == 2 && (comando[0].equalsIgnoreCase(commandName))) {
-			fileName = comando[1];
+			
+			c = new SaveCommand(comando[1]); 
 
 		}
 
@@ -59,6 +60,7 @@ public class SaveCommand extends Command {
 
 					bw = new BufferedWriter(new FileWriter(fileName));
 					bw.write(cabecera);
+					bw.newLine();
 					bw.newLine();
 					bw.write(game.store());
 				}

@@ -47,6 +47,11 @@ public class Controller {
 
 		}
 
+
+			
+		}
+		System.out.println("***** GAME OVER *****");
+
 		if (game.checkWin()) {
 			System.out.println("****** YOU WIN ******");
 			setNoPrintGameState();
@@ -56,6 +61,7 @@ public class Controller {
 		}
 		else 
 		System.out.println("****** Game over!: User exit ******");
+
 	}
 
 	public void setNoPrintGameState() {
