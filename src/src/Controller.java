@@ -50,13 +50,18 @@ public class Controller {
 			if (game.checkWin()) {
 				System.out.println("YOU WIN");
 				setNoPrintGameState();
-			} else if (game.checkZombieWin()) {
+			} 
+			
+			else if (game.checkZombieWin()) {
 				System.out.println("YOU LOST");
+				//System.out.println(" GAME OVER ");
 				setNoPrintGameState();
 			}
 
-			System.out.println("***** GAME OVER *****");
+			
 		}
+		
+		System.out.println(" GAME OVER ");
 	}
 
 	public void setNoPrintGameState() {
