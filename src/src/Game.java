@@ -143,7 +143,7 @@ public class Game {
 		plantList = new GameObjectList(MAX_PLANTAS);
 	}
 
-	public String addPlant(Plant plant, String name) {
+	public String addPlant(Plant plant) {
 		String exception = null;
 		if (plant != null) {
 			if (plant.getX() < 4 && plant.getY() < 7 && plant.getX() > -1 && plant.getY() > -1) {
@@ -160,8 +160,6 @@ public class Game {
 			} else {
 				exception = ("Failed to add " + plant.getInfoName() + ": (" + plant.getX() + ", " + plant.getY() + ") is an invalid position" );
 			}
-		} else {
-			exception = ("Unknown plant name " + name);
 		}
 		return exception;
 	}

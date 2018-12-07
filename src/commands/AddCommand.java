@@ -42,7 +42,7 @@ public class AddCommand extends Command {
 				throw new CommandParseException(
 						"Incorrect number of arguments: " + comando.length + " out of 4 arguments added");
 			}
-		} 
+		}
 
 		return c;
 	}
@@ -51,7 +51,11 @@ public class AddCommand extends Command {
 	public boolean execute(Game game) throws CommandExecuteException {
 		boolean executed = true;
 		Plant p = PlantsFactory.getPlant(name, x, y, game);
-		String exception = game.addPlant(p, name);
+		String exception;
+		if (p != null)
+			exception = game.addPlant(p);
+		else
+			throw new CommandExecuteException("Unknown plant name " + name);
 		if (exception != null) {
 			executed = false;
 			throw new CommandExecuteException(exception);
