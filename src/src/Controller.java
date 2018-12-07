@@ -48,13 +48,14 @@ public class Controller {
 		}
 
 		if (game.checkWin()) {
-			System.out.println("YOU WIN");
+			System.out.println("****** YOU WIN ******");
 			setNoPrintGameState();
 		} else if (game.checkZombieWin()) {
-			System.out.println("YOU LOST");
+			System.out.println("****** YOU LOST ******");
 			setNoPrintGameState();
 		}
-		System.out.println("***** GAME OVER *****");
+		else 
+		System.out.println("****** Game over!: User exit ******");
 	}
 
 	public void setNoPrintGameState() {
