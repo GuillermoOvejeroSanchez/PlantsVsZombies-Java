@@ -49,17 +49,15 @@ public class AddCommand extends Command {
 
 	@Override
 	public boolean execute(Game game) throws CommandExecuteException {
-		boolean executed = true;
+		boolean executed = false;
 		Plant p = PlantsFactory.getPlant(name, x, y, game);
-		String exception;
-		if (p != null)
-			exception = game.addPlant(p);
+		if (p != null) {
+			game.addPlant(p);
+			executed = true;
+		}
 		else
 			throw new CommandExecuteException("Unknown plant name " + name);
-		if (exception != null) {
-			executed = false;
-			throw new CommandExecuteException(exception);
-		}
+
 		return executed;
 	}
 }

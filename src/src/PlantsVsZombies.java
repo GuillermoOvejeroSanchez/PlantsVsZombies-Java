@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class PlantsVsZombies {
 
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		if (args.length > 0) {
 			Level level = Level.parse(args[0]);
 			Random rand = new Random();
@@ -19,9 +19,11 @@ public class PlantsVsZombies {
 				Game game = new Game(level, seed);
 				Controller controller = new Controller(game);
 				controller.run();
+			}else {
+				
 			}
 		} else {
-			System.out.println("ERROR: NO HAY SUFICIENTES PARAMETROS");
+			
 		}
 
 	}

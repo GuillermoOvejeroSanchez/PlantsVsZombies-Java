@@ -7,6 +7,7 @@ import java.util.Random;
 import elems.GameObject;
 import elems.Plant;
 import elems.Zombie;
+import excepciones.CommandExecuteException;
 import factory.ZombieFactory;
 import lista.GameObjectList;
 import print.GamePrinter;
@@ -143,25 +144,29 @@ public class Game {
 		plantList = new GameObjectList(MAX_PLANTAS);
 	}
 
-	public String addPlant(Plant plant) {
-		String exception = null;
+	public boolean addPlant(Plant plant) throws CommandExecuteException {
+		boolean executed = false;
 		if (plant != null) {
 			if (plant.getX() < 4 && plant.getY() < 7 && plant.getX() > -1 && plant.getY() > -1) {
 				if (isEmpty(plant.getX(), plant.getY())) {
 					if (getSuncoins() >= plant.getCost()) {
 						plantList.addObject(plant);
 						modifySuncoins(-plant.getCost());
+						executed = true;
 					} else {
-						exception = ("Failed to add " + plant.getInfoName() +" not enough Suncoins: " + getSuncoins() + " out of " + plant.getCost());
+						throw new CommandExecuteException("Failed to add " + plant.getInfoName()
+								+ " not enough Suncoins: " + getSuncoins() + " out of " + plant.getCost());
 					}
 				} else {
-					exception = ("Failed to add " + plant.getInfoName() + ": (" + plant.getX() + ", " + plant.getY() + ") isn't empty");
+					throw new CommandExecuteException("Failed to add " + plant.getInfoName() + ": (" + plant.getX()
+							+ ", " + plant.getY() + ") isn't empty");
 				}
 			} else {
-				exception = ("Failed to add " + plant.getInfoName() + ": (" + plant.getX() + ", " + plant.getY() + ") is an invalid position" );
+				throw new CommandExecuteException("Failed to add " + plant.getInfoName() + ": (" + plant.getX() + ", "
+						+ plant.getY() + ") is an invalid position");
 			}
 		}
-		return exception;
+		return executed;
 	}
 
 	public void addZombie(Zombie zombie) {
