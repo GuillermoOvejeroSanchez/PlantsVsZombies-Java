@@ -12,9 +12,5 @@ public class CommandExecuteException extends Throwable {
 		super(message);
 	}
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 7184993906046688983L;
 
 }

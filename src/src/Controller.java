@@ -34,7 +34,7 @@ public class Controller {
 				if (command != null) {
 					if (command.execute(game))
 						game.getGamePrinter().printGame(game); // CommandExecuteException
-				} 
+				}
 			} catch (CommandExecuteException | CommandParseException ex) {
 				setNoUpdateGameState();
 				System.err.format(ex.getMessage() + "%n%n");
@@ -47,20 +47,14 @@ public class Controller {
 
 		}
 
-
-			
-		}
-		System.out.println("***** GAME OVER *****");
-
 		if (game.checkWin()) {
 			System.out.println("****** YOU WIN ******");
 			setNoPrintGameState();
 		} else if (game.checkZombieWin()) {
 			System.out.println("****** YOU LOST ******");
 			setNoPrintGameState();
-		}
-		else 
-		System.out.println("****** Game over!: User exit ******");
+		} else
+			System.out.println("****** Game over!: User exit ******");
 
 	}
 

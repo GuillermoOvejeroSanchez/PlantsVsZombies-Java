@@ -14,8 +14,8 @@ import print.GamePrinter;
 import print.ReleasePrinter;
 
 public class Game {
-	public final int COLUMNAS = 8;
-	public final int FILAS = 4;
+	public final static int COLUMNAS = 8;
+	public final static int FILAS = 4;
 	public final int MAX_PLANTAS = 24;
 	private Level level;
 	private GameObjectList zombieList;
@@ -217,14 +217,6 @@ public class Game {
 	 * public String getZombiesStringDebug(int pos) { return
 	 * zombieList.getStringDebug(pos); }
 	 */
-
-	public int getFilas() {
-		return this.FILAS;
-	}
-
-	public int getColumnas() {
-		return this.COLUMNAS;
-	}
 
 	public boolean isZombie(int x, int y) {
 		return zombieList.encontrar(x, y);

@@ -25,7 +25,6 @@ public class PrintModeCommand extends Command {
 	@Override
 	public Command parse(String[] comando) throws CommandParseException {
 		Command c = null;
-
 		if ((comando[0].equals(commandName) || comando[0].equals(commandName.substring(0, 1)))) {
 			if (comando.length == 2) {
 				modo = comando[1];
@@ -43,11 +42,12 @@ public class PrintModeCommand extends Command {
 	@Override
 	public boolean execute(Game game) {
 		boolean executed = false;
+		
 		if (modo.equalsIgnoreCase("debug")) {
 			game.setGamePrinter(new DebugPrinter(game));
 			executed = true;
 		} else if (modo.equalsIgnoreCase("release")) {
-			game.setGamePrinter(new ReleasePrinter(game.getFilas(), game.getColumnas(), game));
+			game.setGamePrinter(new ReleasePrinter(Game.FILAS, Game.COLUMNAS, game));
 			executed = true;
 		}
 		return executed;

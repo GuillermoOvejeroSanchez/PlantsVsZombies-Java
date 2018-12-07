@@ -1,5 +1,7 @@
 package elems;
 
+import src.Game;
+
 public class Peashooter extends Plant {
 
 
@@ -33,7 +35,7 @@ public class Peashooter extends Plant {
 		int posY = y + 1;
 		
 		encontrado = game.isZombie(x, posY);
-		while (!encontrado && posY < game.getColumnas()) {
+		while (!encontrado && posY < Game.COLUMNAS) {
 			posY++;
 			encontrado = game.isZombie(x, posY);
 		}
