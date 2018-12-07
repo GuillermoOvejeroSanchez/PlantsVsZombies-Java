@@ -123,11 +123,11 @@ public class Game {
 
 	public boolean attackZombie(int x, int y, GameObject go) {
 		boolean attacked = false;
-		if (zombieList.encontrar(x, y)){
-		zombieList.getAttacked(x, y, go);
-		attacked = true;
+		if (zombieList.encontrar(x, y)) {
+			zombieList.getAttacked(x, y, go);
+			attacked = true;
 		}
-		
+
 		return attacked;
 	}
 
@@ -143,28 +143,27 @@ public class Game {
 		plantList = new GameObjectList(MAX_PLANTAS);
 	}
 
-	public boolean addPlant(Plant plant) {
-		boolean added = false;
+	public String addPlant(Plant plant, String name) {
+		String exception = null;
 		if (plant != null) {
 			if (plant.getX() < 4 && plant.getY() < 7 && plant.getX() > -1 && plant.getY() > -1) {
 				if (isEmpty(plant.getX(), plant.getY())) {
 					if (getSuncoins() >= plant.getCost()) {
 						plantList.addObject(plant);
 						modifySuncoins(-plant.getCost());
-						added = true;
 					} else {
-						System.err.println("Not enough Suncoins");
+						exception = ("Failed to add " + plant.getInfoName() +" not enough Suncoins: " + getSuncoins() + " out of " + plant.getCost());
 					}
 				} else {
-					System.err.println("Not empty position");
+					exception = ("Failed to add " + plant.getInfoName() + ": (" + plant.getX() + ", " + plant.getY() + ") isn't empty");
 				}
 			} else {
-				System.err.println("Position out of bounds");
+				exception = ("Failed to add " + plant.getInfoName() + ": (" + plant.getX() + ", " + plant.getY() + ") is an invalid position" );
 			}
 		} else {
-			System.err.println("Invalid Plant");
+			exception = ("Unknown plant name " + name);
 		}
-		return added;
+		return exception;
 	}
 
 	public void addZombie(Zombie zombie) {
@@ -196,7 +195,6 @@ public class Game {
 		return this.plantList.getSize();
 	}
 
-
 	public String getString(int x, int y) {
 		return (plantList.getString(x, y) + zombieList.getString(x, y));
 	}
@@ -208,7 +206,7 @@ public class Game {
 	public String getLevel() {
 		return level.name();
 	}
-	
+
 	/*
 	 * public String getPlantsStringDebug(int pos) { return
 	 * plantList.getStringDebug(pos); }
@@ -228,30 +226,29 @@ public class Game {
 	public boolean isZombie(int x, int y) {
 		return zombieList.encontrar(x, y);
 	}
-	
+
 	public String store() {
-		
-		StringBuilder datosJuego = new StringBuilder(); 
-		
-		datosJuego.append("cycles: "); 
-		datosJuego.append(getCiclos()); 
-		datosJuego.append("\n"); 
-		datosJuego.append("sunCoins: "); 
-		datosJuego.append(getSuncoins()); 
-		datosJuego.append("\n"); 
+
+		StringBuilder datosJuego = new StringBuilder();
+
+		datosJuego.append("cycles: ");
+		datosJuego.append(getCiclos());
+		datosJuego.append("\n");
+		datosJuego.append("sunCoins: ");
+		datosJuego.append(getSuncoins());
+		datosJuego.append("\n");
 		datosJuego.append("Level: ");
-		datosJuego.append(getLevel()); 
-		datosJuego.append("\n"); 
+		datosJuego.append(getLevel());
+		datosJuego.append("\n");
 		datosJuego.append("remZombies: ");
 		datosJuego.append(getRemainingZombies());
 		datosJuego.append("plantList: ");
 		datosJuego.append(plantList.datosLista());
-		datosJuego.append("zombieList: "); 
-		datosJuego.append(zombieList.datosLista()); 
-		
-		
-		return datosJuego.toString(); 
-		
+		datosJuego.append("zombieList: ");
+		datosJuego.append(zombieList.datosLista());
+
+		return datosJuego.toString();
+
 	}
 
 	public boolean isFinished() {
@@ -260,7 +257,7 @@ public class Game {
 
 	public void setExit(boolean exit) {
 		this.exit = exit;
-		
+
 	}
 
 	public GamePrinter getGamePrinter() {
@@ -271,19 +268,4 @@ public class Game {
 		this.gp = gp;
 	}
 
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

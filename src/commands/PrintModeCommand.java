@@ -1,5 +1,6 @@
 package commands;
 
+import excepciones.CommandParseException;
 import print.DebugPrinter;
 import print.ReleasePrinter;
 import src.Game;
@@ -7,7 +8,7 @@ import src.Game;
 public class PrintModeCommand extends Command {
 
 	public final static String commandName = "print";
-	public final static String commandInfo = "[P]rint";
+	public final static String commandInfo = "[P]rint release|debug";
 	public final static String helpInfo = "change printmode [Release|Debug].";
 	private String modo;
 
@@ -21,21 +22,23 @@ public class PrintModeCommand extends Command {
 
 	}
 
-//
 	@Override
-	public Command parse(String[] comando) {
+	public Command parse(String[] comando) throws CommandParseException {
 		Command c = null;
 
-		if (comando.length == 2 && (comando[0].equals(commandName) || comando[0].equals(commandName.substring(0, 1)))) {
-			modo = comando[1];
-			if (modo.equalsIgnoreCase("debug") || modo.equalsIgnoreCase("release"))
-				c = new PrintModeCommand(modo);
-			else
-				System.err.println("Unknown Print Mode");
+		if ((comando[0].equals(commandName) || comando[0].equals(commandName.substring(0, 1)))) {
+			if (comando.length == 2) {
+				modo = comando[1];
+				if (modo.equalsIgnoreCase("debug") || modo.equalsIgnoreCase("release"))
+					c = new PrintModeCommand(modo);
+				else
+					throw new CommandParseException("Unknown print mode:" + comando[1]);
+			} else {
+				throw new CommandParseException("Incorrect number of arguments for printmode command: " + commandInfo);
+			}
 		}
 		return c;
 	}
-
 
 	@Override
 	public boolean execute(Game game) {

@@ -6,28 +6,23 @@ public class CommandParse {
 
 	private static Command[] avaliableCommands = { new AddCommand(), new HelpCommand(), new ResetCommand(),
 			new ExitCommand(), new ListCommand(), new UpdateCommand(), new ZombieListCommand(),
-			new PrintModeCommand() };
+			new PrintModeCommand(), new LoadCommand(), new SaveCommand() };
 
 	public static Command parseCommand(String[] textoComando) throws CommandParseException {
 		Command c = null;
 		boolean encontrado = false;
 		int i = 0;
 
-		if (textoComando.length == 0 || textoComando.length > 4) {
-
-			c = null;
-		} else {
-
-			while (!encontrado && i < avaliableCommands.length) {
-				c = avaliableCommands[i].parse(textoComando);
-
-				if (c != null) {
-					encontrado = true;
-				} else
-					i++;
-			}
+		while (!encontrado && i < avaliableCommands.length) {
+			c = avaliableCommands[i].parse(textoComando);
+			if (c != null) {
+				encontrado = true;
+			} else
+				i++;
 		}
-
+		if(c == null) {
+			throw new CommandParseException("Invalid Command: " + textoComando[0]);
+		}
 		return c;
 	}
 

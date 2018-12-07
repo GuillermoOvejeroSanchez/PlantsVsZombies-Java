@@ -5,7 +5,7 @@ import src.Game;
 
 public class ZombieListCommand extends NoParamsCommand {
 
-	public final static String commandName = "zombieList";
+	public final static String commandName = "ZombieList";
 	public final static String commandInfo = "[Z]ombieList";
 	public final static String helpInfo = "Prints the list of available zombies.";
 

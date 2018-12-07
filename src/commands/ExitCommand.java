@@ -3,7 +3,7 @@ package commands;
 import src.Game;
 
 public class ExitCommand extends NoParamsCommand {
-	public final static String commandName = "exit";
+	public final static String commandName = "Exit";
 	public final static String commandInfo = "[E]xit";
 	public final static String helpInfo = "Terminates the program.";
 

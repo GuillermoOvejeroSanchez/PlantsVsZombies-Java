@@ -34,12 +34,10 @@ public class Controller {
 				if (command != null) {
 					if (command.execute(game))
 						game.getGamePrinter().printGame(game); // CommandExecuteException
-				} else {
-					System.err.println("Unknown Command");
-					setNoPrintGameState();
-				}
+				} 
 			} catch (CommandExecuteException | CommandParseException ex) {
-				System.out.format(ex.getMessage() + "%n%n");
+				setNoUpdateGameState();
+				System.err.format(ex.getMessage() + "%n%n");
 
 			}
 
@@ -47,16 +45,16 @@ public class Controller {
 				game.accionOrdenador();
 			}
 
-			if (game.checkWin()) {
-				System.out.println("YOU WIN");
-				setNoPrintGameState();
-			} else if (game.checkZombieWin()) {
-				System.out.println("YOU LOST");
-				setNoPrintGameState();
-			}
-
-			System.out.println("***** GAME OVER *****");
 		}
+
+		if (game.checkWin()) {
+			System.out.println("YOU WIN");
+			setNoPrintGameState();
+		} else if (game.checkZombieWin()) {
+			System.out.println("YOU LOST");
+			setNoPrintGameState();
+		}
+		System.out.println("***** GAME OVER *****");
 	}
 
 	public void setNoPrintGameState() {
@@ -70,6 +68,5 @@ public class Controller {
 	public void setNoSalir() {
 		noSalir = false;
 	}
-
 
 }
