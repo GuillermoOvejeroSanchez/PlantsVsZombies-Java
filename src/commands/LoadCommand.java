@@ -4,7 +4,7 @@ import src.Game;
 
 public class LoadCommand extends Command{
 
-	public final static String CommandName = "load";
+	public final static String CommandName = "Load";
 	public final static String CommandInfo = "[Lo]ad"; 
 	public final static String helpInfo = " <filename>: Load the state of the game from a file."; 
 	

@@ -4,7 +4,7 @@ import src.Game;
 
 public class ResetCommand extends NoParamsCommand {
 
-	public final static String commandName = "reset";
+	public final static String commandName = "Reset";
 	public final static String commandInfo = "[R]eset";
 	public final static String helpInfo = "Starts a new game.";
 

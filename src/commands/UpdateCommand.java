@@ -4,7 +4,7 @@ import src.Game;
 
 public class UpdateCommand extends NoParamsCommand {
 
-	public final static String commandName = "none";
+	public final static String commandName = "None";
 	public final static String commandInfo = "[N]one";
 	public final static String helpInfo = "Skips cycle.";
 

@@ -1,5 +1,7 @@
 package commands;
 
+import excepciones.CommandParseException;
+
 public abstract class NoParamsCommand extends Command {
 
 	public NoParamsCommand(String nombreComando, String textoInfo, String textoAyuda) {
@@ -9,11 +11,10 @@ public abstract class NoParamsCommand extends Command {
 
 	private static Command[] avaliableCommands = { new HelpCommand(), new ResetCommand(), new ExitCommand(),
 			new ListCommand(), new UpdateCommand(), new ZombieListCommand() };
-
-	public Command parse(String[] comando) {
+	
+	@Override
+	public Command parse(String[] comando) throws CommandParseException {
 		Command c = null;
-
-		if (comando.length == 1) {
 
 			for (int i = 0; i < avaliableCommands.length; i++) {
 				if (comando[0].equals(""))
@@ -23,7 +24,12 @@ public abstract class NoParamsCommand extends Command {
 					c = avaliableCommands[i];
 				}
 			}
-		}
+			if(c == null) {
+				throw new CommandParseException("Invalid Command: " + comando[0]);
+			}
+			if(comando.length != 1 && c != null) {
+				throw new CommandParseException(c.commandName + " command has no arguments");
+			} 
 		return c;
 	}
 }

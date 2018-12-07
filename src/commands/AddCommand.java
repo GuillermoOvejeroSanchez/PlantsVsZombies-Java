@@ -1,6 +1,8 @@
 package commands;
 
 import elems.Plant;
+import excepciones.CommandExecuteException;
+import excepciones.CommandParseException;
 import factory.PlantsFactory;
 import src.Game;
 
@@ -23,29 +25,40 @@ public class AddCommand extends Command {
 		this.name = name;
 	}
 
-	@Override
-	public Command parse(String[] comando) {
+	public Command parse(String[] comando) throws CommandParseException {
 		Command c = null;
 
-		try {
-			if (comando.length == 4
-					&& (comando[0].equals(commandName) || comando[0].equals(commandName.substring(0, 1)))) {
-				this.x = Integer.parseInt(comando[2]);
-				this.y = Integer.parseInt(comando[3]);
+		if ((comando[0].equals(AddCommand.commandName) || comando[0].equals(AddCommand.commandName.substring(0, 1)))) {
+			if (comando.length == 4) {
+				try {
+					this.x = Integer.parseInt(comando[2]);
+					this.y = Integer.parseInt(comando[3]);
+				} catch (NumberFormatException e) {
+					System.err.println(e.getClass() + " " + e.getMessage() + " invalid input");
+				}
+
 				c = new AddCommand(x, y, comando[1]);
+			} else {
+				throw new CommandParseException(
+						"Incorrect number of arguments: " + comando.length + " out of 4 arguments added");
 			}
-		} catch (NumberFormatException e) {
-			System.err.println(e.getClass() + " " + e.getMessage() + " invalid input");
 		}
+
 		return c;
 	}
 
 	@Override
-	public boolean execute(Game game) {
+	public boolean execute(Game game) throws CommandExecuteException {
 		boolean executed = true;
 		Plant p = PlantsFactory.getPlant(name, x, y, game);
-		if (!game.addPlant(p)) {
+		String exception;
+		if (p != null)
+			exception = game.addPlant(p);
+		else
+			throw new CommandExecuteException("Unknown plant name " + name);
+		if (exception != null) {
 			executed = false;
+			throw new CommandExecuteException(exception);
 		}
 		return executed;
 	}
