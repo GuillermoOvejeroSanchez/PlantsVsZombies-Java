@@ -4,19 +4,9 @@ import excepciones.CommandParseException;
 
 public class CommandParse {
 
-	private static Command[] avaliableCommands = { 
-			new AddCommand(), 
-			new HelpCommand(), 
-			new ResetCommand(),
-			new ExitCommand(), 
-			new ListCommand(), 
-			new UpdateCommand(), 
-			new ZombieListCommand(),
-			new PrintModeCommand(), 
-			new SaveCommand(), 
-			new LoadCommand()
-			
-	};
+	private static Command[] avaliableCommands = { new AddCommand(), new HelpCommand(), new ResetCommand(),
+			new ExitCommand(), new ListCommand(), new UpdateCommand(), new ZombieListCommand(),
+			new PrintModeCommand() };
 
 	public static Command parseCommand(String[] textoComando) throws CommandParseException {
 		Command c = null;

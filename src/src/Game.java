@@ -244,10 +244,8 @@ public class Game {
 		datosJuego.append("\n"); 
 		datosJuego.append("remZombies: ");
 		datosJuego.append(getRemainingZombies());
-		datosJuego.append("\n");
 		datosJuego.append("plantList: ");
 		datosJuego.append(plantList.datosLista());
-		datosJuego.append("\n");
 		datosJuego.append("zombieList: "); 
 		datosJuego.append(zombieList.datosLista()); 
 		
