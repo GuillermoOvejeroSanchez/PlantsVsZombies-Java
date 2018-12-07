@@ -10,10 +10,10 @@ public class ZombieManager {
 	private double frec;
 
 	public ZombieManager(Level level, int seed, Random rand) {
-		this.numZombies = level.getNumZombies();
+		this.numZombies = level.getNumberOfZombies();
 		this.rand = rand;
 		this.remainingZombies = getNumZombies();
-		this.frec = level.getFrecuencia();
+		this.frec = level.getZombieFrequency();
 		this.rand.setSeed(seed);
 	}
 

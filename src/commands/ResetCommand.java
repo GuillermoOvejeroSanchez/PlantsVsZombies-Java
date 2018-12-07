@@ -1,6 +1,5 @@
 package commands;
 
-import src.Controller;
 import src.Game;
 
 public class ResetCommand extends NoParamsCommand {
@@ -14,8 +13,9 @@ public class ResetCommand extends NoParamsCommand {
 	}
 
 	@Override
-	public void execute(Game game, Controller controler) {
+	public boolean execute(Game game) {
 		game.reset();
+		return true;
 	}
 
 }

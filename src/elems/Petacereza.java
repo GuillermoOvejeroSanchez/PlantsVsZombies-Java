@@ -22,15 +22,12 @@ public class Petacereza extends Plant {
 		if (plantName.equalsIgnoreCase(NOMBRE) || plantName.equalsIgnoreCase(SHORT_NAME)) {
 			p = new Petacereza();
 
-			// TODO añadir x y
 		}
 		return p;
 	}
 
 //Explota
 	public boolean accion() {
-		// game.explode(this.x, this.y, this);
-
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
 				if (game.isZombie(x - i, y - j)) {

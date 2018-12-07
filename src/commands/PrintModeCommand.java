@@ -1,16 +1,14 @@
 package commands;
 
-import src.Controller;
+import print.DebugPrinter;
+import print.ReleasePrinter;
 import src.Game;
-
-import print.*;
 
 public class PrintModeCommand extends Command {
 
 	public final static String commandName = "print";
 	public final static String commandInfo = "[P]rint";
 	public final static String helpInfo = "change printmode [Release|Debug].";
-
 	private String modo;
 
 	public PrintModeCommand() {
@@ -23,8 +21,9 @@ public class PrintModeCommand extends Command {
 
 	}
 
+//
 	@Override
-	public Command parse(String[] comando, Controller controller) {
+	public Command parse(String[] comando) {
 		Command c = null;
 
 		if (comando.length == 2 && (comando[0].equals(commandName) || comando[0].equals(commandName.substring(0, 1)))) {
@@ -37,14 +36,18 @@ public class PrintModeCommand extends Command {
 		return c;
 	}
 
+
 	@Override
-	public void execute(Game game, Controller controller) {
+	public boolean execute(Game game) {
+		boolean executed = false;
 		if (modo.equalsIgnoreCase("debug")) {
-			controller.setPrinter(new DebugPrinter(game));
-			controller.setNoUpdateGameState();
+			game.setGamePrinter(new DebugPrinter(game));
+			executed = true;
 		} else if (modo.equalsIgnoreCase("release")) {
-			controller.setPrinter(new ReleasePrinter(game.getFilas(), game.getColumnas(), game));
-			controller.setNoUpdateGameState();
+			game.setGamePrinter(new ReleasePrinter(game.getFilas(), game.getColumnas(), game));
+			executed = true;
 		}
+		return executed;
 	}
+
 }

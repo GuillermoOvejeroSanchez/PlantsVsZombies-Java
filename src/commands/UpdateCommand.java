@@ -1,6 +1,5 @@
 package commands;
 
-import src.Controller;
 import src.Game;
 
 public class UpdateCommand extends NoParamsCommand {
@@ -14,8 +13,8 @@ public class UpdateCommand extends NoParamsCommand {
 	}
 
 	@Override
-	public void execute(Game game, Controller controler) {
-
+	public boolean execute(Game game) {
+		return true;
 	}
 
 }

@@ -4,10 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import util.*;
 
-import excepciones.CommandExecuteException;
-import src.Controller;
 import src.Game;
-import java.io.*;
 
 public class SaveCommand extends Command {
 
@@ -23,13 +20,13 @@ public class SaveCommand extends Command {
 
 	}
 
-	public SaveCommand(String fileNeme) {
+	public SaveCommand(String fileName) {
 		super(commandName, commandInfo, helpInfo);
 		this.fileName = fileName;
 	}
 
 	@Override
-	public Command parse(String[] comando, Controller controller) {
+	public Command parse(String[] comando) {
 		Command c = null;
 
 		if (comando.length == 2 && (comando[0].equalsIgnoreCase(commandName))) {
@@ -40,7 +37,7 @@ public class SaveCommand extends Command {
 		return c;
 	}
 
-	public void execute(Game game, Controller controller) {
+	public boolean execute(Game game) {
 		if (MyStringUtils.isValidFilename(fileName)) {
 
 			try {
@@ -68,6 +65,7 @@ public class SaveCommand extends Command {
 				// TODO: handle exception
 			} // catch
 		} // 2º if
+		return false;
 
 	} // 1er if
 

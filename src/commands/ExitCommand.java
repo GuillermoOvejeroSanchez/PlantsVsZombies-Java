@@ -1,6 +1,5 @@
 package commands;
 
-import src.Controller;
 import src.Game;
 
 public class ExitCommand extends NoParamsCommand {
@@ -14,10 +13,10 @@ public class ExitCommand extends NoParamsCommand {
 	}
 
 	@Override
-	public void execute(Game game, Controller controller) {
-		controller.setNoSalir();
-		controller.setNoPrintGameState();
-		controller.setNoUpdateGameState();
+	public boolean execute(Game game) {
+		game.setExit(true);
+		return false;
 	}
+
 
 }

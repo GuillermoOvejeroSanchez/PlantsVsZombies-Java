@@ -1,7 +1,5 @@
 package commands;
 
-import src.Controller;
-
 public abstract class NoParamsCommand extends Command {
 
 	public NoParamsCommand(String nombreComando, String textoInfo, String textoAyuda) {
@@ -12,7 +10,7 @@ public abstract class NoParamsCommand extends Command {
 	private static Command[] avaliableCommands = { new HelpCommand(), new ResetCommand(), new ExitCommand(),
 			new ListCommand(), new UpdateCommand(), new ZombieListCommand() };
 
-	public Command parse(String[] comando, Controller controller) {
+	public Command parse(String[] comando) {
 		Command c = null;
 
 		if (comando.length == 1) {

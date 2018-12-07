@@ -4,66 +4,63 @@ import java.util.Scanner;
 
 import commands.Command;
 import commands.CommandParse;
-import print.BoardPrinter;
-import print.GamePrinter;
+import excepciones.*;
 
 public class Controller {
 
 	private Game game;
 	private Scanner in;
-	private GamePrinter gamePrinter;
 	boolean print;
 	boolean update;
 	boolean noSalir;
 
-	public Controller(Game game, GamePrinter printer) {
+	public Controller(Game game) {
 		this.game = game;
 		this.in = new Scanner(System.in);
-		this.gamePrinter = printer;
 		this.print = true;
 		this.update = true;
-		this.noSalir = true;
 	}
 
 	public void run() {
-
-		while (!game.checkWin() && !game.checkZombieWin() && noSalir) {
+		game.getGamePrinter().printGame(game);
+		while (!game.checkWin() && !game.checkZombieWin() && !game.isFinished()) {
 			if (update)
 				game.update();
-			if (print)
-				gamePrinter.printGame(game);
-			print = true;
-			update = true;
+
 			System.out.print("Command >");
 			String[] comando = in.nextLine().toLowerCase().trim().split("\\s+");
-			Command command = CommandParse.parseCommand(comando, this);
+			try {
+				Command command = CommandParse.parseCommand(comando); // CommandParseException
+				if (command != null) {
+					if (command.execute(game))
+						game.getGamePrinter().printGame(game); // CommandExecuteException
+				} else {
+					System.err.println("Unknown Command");
+					setNoPrintGameState();
+				}
+			} catch (CommandExecuteException | CommandParseException ex) {
+				System.out.format(ex.getMessage() + "%n%n");
 
-			if (command != null) {
-				command.execute(game, this);
-			} else {
-				System.err.println("Unknown Command");
-				setNoPrintGameState();
 			}
 
 			if (!game.checkWin()) {
 				game.accionOrdenador();
 			}
 
-		}
-		if (game.checkWin()) {
-			System.out.println("YOU WIN");
-			setNoPrintGameState();
-		} else if (game.checkZombieWin()) {
-			System.out.println("YOU LOST");
-			setNoPrintGameState();
-		}
+			if (game.checkWin()) {
+				System.out.println("YOU WIN");
+				setNoPrintGameState();
+			} else if (game.checkZombieWin()) {
+				System.out.println("YOU LOST");
+				setNoPrintGameState();
+			}
 
-		System.out.println("***** GAME OVER *****");
+			System.out.println("***** GAME OVER *****");
+		}
 	}
 
 	public void setNoPrintGameState() {
 		print = false;
-
 	}
 
 	public void setNoUpdateGameState() {
@@ -72,10 +69,7 @@ public class Controller {
 
 	public void setNoSalir() {
 		noSalir = false;
-	}	
-	
-	public void setPrinter(BoardPrinter boardPrinter) {
-		this.gamePrinter = boardPrinter;
 	}
+
 
 }

@@ -1,30 +1,37 @@
 package src;
 
+
 public enum Level {
+	EASY(3, 0.1), HARD(5, 0.2), INSANE(10, 0.3);
+	private int numberOfZombies;
+	private double zombieFrequency;
 
-	EASY(3, 0.1, "EASY"), HARD(5, 0.2, "HARD"), INSANE(10, 0.3, "INSANE");
-
-	private int numZombies;
-	private double frecuencia;
-	private String dif;
-
-	Level(int numZombies, double frecuencia, String dif) {
-		this.numZombies = numZombies;
-		this.frecuencia = frecuencia;
-		this.dif = dif;
+	private Level(int zombieNum, double zombieFreq) {
+		numberOfZombies = zombieNum;
+		zombieFrequency = zombieFreq;
 	}
 
-	public int getNumZombies() {
-		return this.numZombies;
+	public int getNumberOfZombies() {
+		return numberOfZombies;
 	}
 
-	public double getFrecuencia() {
-		return this.frecuencia;
+	public double getZombieFrequency() {
+		return zombieFrequency;
 	}
 
-	public String getDif() {
-		return dif;
+	public static Level parse(String inputString) {
+		for (Level level : Level.values())
+			if (level.name().equalsIgnoreCase(inputString))
+				return level;
+		return null;
 	}
+
+	public static String all(String separator) {
+		StringBuilder sb = new StringBuilder();
+		for (Level level : Level.values())
+			sb.append(level.name() + separator);
+		String allLevels = sb.toString();
+		return allLevels.substring(0, allLevels.length() - separator.length());
+	}
+
 }
-
-//pepinillo 

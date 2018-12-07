@@ -2,7 +2,6 @@ package commands;
 
 import elems.Plant;
 import factory.PlantsFactory;
-import src.Controller;
 import src.Game;
 
 public class AddCommand extends Command {
@@ -25,25 +24,29 @@ public class AddCommand extends Command {
 	}
 
 	@Override
-	public Command parse(String[] comando, Controller controller) {
+	public Command parse(String[] comando) {
 		Command c = null;
 
-		if (comando.length == 4 && (comando[0].equals(commandName) || comando[0].equals(commandName.substring(0, 1)))) {
-
-			this.x = Integer.parseInt(comando[2]);
-			this.y = Integer.parseInt(comando[3]);
-			c = new AddCommand(x, y, comando[1]);
+		try {
+			if (comando.length == 4
+					&& (comando[0].equals(commandName) || comando[0].equals(commandName.substring(0, 1)))) {
+				this.x = Integer.parseInt(comando[2]);
+				this.y = Integer.parseInt(comando[3]);
+				c = new AddCommand(x, y, comando[1]);
+			}
+		} catch (NumberFormatException e) {
+			System.err.println(e.getClass() + " " + e.getMessage() + " invalid input");
 		}
-
 		return c;
 	}
 
 	@Override
-	public void execute(Game game, Controller controller) {
+	public boolean execute(Game game) {
+		boolean executed = true;
 		Plant p = PlantsFactory.getPlant(name, x, y, game);
 		if (!game.addPlant(p)) {
-			controller.setNoPrintGameState();
-			controller.setNoUpdateGameState();
+			executed = false;
 		}
+		return executed;
 	}
 }

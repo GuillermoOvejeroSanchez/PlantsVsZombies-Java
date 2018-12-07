@@ -1,7 +1,6 @@
 package commands;
 
 import factory.PlantsFactory;
-import src.Controller;
 import src.Game;
 
 public class ListCommand extends NoParamsCommand {
@@ -14,12 +13,11 @@ public class ListCommand extends NoParamsCommand {
 		super(commandName, commandInfo, helpInfo);
 	}
 
-	@Override
-	public void execute(Game game, Controller controller) {
-		System.out.println(PlantsFactory.listOfAvailablePlants());
-		controller.setNoPrintGameState();
-		controller.setNoUpdateGameState();
 
+	@Override
+	public boolean execute(Game game) {
+		System.out.println(PlantsFactory.listOfAvailablePlants());
+		return false;
 	}
 
 }

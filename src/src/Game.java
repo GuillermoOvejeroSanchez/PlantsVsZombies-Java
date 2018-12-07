@@ -9,6 +9,8 @@ import elems.Plant;
 import elems.Zombie;
 import factory.ZombieFactory;
 import lista.GameObjectList;
+import print.GamePrinter;
+import print.ReleasePrinter;
 
 public class Game {
 	public final int COLUMNAS = 8;
@@ -18,9 +20,11 @@ public class Game {
 	private GameObjectList zombieList;
 	private GameObjectList plantList;
 	private static SuncoinManager suncoinManager;
+	private GamePrinter gp;
 	private ZombieManager zombieManager;
 	private int seed;
 	private int ciclos;
+	private boolean exit;
 	private Random rand;
 
 	public Game(Level level, int seed) {
@@ -29,10 +33,12 @@ public class Game {
 		this.seed = seed;
 		this.ciclos = 0;
 		this.level = level;
+		this.exit = false;
 		zombieManager = new ZombieManager(this.level, this.seed, this.rand);
 		suncoinManager = new SuncoinManager();
 		zombieList = new GameObjectList(zombieManager.getNumZombies());
 		plantList = new GameObjectList(MAX_PLANTAS);
+		this.setGamePrinter(new ReleasePrinter(FILAS, COLUMNAS, this));
 	}
 
 	public void update() {
@@ -175,7 +181,7 @@ public class Game {
 	}
 
 	public String getDificultad() {
-		return this.level.getDif();
+		return this.level.name();
 	}
 
 	public int getSeed() {
@@ -190,13 +196,7 @@ public class Game {
 		return this.plantList.getSize();
 	}
 
-	/*
-	 * public void explode(int x, int y, GameObject go) { for (int i = -1; i <= 1;
-	 * i++) { for (int j = -1; j <= 1; j++) { if (!isEmpty(x - i, y - j)) if
-	 * (zombieList.encontrar(x - i, y - j)) zombieList.getAttacked(x - i, y - j,
-	 * go); } } }
-	 * 
-	 */
+
 	public String getString(int x, int y) {
 		return (plantList.getString(x, y) + zombieList.getString(x, y));
 	}
@@ -208,6 +208,7 @@ public class Game {
 	public String getLevel() {
 		return level.name();
 	}
+	
 	/*
 	 * public String getPlantsStringDebug(int pos) { return
 	 * plantList.getStringDebug(pos); }
@@ -252,6 +253,24 @@ public class Game {
 		return datosJuego.toString(); 
 		
 	}
+
+	public boolean isFinished() {
+		return exit;
+	}
+
+	public void setExit(boolean exit) {
+		this.exit = exit;
+		
+	}
+
+	public GamePrinter getGamePrinter() {
+		return gp;
+	}
+
+	public void setGamePrinter(GamePrinter gp) {
+		this.gp = gp;
+	}
+
 
 }
 

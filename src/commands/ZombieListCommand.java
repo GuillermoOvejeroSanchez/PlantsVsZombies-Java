@@ -1,7 +1,6 @@
 package commands;
 
 import factory.ZombieFactory;
-import src.Controller;
 import src.Game;
 
 public class ZombieListCommand extends NoParamsCommand {
@@ -15,10 +14,9 @@ public class ZombieListCommand extends NoParamsCommand {
 	}
 
 	@Override
-	public void execute(Game game, Controller controller) {
+	public boolean execute(Game game) {
 		System.out.println(ZombieFactory.listofAvailableZombies());
-		controller.setNoPrintGameState();
-		controller.setNoUpdateGameState();
+		return false;
 	}
 
 }

@@ -1,6 +1,7 @@
 package commands;
 
-import src.Controller;
+import excepciones.CommandExecuteException;
+import excepciones.CommandParseException;
 import src.Game;
 
 public abstract class Command {
@@ -16,9 +17,9 @@ public abstract class Command {
 		commandName = commandInfoWords[0];
 	}
 
-	public abstract Command parse(String[] comando, Controller controller);
+	public abstract Command parse(String[] comando) throws CommandParseException;
 
-	public abstract void execute(Game game, Controller controller);
+	public abstract boolean execute(Game game) throws CommandExecuteException;
 	
 	
 

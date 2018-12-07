@@ -1,6 +1,5 @@
 package commands;
 
-import src.Controller;
 import src.Game;
 
 public class HelpCommand extends NoParamsCommand {
@@ -12,11 +11,11 @@ public class HelpCommand extends NoParamsCommand {
 		super(commandName, commandInfo, helpInfo);
 	}
 
+
 	@Override
-	public void execute(Game game, Controller controller) {
+	public boolean execute(Game game) {
 		System.out.println(CommandParse.CommandHelp());
-		controller.setNoPrintGameState();
-		controller.setNoUpdateGameState();
+		return false;
 	}
 
 }

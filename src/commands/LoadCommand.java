@@ -1,6 +1,5 @@
 package commands;
 
-import src.Controller;
 import src.Game;
 
 public class LoadCommand extends Command{
@@ -15,17 +14,17 @@ public class LoadCommand extends Command{
 		
 	}
 
-
-	public void execute(Game game, Controller controller) {
+	@Override
+	public Command parse(String[] comando) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 
 	@Override
-	public Command parse(String[] comando, Controller controller) {
+	public boolean execute(Game game) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 }

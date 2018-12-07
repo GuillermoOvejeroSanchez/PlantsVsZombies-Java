@@ -1,6 +1,6 @@
 package commands;
 
-import src.Controller;
+import excepciones.CommandParseException;
 
 public class CommandParse {
 
@@ -8,7 +8,7 @@ public class CommandParse {
 			new ExitCommand(), new ListCommand(), new UpdateCommand(), new ZombieListCommand(),
 			new PrintModeCommand() };
 
-	public static Command parseCommand(String[] textoComando, Controller controller) {
+	public static Command parseCommand(String[] textoComando) throws CommandParseException {
 		Command c = null;
 		boolean encontrado = false;
 		int i = 0;
@@ -19,7 +19,7 @@ public class CommandParse {
 		} else {
 
 			while (!encontrado && i < avaliableCommands.length) {
-				c = avaliableCommands[i].parse(textoComando, controller);
+				c = avaliableCommands[i].parse(textoComando);
 
 				if (c != null) {
 					encontrado = true;
