@@ -2,6 +2,8 @@ package commands;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.io.IOException;
+
 import util.*;
 
 import src.Game;
@@ -11,7 +13,7 @@ public class SaveCommand extends Command {
 	public final static String commandName = "save";
 	public final static String commandInfo = "[S]ave";
 	public final static String helpInfo = "<filename>: Save the state of the game to a file.";
-	public final static String cabezera = "Plants Vs Zombies v3.0";
+	public final static String cabecera = "Plants Vs Zombies v3.0";
 
 	private String fileName;
 
@@ -39,15 +41,15 @@ public class SaveCommand extends Command {
 
 	public boolean execute(Game game) {
 		if (MyStringUtils.isValidFilename(fileName)) {
-
+			BufferedWriter bw = null;
 			try {
 
 				if (!MyStringUtils.fileExists(fileName)) {
 
 					System.out.println("Se va a crear un nuevo fichero");
 
-					BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
-					bw.write(cabezera);
+					bw = new BufferedWriter(new FileWriter(fileName));
+					bw.write(cabecera);
 					bw.newLine();
 					bw.write(game.store());
 				}
@@ -55,16 +57,22 @@ public class SaveCommand extends Command {
 				else {
 					System.out.println("Ya existe un fichero con este nombre, la partida guardada se perdera");
 
-					BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
-					bw.write(cabezera);
+					bw = new BufferedWriter(new FileWriter(fileName));
+					bw.write(cabecera);
 					bw.newLine();
 					bw.write(game.store());
 				}
 
 			} catch (Exception e) {
 				// TODO: handle exception
-			} // catch
-		} // 2º if
+			} finally {
+				try {
+					bw.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		} // 2ndo if
 		return false;
 
 	} // 1er if
