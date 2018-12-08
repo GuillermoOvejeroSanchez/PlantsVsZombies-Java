@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import excepciones.CommandExecuteException;
 import util.*;
 
 import src.Game;
@@ -42,7 +43,7 @@ public class SaveCommand extends Command {
 		return c;
 	}
 
-	public boolean execute(Game game) {
+	public boolean execute(Game game) throws CommandExecuteException {
 		if (MyStringUtils.isValidFilename(fileName)) {
 			BufferedWriter bw = null;
 			try {
@@ -67,7 +68,7 @@ public class SaveCommand extends Command {
 				}
 
 			} catch (Exception e) {
-				// TODO: handle exception
+				System.err.println(e.getClass() + " " + e.getMessage());
 			} finally {
 				try {
 					bw.close();
@@ -75,7 +76,9 @@ public class SaveCommand extends Command {
 					e.printStackTrace();
 				}
 			}
-		} // 2ndo if
+		} else {
+			throw new CommandExecuteException("Invalid filename: " + fileName);
+		}
 		return false;
 
 	} // 1er if
