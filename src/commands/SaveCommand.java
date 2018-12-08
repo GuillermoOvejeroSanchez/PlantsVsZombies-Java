@@ -10,7 +10,7 @@ import src.Game;
 
 public class SaveCommand extends Command {
 
-	public final static String commandName = "save";
+	public final static String commandName = "Save";
 	public final static String commandInfo = "[S]ave";
 	public final static String helpInfo = "<filename>: Save the state of the game to a file.";
 	public final static String cabecera = "Plants Vs Zombies v3.0";
@@ -31,7 +31,7 @@ public class SaveCommand extends Command {
 	public Command parse(String[] comando) {
 		Command c = null;
 		
-		if ((comando[0].equalsIgnoreCase(commandName) || comando[0].equals(commandName.substring(0, 1)))){
+		if ((comando[0].equalsIgnoreCase(commandName) || comando[0].equalsIgnoreCase(commandName.substring(0, 1)))){
 			
 			if(comando.length == 2 )
 			{
@@ -46,7 +46,6 @@ public class SaveCommand extends Command {
 		if (MyStringUtils.isValidFilename(fileName)) {
 			BufferedWriter bw = null;
 			try {
-
 				if (!MyStringUtils.fileExists(fileName)) {
 
 					System.out.println("Se va a crear un nuevo fichero");
