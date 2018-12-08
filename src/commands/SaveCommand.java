@@ -17,6 +17,7 @@ public class SaveCommand extends Command {
 	public final static String cabecera = "Plants Vs Zombies v3.0";
 
 	private String fileName;
+	private final String fileExtension = ".dat";
 
 	public SaveCommand() {
 		super(commandName, commandInfo, helpInfo);
@@ -31,12 +32,11 @@ public class SaveCommand extends Command {
 	@Override
 	public Command parse(String[] comando) {
 		Command c = null;
-		
-		if ((comando[0].equalsIgnoreCase(commandName) || comando[0].equalsIgnoreCase(commandName.substring(0, 1)))){
-			
-			if(comando.length == 2 )
-			{
-				c = new SaveCommand(comando[1]); 
+
+		if ((comando[0].equalsIgnoreCase(commandName) || comando[0].equalsIgnoreCase(commandName.substring(0, 1)))) {
+
+			if (comando.length == 2) {
+				c = new SaveCommand(comando[1]);
 			}
 		}
 
@@ -51,7 +51,7 @@ public class SaveCommand extends Command {
 
 					System.out.println("Se va a crear un nuevo fichero");
 
-					bw = new BufferedWriter(new FileWriter(fileName+".dat"));
+					bw = new BufferedWriter(new FileWriter(fileName + fileExtension));
 					bw.write(cabecera);
 					bw.newLine();
 					bw.write(game.store());
@@ -59,8 +59,7 @@ public class SaveCommand extends Command {
 
 				else {
 					System.out.println("Ya existe un fichero con este nombre, la partida guardada se perdera");
-
-					bw = new BufferedWriter(new FileWriter(fileName+".dat"));
+					bw = new BufferedWriter(new FileWriter(fileName + fileExtension));
 					bw.write(cabecera);
 					bw.newLine();
 					bw.newLine();
