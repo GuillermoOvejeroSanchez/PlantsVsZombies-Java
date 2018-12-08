@@ -51,7 +51,7 @@ public class SaveCommand extends Command {
 
 					System.out.println("Se va a crear un nuevo fichero");
 
-					bw = new BufferedWriter(new FileWriter(fileName));
+					bw = new BufferedWriter(new FileWriter(fileName+".dat"));
 					bw.write(cabecera);
 					bw.newLine();
 					bw.write(game.store());
@@ -60,7 +60,7 @@ public class SaveCommand extends Command {
 				else {
 					System.out.println("Ya existe un fichero con este nombre, la partida guardada se perdera");
 
-					bw = new BufferedWriter(new FileWriter(fileName));
+					bw = new BufferedWriter(new FileWriter(fileName+".dat"));
 					bw.write(cabecera);
 					bw.newLine();
 					bw.newLine();
