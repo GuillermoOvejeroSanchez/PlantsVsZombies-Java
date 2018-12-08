@@ -10,7 +10,7 @@ import src.Game;
 
 public class SaveCommand extends Command {
 
-	public final static String commandName = "Save";
+	public final static String commandName = "save";
 	public final static String commandInfo = "[S]ave";
 	public final static String helpInfo = "<filename>: Save the state of the game to a file.";
 	public final static String cabecera = "Plants Vs Zombies v3.0";
@@ -30,9 +30,13 @@ public class SaveCommand extends Command {
 	@Override
 	public Command parse(String[] comando) {
 		Command c = null;
-		if (comando.length == 2 && (comando[0].equalsIgnoreCase(commandName))) {
-			c = new SaveCommand(comando[1]); 
-
+		
+		if ((comando[0].equalsIgnoreCase(commandName) || comando[0].equals(commandName.substring(0, 1)))){
+			
+			if(comando.length == 2 )
+			{
+				c = new SaveCommand(comando[1]); 
+			}
 		}
 
 		return c;
