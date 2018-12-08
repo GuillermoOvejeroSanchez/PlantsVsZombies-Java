@@ -53,10 +53,13 @@ public class AddCommand extends Command {
 		Plant p = PlantsFactory.getPlant(name, x, y, game);
 		if (p != null) {
 			game.addPlant(p);
+			game.update();
+			game.setUpdate(true);
 			executed = true;
 		}
-		else
+		else {
 			throw new CommandExecuteException("Unknown plant name " + name);
+		}
 
 		return executed;
 	}

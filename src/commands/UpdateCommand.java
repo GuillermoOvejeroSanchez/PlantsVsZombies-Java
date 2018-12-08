@@ -14,6 +14,8 @@ public class UpdateCommand extends NoParamsCommand {
 
 	@Override
 	public boolean execute(Game game) {
+		game.update();
+		game.setUpdate(true);
 		return true;
 	}
 

@@ -19,7 +19,7 @@ public class PrinterManager {
 	public static BoardPrinter getBoard(Game game) {
 		
 		for(BoardPrinter board : availablePrintModes) {
-			board = board.parse(game);
+			//board = board.parse(game);
 			if(board != null) {
 				//board.setGame(game);
 				return board;
