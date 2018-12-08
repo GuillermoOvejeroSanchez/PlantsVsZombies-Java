@@ -8,16 +8,12 @@ import elems.GameObject;
 import elems.Plant;
 import elems.Zombie;
 import excepciones.CommandExecuteException;
-import excepciones.FileContentsException;
 import factory.ZombieFactory;
 import lista.GameObjectList;
 import print.GamePrinter;
 import print.ReleasePrinter;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.*;
+
 
 public class Game {
 	
@@ -279,44 +275,6 @@ public class Game {
 
 	public void setGamePrinter(GamePrinter gp) {
 		this.gp = gp;
-	}
-	
-	public String[] loadLine(BufferedReader inStream, String prefix, boolean isList)
-			throws IOException, FileContentsException {
-
-		String line = inStream.readLine().trim();
-		// absence of the prefix is invalid
-		if (!line.startsWith(prefix + ":"))
-			throw new FileContentsException(wrongPrefixMsg + prefix);
-		// cut the prefix and the following colon off the line
-		// then trim it to get the attribute contents
-		String contentString = line.substring(prefix.length() + 1).trim();
-		String[] words;
-		// the attribute contents are not empty
-		if (!contentString.equals("")) {
-			if (!isList) {
-				// split non−list attribute contents into words
-				// using 1−or−more−white−spaces as separator
-				words = contentString.split("\\s+");
-				// a non−list attribute with contents of more than one word is invalid
-				if (words.length != 1)
-					throw new FileContentsException(lineTooLongMsg + prefix);
-			} else
-				// split list attribute contents into words
-				// using comma+0−or−more−white−spaces as separator
-				words = contentString.split(",\\s*");
-			// the attribute contents are empty
-		} else {
-			// a non−list attribute with empty contents is invalid
-			if (!isList)
-				throw new FileContentsException(lineTooShortMsg + prefix);
-			// a list attibute with empty contents is valid;
-			// use a zero−length array to store its words
-			words = new String[0];
-		}
-
-		return words;
-
 	}
 	
 
