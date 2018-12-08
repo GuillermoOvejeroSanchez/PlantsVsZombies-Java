@@ -38,6 +38,7 @@ public class Game {
 	private int ciclos;
 	private boolean exit;
 	private Random rand;
+	private boolean update;
 
 	public Game(Level level, int seed) {
 		rand = new Random();
@@ -46,6 +47,7 @@ public class Game {
 		this.ciclos = 0;
 		this.level = level;
 		this.exit = false;
+		this.update = false;
 		zombieManager = new ZombieManager(this.level, this.seed, this.rand);
 		suncoinManager = new SuncoinManager();
 		zombieList = new GameObjectList(zombieManager.getNumZombies());
@@ -153,6 +155,7 @@ public class Game {
 		ciclos = 0;
 		zombieList = new GameObjectList(zombieManager.getNumZombies());
 		plantList = new GameObjectList(MAX_PLANTAS);
+		update = false;
 	}
 
 	public boolean addPlant(Plant plant) throws CommandExecuteException {
@@ -316,5 +319,13 @@ public class Game {
 
 	}
 	
+
+	public boolean getUpdate() {
+		// TODO Auto-generated method stub
+		return update;
+	}
+	public void setUpdate(boolean update) {
+		this.update = update;
+	}
 
 }
