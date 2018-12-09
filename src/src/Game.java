@@ -348,9 +348,6 @@ public class Game {
 		Plant plant = null;
 		Zombie zombie = null;
 
-		for (int i = 0; i < lista.length; i++) {
-			String[] objectInfo = lista[i].split(":");
-
 			if (!isPlant) {
 				zombie = ZombieFactory.getZombie(objectInfo[0]);
 				if (zombie != null) {
