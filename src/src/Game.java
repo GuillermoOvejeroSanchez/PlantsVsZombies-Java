@@ -10,7 +10,8 @@ import elems.GameObject;
 import elems.Plant;
 import elems.Zombie;
 import excepciones.CommandExecuteException;
-
+import excepciones.FileContentsException;
+import factory.PlantsFactory;
 import factory.ZombieFactory;
 import lista.GameObjectList;
 import print.GamePrinter;
@@ -392,19 +393,13 @@ public class Game {
 		this.plantList = new GameObjectList(MAX_PLANTAS); 
 		loadList(listPlants, this.plantList, true);
 		
-		
+	}
 		
 		
 		//System.out.println(this.ciclos); 
 		
 		
 
-
-	public boolean getUpdate() {
-		// TODO Auto-generated method stub
-		return update;
-
-	}
 	
 	public void loadList(String [] lista, GameObjectList objectList, boolean isPlant) {
 		
