@@ -10,8 +10,7 @@ import elems.GameObject;
 import elems.Plant;
 import elems.Zombie;
 import excepciones.CommandExecuteException;
-import excepciones.FileContentsException;
-import factory.PlantsFactory;
+
 import factory.ZombieFactory;
 import lista.GameObjectList;
 import print.GamePrinter;
@@ -22,6 +21,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.*;
 import elems.GameObject;
+
 
 public class Game {
 	
@@ -303,6 +303,7 @@ public class Game {
 		this.gp = gp;
 	}
 	
+
 	public boolean getUpdate() {
 		// TODO Auto-generated method stub
 		return update;
@@ -397,6 +398,12 @@ public class Game {
 		//System.out.println(this.ciclos); 
 		
 		
+
+
+	public boolean getUpdate() {
+		// TODO Auto-generated method stub
+		return update;
+
 	}
 	
 	public void loadList(String [] lista, GameObjectList objectList, boolean isPlant) {
