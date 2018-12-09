@@ -350,7 +350,7 @@ public class Game {
 
 	}
 	
-	public void load(BufferedReader br) throws IOException, FileContentsException {
+	public void load(BufferedReader br) throws IOException, FileContentsException, CommandExecuteException {
 	
 		String[] cycles; 
 		String[] sunCoins; 
@@ -393,6 +393,20 @@ public class Game {
 		this.plantList = new GameObjectList(MAX_PLANTAS); 
 		loadList(listPlants, this.plantList, true);
 		
+		
+		
+		/*
+		for(int i = 0; i < listPlants.length; i++) {
+			System.out.println(listPlants[i]); 
+			System.out.println(i);
+		}
+		for(int j = 0; j < listZombies.length; j++) {
+			System.out.println(listZombies[j]);
+			System.out.println(j);
+		}
+		
+		*/
+		
 	}
 		
 		
@@ -401,17 +415,27 @@ public class Game {
 		
 
 	
-	public void loadList(String [] lista, GameObjectList objectList, boolean isPlant) {
+	public void loadList(String [] lista, GameObjectList objectList, boolean isPlant) throws CommandExecuteException {
 		
-		String[] objectInfo; 
+		//String[] objectInfo; 
 		GameObject object; 
+		Plant plant = null; 
+		Zombie zombie = null; 
 		
 		
-		for(int i = 0; i < lista.length; i++) {
-			objectInfo = lista[i].split(":"); 
+		for(int i = 0; i < lista.length ; i++) {
+			String[] objectInfo = lista[i].split(":"); 
 			
 			if(!isPlant) {
-				object = ZombieFactory.getZombie(objectInfo[0]); 
+				zombie = ZombieFactory.getZombie(objectInfo[0]); 
+				
+				zombie.setResistance(Integer.parseInt(objectInfo[1]));
+				zombie.setX(Integer.parseInt(objectInfo[2]));
+				zombie.setY(Integer.parseInt(objectInfo[3]));
+				
+				zombie.setRemainigCycles(Integer.parseInt(objectInfo[4]));
+				
+				addZombie(zombie);
 				/*
 				if(object == null) {
 					throw new FileContentsException("El zombie del fichero es incorrecto"); 
@@ -419,15 +443,17 @@ public class Game {
 				*/
 			}
 			else {
-				object = PlantsFactory.getPlant(objectInfo[0]);
+				plant = PlantsFactory.getPlant(objectInfo[0]);
+				plant.setResistance(Integer.parseInt(objectInfo[1]));
+				plant.setX(Integer.parseInt(objectInfo[2]));
+				plant.setY(Integer.parseInt(objectInfo[3]));
+				plant.setRemainigCycles(Integer.parseInt(objectInfo[4]));
+				
+				addPlant(plant);
+				
 			}
 			
-			object.setResistance(Integer.parseInt(lista[1]));
-			object.setX(Integer.parseInt(lista[2]));
-			object.setY(Integer.parseInt(lista[3]));
-			object.setRemainigCycles(Integer.parseInt(lista[4]));
 			
-			objectList.addObject(object); 
 		}
 		
 	}
