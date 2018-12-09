@@ -33,7 +33,7 @@ public class LoadCommand extends Command {
 
 			if (comando.length == 2) {
 				c = new LoadCommand(comando[1]);
-			}else {
+			} else {
 				throw new CommandParseException("Numero de parametros invalido para el comando load");
 			}
 		}
@@ -41,7 +41,6 @@ public class LoadCommand extends Command {
 		return c;
 	}
 
-	
 	public boolean execute(Game game) throws CommandExecuteException {
 
 		if (MyStringUtils.isValidFilename(fileName + ".dat") && MyStringUtils.isReadable(fileName + ".dat")) {
@@ -63,7 +62,7 @@ public class LoadCommand extends Command {
 				throw new CommandExecuteException("Ha habido un problema al cargar el archivo");
 			} catch (FileContentsException e) {
 				throw new CommandExecuteException(e.getMessage());
-			}catch(NullPointerException e) {
+			} catch (NullPointerException e) {
 				throw new CommandExecuteException(e.getClass().toString() + " fichero vacio");
 			}
 
