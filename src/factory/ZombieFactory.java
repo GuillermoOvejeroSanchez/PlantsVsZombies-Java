@@ -39,7 +39,7 @@ public class ZombieFactory {
 		while(!encontrado && i < availabeZombies.length) {
 			
 			if(availabeZombies[i].getShortName().equals(shortName)) {
-				zombie = availabeZombies[i]; 
+				zombie = availabeZombies[i].parse(shortName); 
 				encontrado = true; 
 			}
 			else {

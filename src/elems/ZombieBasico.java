@@ -41,8 +41,15 @@ public class ZombieBasico extends Zombie {
 	public Zombie inPosition(int x, int y, Game game) {
 		Zombie zombie = new ZombieBasico();
 		return zombie;
-		
-		//TODO set x, set y
+	}
+	
+	public Zombie parse(String name) {
+		Zombie z = null;
+
+		if (name.equalsIgnoreCase(NOMBRE) || name.equalsIgnoreCase(SHORT_NAME)) {
+			z = new ZombieBasico();
+		}
+		return z;
 	}
 
 }

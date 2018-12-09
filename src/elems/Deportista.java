@@ -43,5 +43,14 @@ public class Deportista extends Zombie {
 		zombie.setY(y);
 		return zombie;
 	}
+	
+	public Zombie parse(String name) {
+		Zombie z = null;
+
+		if (name.equalsIgnoreCase(NOMBRE) || name.equalsIgnoreCase(SHORT_NAME)) {
+			z = new Deportista();
+		}
+		return z;
+	}
 
 }

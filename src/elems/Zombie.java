@@ -17,10 +17,6 @@ public abstract class Zombie extends GameObject {
 	
 	}
 	
-	
-
-	
-	
 	public boolean update() {
 		int ciclos = -1;
 		if (!(game.attack(this.x, this.y, this)))
@@ -41,5 +37,6 @@ public abstract class Zombie extends GameObject {
 	}
 
 	public abstract Zombie inPosition(int x, int y, Game game);
+	public abstract Zombie parse(String name);
 
 }
