@@ -343,15 +343,9 @@ public class Game {
 
 	}
 
-	public void loadList(String[] lista, GameObjectList objectList, boolean isPlant) throws CommandExecuteException {
-
-		Plant plant = null;
-		Zombie zombie = null;
-
-		for (int i = 0; i < lista.length; i++) {
-			String[] objectInfo = lista[i].split(":");
-
 	
+
+
 	public void loadList(String [] lista, GameObjectList objectList, boolean isPlant) throws CommandExecuteException, FileContentsException {
 		
 		Plant plant = null; 

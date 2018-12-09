@@ -28,7 +28,7 @@ public class LoadCommand extends Command {
 	public Command parse(String[] comando) {
 		Command c = null;
 
-		if ((comando[0].equalsIgnoreCase(commandName) || comando[0].equals(commandName.substring(0, 1)))) {
+		if ((comando[0].equalsIgnoreCase(commandName) || comando[0].equals(commandName.substring(0, 2)))) {
 
 			if (comando.length == 2) {
 				c = new LoadCommand(comando[1]);
@@ -50,20 +50,20 @@ public class LoadCommand extends Command {
 				if (cabecera.equals("Plants Vs Zombies v3.0")) {
 					br.readLine();
 					game.load(br);
-					System.out.println("Game successfully loaded from file " + fileName);
+					System.out.println("Game successfully loaded from file<" + fileName+ ">");
 				} else {
 					br.close();
 					throw new CommandExecuteException("Cabecera " + cabecera + " no valida");
 				}
 
 			} catch (IOException e) {
-				throw new CommandExecuteException("Ha habido un problema");
+				throw new CommandExecuteException("Ha habido un problema al cargar el archivo");
 			} catch (FileContentsException e) {
 				throw new CommandExecuteException(e.getMessage());
 			}
 
 		} else {
-			throw new CommandExecuteException("El fichero no es valido");
+			throw new CommandExecuteException("El fichero " + fileName + " no es valido");
 		}
 
 		return true;
