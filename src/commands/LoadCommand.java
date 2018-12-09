@@ -54,28 +54,25 @@ Command c = null;
 				if(cabecera.equals("Plants Vs Zombies v3.0")) {
 					br.readLine();
 					game.load(br);
-					System.out.println("Game successfully loaded from file <nombre_proporcionado_por_el_usuario>");
+					System.out.println("Game successfully loaded from file " + fileName);
+				} else {
+					br.close();
+					throw new CommandExecuteException("Cabecera " + cabecera + " no valida");
 				}
 				
-				
-				
 			}
-			
 			catch(IOException e) {
-				throw new CommandExecuteException("ha habido un proble"); 
+				throw new CommandExecuteException("Ha habido un problema"); 
 			}
-			
 			catch (FileContentsException e) {
 				throw new CommandExecuteException(e.getMessage()); 
-		
-			
 			}
-
+			
 		}
 		else {
-			throw new CommandExecuteException("el fichero no es valido");
+			throw new CommandExecuteException("El fichero no es valido");
 		}
 		
-	return false; 	
+	return true; 	
 	}
 }

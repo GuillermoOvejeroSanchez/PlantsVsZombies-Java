@@ -17,11 +17,8 @@ import lista.GameObjectList;
 import print.GamePrinter;
 import print.ReleasePrinter;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.*;
-import elems.GameObject;
 
 
 public class Game {
@@ -43,7 +40,6 @@ public class Game {
 	private int ciclos;
 	private boolean exit;
 	private Random rand;
-	private boolean update;
 
 	public Game(Level level, int seed) {
 		rand = new Random();
@@ -52,7 +48,6 @@ public class Game {
 		this.ciclos = 0;
 		this.level = level;
 		this.exit = false;
-		this.update = false;
 		zombieManager = new ZombieManager(this.level, this.seed, this.rand);
 		suncoinManager = new SuncoinManager();
 		zombieList = new GameObjectList(zombieManager.getNumZombies());
@@ -168,7 +163,6 @@ public class Game {
 		ciclos = 0;
 		zombieList = new GameObjectList(zombieManager.getNumZombies());
 		plantList = new GameObjectList(MAX_PLANTAS);
-		update = false;
 	}
 
 	public boolean addPlant(Plant plant) throws CommandExecuteException {
@@ -200,8 +194,8 @@ public class Game {
 		zombieList.addObject(zombie);
 	};
 
-	public void loadPlanst(GameObject objeto) {
-		plantList.loadObeject(objeto);
+	public void loadPlant(GameObject objeto) {
+		plantList.loadObject(objeto);
 		
 	}
 	
@@ -314,13 +308,6 @@ public class Game {
 	}
 	
 
-	public boolean getUpdate() {
-		// TODO Auto-generated method stub
-		return update;
-	}
-	public void setUpdate(boolean update) {
-		this.update = update;
-	}
 	
 	public String[] loadLine(BufferedReader inStream, String prefix, boolean isList) throws IOException, FileContentsException {
 
@@ -396,38 +383,19 @@ public class Game {
 		SetRemainingZombies(parRemZombies);
 		
 		
-		this.zombieList = new GameObjectList(MAX_PLANTAS); 
+		this.zombieList = new GameObjectList(lvl.getNumberOfZombies()); 
 		loadList(listZombies, this.zombieList, false);
 		
 		this.plantList = new GameObjectList(MAX_PLANTAS); 
 		loadList(listPlants, this.plantList, true);
 		
-		
-		
-		/*
-		for(int i = 0; i < listPlants.length; i++) {
-			System.out.println(listPlants[i]); 
-			System.out.println(i);
-		}
-		for(int j = 0; j < listZombies.length; j++) {
-			System.out.println(listZombies[j]);
-			System.out.println(j);
-		}
-		
-		*/
-		
 	}
-		
-		
-		//System.out.println(this.ciclos); 
-		
+
 		
 
 	
 	public void loadList(String [] lista, GameObjectList objectList, boolean isPlant) throws CommandExecuteException {
 		
-		//String[] objectInfo; 
-		GameObject object; 
 		Plant plant = null; 
 		Zombie zombie = null; 
 		
@@ -437,7 +405,7 @@ public class Game {
 			
 			if(!isPlant) {
 				zombie = ZombieFactory.getZombie(objectInfo[0]); 
-				
+
 				zombie.setResistance(Integer.parseInt(objectInfo[1]));
 				zombie.setX(Integer.parseInt(objectInfo[2]));
 				zombie.setY(Integer.parseInt(objectInfo[3]));
@@ -445,13 +413,7 @@ public class Game {
 				zombie.setRemainigCycles(Integer.parseInt(objectInfo[4]));
 				zombie.setGame(this);
 				loadZombies(zombie);
-			//	zombie.setGame(this);
-				
-				/*
-				if(object == null) {
-					throw new FileContentsException("El zombie del fichero es incorrecto"); 
-				}
-				*/
+				zombie = null;
 			}
 			else {
 				plant = PlantsFactory.getPlant(objectInfo[0]);
@@ -460,9 +422,8 @@ public class Game {
 				plant.setY(Integer.parseInt(objectInfo[3]));
 				plant.setRemainigCycles(Integer.parseInt(objectInfo[4]));
 				plant.setGame(this);
-				
-				loadPlanst(plant);
-				
+				loadPlant(plant);
+				plant = null;
 			}
 			
 			

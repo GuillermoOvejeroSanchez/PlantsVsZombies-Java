@@ -59,7 +59,7 @@ public class GameObjectList {
 
 	}
 	
-	public void loadObeject(GameObject objeto) {
+	public void loadObject(GameObject objeto) {
 		if (!llena()) {
 			ObjectList[this.contador] = objeto;
 			this.contador++;

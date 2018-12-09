@@ -44,11 +44,9 @@ public class PrintModeCommand extends Command {
 		if (modo.equalsIgnoreCase("debug")) {
 			game.setGamePrinter(new DebugPrinter(game));
 			executed = true;
-			game.setUpdate(false);
 		} else if (modo.equalsIgnoreCase("release")) {
 			game.setGamePrinter(new ReleasePrinter(Game.FILAS, Game.COLUMNAS, game));
 			executed = true;
-			game.setUpdate(false);
 		} else {
 			executed = false;
 			throw new CommandExecuteException("Unknown print mode: " + modo);

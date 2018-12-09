@@ -29,7 +29,6 @@ public class Controller {
 						game.getGamePrinter().printGame(game); // CommandExecuteException
 				}
 			} catch (CommandExecuteException | CommandParseException ex) {
-				game.setUpdate(false);
 				System.err.format(ex.getMessage() + "%n%n");
 
 			}

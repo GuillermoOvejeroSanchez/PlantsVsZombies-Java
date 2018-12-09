@@ -54,7 +54,6 @@ public class AddCommand extends Command {
 		if (p != null) {
 			game.addPlant(p);
 			game.update();
-			game.setUpdate(true);
 			executed = true;
 		}
 		else {
