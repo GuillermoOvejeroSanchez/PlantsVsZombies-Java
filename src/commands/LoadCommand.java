@@ -63,6 +63,8 @@ public class LoadCommand extends Command {
 				throw new CommandExecuteException("Ha habido un problema al cargar el archivo");
 			} catch (FileContentsException e) {
 				throw new CommandExecuteException(e.getMessage());
+			}catch(NullPointerException e) {
+				throw new CommandExecuteException(e.getClass().toString() + " fichero vacio");
 			}
 
 		} else {
