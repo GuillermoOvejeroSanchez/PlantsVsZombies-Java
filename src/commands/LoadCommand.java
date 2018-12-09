@@ -5,6 +5,7 @@ import util.MyStringUtils;
 import java.io.*;
 
 import excepciones.CommandExecuteException;
+import excepciones.CommandParseException;
 import excepciones.FileContentsException;
 
 public class LoadCommand extends Command {
@@ -25,13 +26,15 @@ public class LoadCommand extends Command {
 		this.fileName = fileName;
 	}
 
-	public Command parse(String[] comando) {
+	public Command parse(String[] comando) throws CommandParseException {
 		Command c = null;
 
-		if ((comando[0].equalsIgnoreCase(commandName) || comando[0].equals(commandName.substring(0, 1)))) {
+		if ((comando[0].equalsIgnoreCase(commandName) || comando[0].equals(commandName.substring(0, 2)))) {
 
 			if (comando.length == 2) {
 				c = new LoadCommand(comando[1]);
+			}else {
+				throw new CommandParseException("Numero de parametros invalido para el comando load");
 			}
 		}
 

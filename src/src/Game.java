@@ -23,10 +23,6 @@ import java.io.*;
 
 public class Game {
 
-	public static final String wrongPrefixMsg = "unknown game attribute: ";
-	public static final String lineTooLongMsg = "too many words on line commencing: ";
-	public static final String lineTooShortMsg = "missing data on line commencing: ";
-
 	public final static int COLUMNAS = 8;
 	public final static int FILAS = 4;
 	public final int MAX_PLANTAS = 24;
@@ -313,37 +309,41 @@ public class Game {
 		int parSunCoins;
 		int parRemZombies;
 		Level lvl;
+		try {
+			cycles = MyStringUtils.loadLine(br, prefix[0], false);
+			sunCoins = MyStringUtils.loadLine(br, prefix[1], false);
+			level = MyStringUtils.loadLine(br, prefix[2], false);
+			remZombies = MyStringUtils.loadLine(br, prefix[3], false);
+			listPlants = MyStringUtils.loadLine(br, prefix[4], true);
+			listZombies = MyStringUtils.loadLine(br, prefix[5], true);
 
-		cycles = MyStringUtils.loadLine(br, prefix[0], false);
-		sunCoins = MyStringUtils.loadLine(br, prefix[1], false);
-		level = MyStringUtils.loadLine(br, prefix[2], false);
-		remZombies = MyStringUtils.loadLine(br, prefix[3], false);
-		listPlants = MyStringUtils.loadLine(br, prefix[4], true);
-		listZombies = MyStringUtils.loadLine(br, prefix[5], true);
+			parCycles = Integer.parseInt(cycles[0]);
+			parSunCoins = Integer.parseInt(sunCoins[0]);
+			parRemZombies = Integer.parseInt(remZombies[0]);
+			lvl = Level.parse(level[0]);
 
-		parCycles = Integer.parseInt(cycles[0]);
-		parSunCoins = Integer.parseInt(sunCoins[0]);
-		parRemZombies = Integer.parseInt(remZombies[0]);
-		lvl = Level.parse(level[0]);
+			if (lvl == null) {
+				throw new FileContentsException("Nivel erroneo");
+			}
+			setLevel(lvl);
 
-		suncoinManager.loadSuncoins(parSunCoins);
-		setCiclos(parCycles);
+			suncoinManager.loadSuncoins(parSunCoins);
+			setCiclos(parCycles);
+			SetRemainingZombies(parRemZombies);
 
-		if (lvl == null) {
-			throw new FileContentsException("nivel erroneo");
+			this.zombieList = new GameObjectList(lvl.getNumberOfZombies());
+			loadList(listZombies, this.zombieList, false);
+
+			this.plantList = new GameObjectList(MAX_PLANTAS);
+			loadList(listPlants, this.plantList, true);
+		} catch (NumberFormatException e) {
+			System.err.println(e.getMessage());
+			throw new FileContentsException("Fichero no valido. No es posible cargarlo");
 		}
-		setLevel(lvl);
-		SetRemainingZombies(parRemZombies);
-
-		this.zombieList = new GameObjectList(lvl.getNumberOfZombies());
-		loadList(listZombies, this.zombieList, false);
-
-		this.plantList = new GameObjectList(MAX_PLANTAS);
-		loadList(listPlants, this.plantList, true);
-
 	}
 
-	public void loadList(String[] lista, GameObjectList objectList, boolean isPlant) throws CommandExecuteException {
+	public void loadList(String[] lista, GameObjectList objectList, boolean isPlant)
+			throws CommandExecuteException, FileContentsException {
 
 		Plant plant = null;
 		Zombie zombie = null;
@@ -351,45 +351,36 @@ public class Game {
 		for (int i = 0; i < lista.length; i++) {
 			String[] objectInfo = lista[i].split(":");
 
-	
-	public void loadList(String [] lista, GameObjectList objectList, boolean isPlant) throws CommandExecuteException, FileContentsException {
-		
-		Plant plant = null; 
-		Zombie zombie = null; 
-		
-		
-		for(int i = 0; i < lista.length ; i++) {
-			String[] objectInfo = lista[i].split(":"); 
-			
-			if(!isPlant) {
-				zombie = ZombieFactory.getZombie(objectInfo[0]); 
-				
-				if(zombie == null) {
-					throw new FileContentsException("Error al leer la informacion del zombie");
+			if (!isPlant) {
+				zombie = ZombieFactory.getZombie(objectInfo[0]);
+				if (zombie != null) {
+					try {
+						zombie.setResistance(Integer.parseInt(objectInfo[1]));
+						zombie.setX(Integer.parseInt(objectInfo[2]));
+						zombie.setY(Integer.parseInt(objectInfo[3]));
+						zombie.setRemainigCycles(Integer.parseInt(objectInfo[4]));
+						zombie.setGame(this);
+					} catch (NullPointerException e) {
+						System.err.println(e.getClass());
+						throw new FileContentsException("Fichero no valido");
+					}
+					loadZombies(zombie);
+				} else {
+					throw new CommandExecuteException("Fichero con datos incorrectos");
 				}
-
-				zombie.setResistance(Integer.parseInt(objectInfo[1]));
-				zombie.setX(Integer.parseInt(objectInfo[2]));
-				zombie.setY(Integer.parseInt(objectInfo[3]));
-
-				zombie.setRemainigCycles(Integer.parseInt(objectInfo[4]));
-				zombie.setGame(this);
-				loadZombies(zombie);
-				zombie = null;
 			} else {
 				plant = PlantsFactory.getPlant(objectInfo[0]);
-				
-				if(plant == null) {
-					throw new FileContentsException("Error al leer la informacion de la plnata"); 
+				try {
+					plant.setResistance(Integer.parseInt(objectInfo[1]));
+					plant.setX(Integer.parseInt(objectInfo[2]));
+					plant.setY(Integer.parseInt(objectInfo[3]));
+					plant.setRemainigCycles(Integer.parseInt(objectInfo[4]));
+					plant.setGame(this);
+				} catch (NullPointerException e) {
+					System.err.println(e.getClass());
+					throw new FileContentsException("Fichero no valido");
 				}
-				
-				plant.setResistance(Integer.parseInt(objectInfo[1]));
-				plant.setX(Integer.parseInt(objectInfo[2]));
-				plant.setY(Integer.parseInt(objectInfo[3]));
-				plant.setRemainigCycles(Integer.parseInt(objectInfo[4]));
-				plant.setGame(this);
 				loadPlant(plant);
-				plant = null;
 			}
 
 		}
