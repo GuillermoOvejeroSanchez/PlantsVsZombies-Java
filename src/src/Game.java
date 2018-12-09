@@ -351,8 +351,22 @@ public class Game {
 		for (int i = 0; i < lista.length; i++) {
 			String[] objectInfo = lista[i].split(":");
 
-			if (!isPlant) {
-				zombie = ZombieFactory.getZombie(objectInfo[0]);
+	
+	public void loadList(String [] lista, GameObjectList objectList, boolean isPlant) throws CommandExecuteException, FileContentsException {
+		
+		Plant plant = null; 
+		Zombie zombie = null; 
+		
+		
+		for(int i = 0; i < lista.length ; i++) {
+			String[] objectInfo = lista[i].split(":"); 
+			
+			if(!isPlant) {
+				zombie = ZombieFactory.getZombie(objectInfo[0]); 
+				
+				if(zombie == null) {
+					throw new FileContentsException("Error al leer la informacion del zombie");
+				}
 
 				zombie.setResistance(Integer.parseInt(objectInfo[1]));
 				zombie.setX(Integer.parseInt(objectInfo[2]));
@@ -364,6 +378,11 @@ public class Game {
 				zombie = null;
 			} else {
 				plant = PlantsFactory.getPlant(objectInfo[0]);
+				
+				if(plant == null) {
+					throw new FileContentsException("Error al leer la informacion de la plnata"); 
+				}
+				
 				plant.setResistance(Integer.parseInt(objectInfo[1]));
 				plant.setX(Integer.parseInt(objectInfo[2]));
 				plant.setY(Integer.parseInt(objectInfo[3]));
