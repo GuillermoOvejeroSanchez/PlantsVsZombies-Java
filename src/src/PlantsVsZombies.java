@@ -2,9 +2,11 @@ package src;
 
 import java.util.Random;
 
+import excepciones.CommandParseException;
+
 public class PlantsVsZombies {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws CommandParseException {
 		if (args.length > 0) {
 			Level level = Level.parse(args[0]);
 			Random rand = new Random();
@@ -21,10 +23,10 @@ public class PlantsVsZombies {
 				Controller controller = new Controller(game);
 				controller.run();
 			} else {
-
+				throw new CommandParseException("No valid level name");
 			}
 		} else {
-
+			throw new CommandParseException("Invalid number of arguments");
 		}
 
 	}

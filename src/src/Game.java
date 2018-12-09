@@ -113,12 +113,76 @@ public class Game {
 		return zombieList.getStringDebug(i);
 	}
 
+	public void aumentarCiclos() {
+		ciclos++;
+	}
+
+	public void addZombie(Zombie zombie) {
+		zombieList.addObject(zombie);
+	};
+
+	public void loadPlant(GameObject objeto) {
+		plantList.loadObject(objeto);
+
+	}
+
+	public void loadZombies(GameObject objeto) {
+		zombieList.addObject(objeto);
+	}
+
+	public String getDificultad() {
+		return this.level.name();
+	}
+
+	public int getSeed() {
+		return seed;
+	}
+
+	public int GetSizeZombieList() {
+		return this.zombieList.getSize();
+	}
+
+	public int GetSizePlantList() {
+		return this.plantList.getSize();
+	}
+
+	public String getString(int x, int y) {
+		return (plantList.getString(x, y) + zombieList.getString(x, y));
+	}
+
+	public int getNumPlants() {
+		return plantList.getSize();
+	}
+
+	public String getLevel() {
+		return level.name();
+	}
+
+	public boolean isZombie(int x, int y) {
+		return zombieList.encontrar(x, y);
+	}
+
+	public boolean isFinished() {
+		return exit;
+	}
+
+	public void setExit(boolean exit) {
+		this.exit = exit;
+	}
+
+	public GamePrinter getGamePrinter() {
+		return gp;
+	}
+
+	public void setGamePrinter(GamePrinter gp) {
+		this.gp = gp;
+	}
+
 	public boolean checkZombieWin() {
 		boolean theyWin = false;
 		for (int i = 0; i < FILAS; i++) {
 			if (zombieList.encontrar(i, 0))
 				theyWin = true;
-
 		}
 		return theyWin;
 	}
@@ -151,10 +215,6 @@ public class Game {
 		}
 
 		return attacked;
-	}
-
-	public void aumentarCiclos() {
-		ciclos++;
 	}
 
 	public void reset() {
@@ -190,19 +250,6 @@ public class Game {
 		return executed;
 	}
 
-	public void addZombie(Zombie zombie) {
-		zombieList.addObject(zombie);
-	};
-
-	public void loadPlant(GameObject objeto) {
-		plantList.loadObject(objeto);
-
-	}
-
-	public void loadZombies(GameObject objeto) {
-		zombieList.addObject(objeto);
-	}
-
 	public boolean isEmpty(int x, int y) {
 		boolean empty = false;
 		if (!plantList.encontrar(x, y))
@@ -210,46 +257,6 @@ public class Game {
 				empty = true;
 
 		return empty;
-	}
-
-	public String getDificultad() {
-		return this.level.name();
-	}
-
-	public int getSeed() {
-		return seed;
-	}
-
-	public int GetSizeZombieList() {
-		return this.zombieList.getSize();
-	}
-
-	public int GetSizePlantList() {
-		return this.plantList.getSize();
-	}
-
-	public String getString(int x, int y) {
-		return (plantList.getString(x, y) + zombieList.getString(x, y));
-	}
-
-	public int getNumPlants() {
-		return plantList.getSize();
-	}
-
-	public String getLevel() {
-		return level.name();
-	}
-
-	/*
-	 * public String getPlantsStringDebug(int pos) { return
-	 * plantList.getStringDebug(pos); }
-	 * 
-	 * public String getZombiesStringDebug(int pos) { return
-	 * zombieList.getStringDebug(pos); }
-	 */
-
-	public boolean isZombie(int x, int y) {
-		return zombieList.encontrar(x, y);
 	}
 
 	public String store() {
@@ -277,27 +284,9 @@ public class Game {
 		return datosJuego.toString();
 	}
 
-	private static String[] prefix = { "cycles", "sunCoins", "level", "remZombies", "plantList", "zombieList" };
-
-	public boolean isFinished() {
-		return exit;
-	}
-
-	public void setExit(boolean exit) {
-		this.exit = exit;
-
-	}
-
-	public GamePrinter getGamePrinter() {
-		return gp;
-	}
-
-	public void setGamePrinter(GamePrinter gp) {
-		this.gp = gp;
-	}
-
 	public void load(BufferedReader br) throws IOException, FileContentsException, CommandExecuteException {
 
+		String[] prefix = { "cycles", "sunCoins", "level", "remZombies", "plantList", "zombieList" };
 		String[] cycles;
 		String[] sunCoins;
 		String[] level;
@@ -309,6 +298,7 @@ public class Game {
 		int parSunCoins;
 		int parRemZombies;
 		Level lvl;
+
 		try {
 			cycles = MyStringUtils.loadLine(br, prefix[0], false);
 			sunCoins = MyStringUtils.loadLine(br, prefix[1], false);
@@ -323,7 +313,7 @@ public class Game {
 			lvl = Level.parse(level[0]);
 
 			if (lvl == null) {
-				throw new FileContentsException("Nivel erroneo");
+				throw new FileContentsException("Fichero no valido: Nivel erroneo");
 			}
 			setLevel(lvl);
 
@@ -348,6 +338,9 @@ public class Game {
 		Plant plant = null;
 		Zombie zombie = null;
 
+		for (int i = 0; i < lista.length; i++) {
+			String[] objectInfo = lista[i].split(":");
+
 			if (!isPlant) {
 				zombie = ZombieFactory.getZombie(objectInfo[0]);
 				if (zombie != null) {
@@ -363,21 +356,26 @@ public class Game {
 					}
 					loadZombies(zombie);
 				} else {
-					throw new CommandExecuteException("Fichero con datos incorrectos");
+					throw new CommandExecuteException("Fichero no valido. Datos de zombie incorrectos");
 				}
 			} else {
+
 				plant = PlantsFactory.getPlant(objectInfo[0]);
-				try {
-					plant.setResistance(Integer.parseInt(objectInfo[1]));
-					plant.setX(Integer.parseInt(objectInfo[2]));
-					plant.setY(Integer.parseInt(objectInfo[3]));
-					plant.setRemainigCycles(Integer.parseInt(objectInfo[4]));
-					plant.setGame(this);
-				} catch (NullPointerException e) {
-					System.err.println(e.getClass());
-					throw new FileContentsException("Fichero no valido");
+				if (plant != null) {
+					try {
+						plant.setResistance(Integer.parseInt(objectInfo[1]));
+						plant.setX(Integer.parseInt(objectInfo[2]));
+						plant.setY(Integer.parseInt(objectInfo[3]));
+						plant.setRemainigCycles(Integer.parseInt(objectInfo[4]));
+						plant.setGame(this);
+					} catch (NullPointerException e) {
+						System.err.println(e.getClass());
+						throw new FileContentsException("Fichero no valido");
+					}
+					loadPlant(plant);
+				} else {
+					throw new CommandExecuteException("Fichero no valido. Datos de planta incorrectos");
 				}
-				loadPlant(plant);
 			}
 
 		}
