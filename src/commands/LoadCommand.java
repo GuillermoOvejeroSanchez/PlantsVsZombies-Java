@@ -41,7 +41,7 @@ public class LoadCommand extends Command {
 		return c;
 	}
 
-	@Override
+	
 	public boolean execute(Game game) throws CommandExecuteException {
 
 		if (MyStringUtils.isValidFilename(fileName + ".dat") && MyStringUtils.isReadable(fileName + ".dat")) {
@@ -53,7 +53,7 @@ public class LoadCommand extends Command {
 				if (cabecera.equals("Plants Vs Zombies v3.0")) {
 					br.readLine();
 					game.load(br);
-					System.out.println("Game successfully loaded from file <" + fileName+ ">");
+					System.out.println("Game successfully loaded from file " + fileName);
 				} else {
 					br.close();
 					throw new CommandExecuteException("Cabecera " + cabecera + " no valida");

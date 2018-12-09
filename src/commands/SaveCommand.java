@@ -71,7 +71,7 @@ public class SaveCommand extends Command {
 					bw.write(game.store());
 				}
 
-				System.out.println("SE HA GUARDAO CON EXITO");
+				System.out.println("Game successfully saved in file " + fileName + ".dat. Use the load command to reload it");
 
 			} catch (Exception e) {
 				System.err.println(e.getClass() + " " + e.getMessage());
