@@ -14,8 +14,8 @@ public class SuncoinManager {
 	public int getSuncoins() {
 		return suncoins;
 	}
-	
+
 	public void loadSuncoins(int value) {
-		this.suncoins = value; 
+		this.suncoins = value;
 	}
 }

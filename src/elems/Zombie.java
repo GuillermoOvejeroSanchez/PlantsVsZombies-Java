@@ -3,20 +3,18 @@ package elems;
 import src.Game;
 
 public abstract class Zombie extends GameObject {
-/*
-	protected Zombie(int x, int y, Game game) {
-		super(x, y, game);
-	}
-
-	protected Zombie() {
-
-	}
-*/
+	/*
+	 * protected Zombie(int x, int y, Game game) { super(x, y, game); }
+	 * 
+	 * protected Zombie() {
+	 * 
+	 * }
+	 */
 	public Zombie(int resistencia, int danyo, int ciclos, String name, String shortName) {
-		super(resistencia,  danyo,  ciclos,  name,  shortName);
-	
+		super(resistencia, danyo, ciclos, name, shortName);
+
 	}
-	
+
 	public boolean update() {
 		int ciclos = -1;
 		if (!(game.attack(this.x, this.y, this)))
@@ -37,6 +35,7 @@ public abstract class Zombie extends GameObject {
 	}
 
 	public abstract Zombie inPosition(int x, int y, Game game);
+
 	public abstract Zombie parse(String name);
 
 }

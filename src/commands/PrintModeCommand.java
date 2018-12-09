@@ -40,7 +40,7 @@ public class PrintModeCommand extends Command {
 	@Override
 	public boolean execute(Game game) throws CommandExecuteException {
 		boolean executed = true;
-		
+
 		if (modo.equalsIgnoreCase("debug")) {
 			game.setGamePrinter(new DebugPrinter(game));
 			executed = true;

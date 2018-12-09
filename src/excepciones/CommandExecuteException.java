@@ -12,5 +12,4 @@ public class CommandExecuteException extends Throwable {
 		super(message);
 	}
 
-
 }

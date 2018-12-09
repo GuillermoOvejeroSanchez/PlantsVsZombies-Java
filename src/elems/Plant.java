@@ -2,16 +2,16 @@ package elems;
 
 public abstract class Plant extends GameObject {
 
-	protected int frec; 
-	protected int coste; 
-	
+	protected int frec;
+	protected int coste;
+
 	public Plant(int coste, int frec, int resistencia, int danyo, int ciclos, String name, String shortName) {
-		super(resistencia,  danyo,  ciclos,  name,  shortName);
-		this.coste = coste; 
-		this.frec = frec; 
-		
+		super(resistencia, danyo, ciclos, name, shortName);
+		this.coste = coste;
+		this.frec = frec;
+
 	}
-	
+
 	public abstract Plant parse(String plantName);
 
 	/*
@@ -34,7 +34,6 @@ public abstract class Plant extends GameObject {
 	public int getCost() {
 		return this.coste;
 	}
-
 
 	public String getName() {
 		return this.name;

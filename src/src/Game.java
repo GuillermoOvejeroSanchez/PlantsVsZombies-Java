@@ -16,17 +16,17 @@ import factory.ZombieFactory;
 import lista.GameObjectList;
 import print.GamePrinter;
 import print.ReleasePrinter;
+import util.MyStringUtils;
 
 import java.io.IOException;
 import java.io.*;
 
-
 public class Game {
-	
+
 	public static final String wrongPrefixMsg = "unknown game attribute: ";
 	public static final String lineTooLongMsg = "too many words on line commencing: ";
-	 public static final String lineTooShortMsg = "missing data on line commencing: ";
-	
+	public static final String lineTooShortMsg = "missing data on line commencing: ";
+
 	public final static int COLUMNAS = 8;
 	public final static int FILAS = 4;
 	public final int MAX_PLANTAS = 24;
@@ -61,9 +61,11 @@ public class Game {
 		aumentarCiclos();
 		cleanBoard();
 	}
+
 	public void setLevel(Level level) {
 		this.level = level;
 	}
+
 	private void cleanBoard() {
 		plantList.clean();
 		zombieManager.setNumZombies(zombieManager.getNumZombies() - zombieList.clean());
@@ -76,6 +78,7 @@ public class Game {
 	public int getCiclos() {
 		return ciclos;
 	}
+
 	public void setCiclos(int ciclos) {
 		this.ciclos = ciclos;
 	}
@@ -91,6 +94,7 @@ public class Game {
 	public int getRemainingZombies() {
 		return zombieManager.getRemainingZombies();
 	}
+
 	public void SetRemainingZombies(int remZombies) {
 		zombieManager.setRemainingZombies(remZombies);
 	}
@@ -196,13 +200,13 @@ public class Game {
 
 	public void loadPlant(GameObject objeto) {
 		plantList.loadObject(objeto);
-		
+
 	}
-	
+
 	public void loadZombies(GameObject objeto) {
-		zombieList.addObject(objeto); 
+		zombieList.addObject(objeto);
 	}
-	
+
 	public boolean isEmpty(int x, int y) {
 		boolean empty = false;
 		if (!plantList.encontrar(x, y))
@@ -267,28 +271,17 @@ public class Game {
 		datosJuego.append("\n");
 		datosJuego.append("remZombies:");
 		datosJuego.append(getRemainingZombies());
-		datosJuego.append("\n"); 
+		datosJuego.append("\n");
 		datosJuego.append("plantList:");
 		datosJuego.append(plantList.datosLista());
-		datosJuego.append("\n"); 
-		datosJuego.append("zombieList:"); 
-		datosJuego.append(zombieList.datosLista()); 
-		
-		
-		return datosJuego.toString(); 
-		
+		datosJuego.append("\n");
+		datosJuego.append("zombieList:");
+		datosJuego.append(zombieList.datosLista());
 
+		return datosJuego.toString();
 	}
-	
-	private static String[] prefix = {
-			"cycles", 
-			"sunCoins", 
-			"level", 
-			"remZombies",
-			"plantList",
-			"zombieList"		
-	};
-	
+
+	private static String[] prefix = { "cycles", "sunCoins", "level", "remZombies", "plantList", "zombieList" };
 
 	public boolean isFinished() {
 		return exit;
@@ -306,116 +299,70 @@ public class Game {
 	public void setGamePrinter(GamePrinter gp) {
 		this.gp = gp;
 	}
-	
 
-	
-	public String[] loadLine(BufferedReader inStream, String prefix, boolean isList) throws IOException, FileContentsException {
-
-		String line = inStream.readLine().trim();
-		// absence of the prefix is invalid
-		if (!line.startsWith(prefix + ":"))
-			throw new FileContentsException(wrongPrefixMsg + prefix);
-		// cut the prefix and the following colon off the line
-		// then trim it to get the attribute contents
-		String contentString = line.substring(prefix.length() + 1).trim();
-		String[] words;
-		// the attribute contents are not empty
-		if (!contentString.equals("")) {
-			if (!isList) {
-				// split non−list attribute contents into words
-				// using 1−or−more−white−spaces as separator
-				words = contentString.split("\\s+");
-				// a non−list attribute with contents of more than one word is invalid
-				if (words.length != 1)
-					throw new FileContentsException(lineTooLongMsg + prefix);
-			} else
-				// split list attribute contents into words
-				// using comma+0−or−more−white−spaces as separator
-				words = contentString.split(",\\s*");
-			// the attribute contents are empty
-		} else {
-			// a non−list attribute with empty contents is invalid
-			if (!isList)
-				throw new FileContentsException(lineTooShortMsg + prefix);
-			// a list attibute with empty contents is valid;
-			// use a zero−length array to store its words
-			words = new String[0];
-		}
-
-		return words;
-
-	}
-	
 	public void load(BufferedReader br) throws IOException, FileContentsException, CommandExecuteException {
-	
-		String[] cycles; 
-		String[] sunCoins; 
-		String[] level; 
-		String[] remZombies; 
-		String[] listPlants; 
-		String[] listZombies; 
-		
-		int parCycles; 
-		int parSunCoins; 
-		int parRemZombies; 
-		Level lvl; 
-		
-		
-		cycles = loadLine(br, prefix[0], false); 
-		sunCoins  = loadLine(br, prefix[1], false);
-		level  = loadLine(br, prefix[2], false);
-		remZombies = loadLine(br, prefix[3], false);
-		listPlants = loadLine(br, prefix[4], true);
-		listZombies = loadLine(br, prefix[5], true);
-		
-		parCycles = Integer.parseInt(cycles[0]); 
-		parSunCoins = Integer.parseInt(sunCoins[0]); 
-		parRemZombies = Integer.parseInt(remZombies[0]); 
-		lvl = Level.parse(level[0]); 
-		
+
+		String[] cycles;
+		String[] sunCoins;
+		String[] level;
+		String[] remZombies;
+		String[] listPlants;
+		String[] listZombies;
+
+		int parCycles;
+		int parSunCoins;
+		int parRemZombies;
+		Level lvl;
+
+		cycles = MyStringUtils.loadLine(br, prefix[0], false);
+		sunCoins = MyStringUtils.loadLine(br, prefix[1], false);
+		level = MyStringUtils.loadLine(br, prefix[2], false);
+		remZombies = MyStringUtils.loadLine(br, prefix[3], false);
+		listPlants = MyStringUtils.loadLine(br, prefix[4], true);
+		listZombies = MyStringUtils.loadLine(br, prefix[5], true);
+
+		parCycles = Integer.parseInt(cycles[0]);
+		parSunCoins = Integer.parseInt(sunCoins[0]);
+		parRemZombies = Integer.parseInt(remZombies[0]);
+		lvl = Level.parse(level[0]);
+
 		suncoinManager.loadSuncoins(parSunCoins);
 		setCiclos(parCycles);
-		
-		if(lvl == null) {
-			throw new FileContentsException("nivel erroneo"); 
+
+		if (lvl == null) {
+			throw new FileContentsException("nivel erroneo");
 		}
 		setLevel(lvl);
 		SetRemainingZombies(parRemZombies);
-		
-		
-		this.zombieList = new GameObjectList(lvl.getNumberOfZombies()); 
+
+		this.zombieList = new GameObjectList(lvl.getNumberOfZombies());
 		loadList(listZombies, this.zombieList, false);
-		
-		this.plantList = new GameObjectList(MAX_PLANTAS); 
+
+		this.plantList = new GameObjectList(MAX_PLANTAS);
 		loadList(listPlants, this.plantList, true);
-		
+
 	}
 
-		
+	public void loadList(String[] lista, GameObjectList objectList, boolean isPlant) throws CommandExecuteException {
 
-	
-	public void loadList(String [] lista, GameObjectList objectList, boolean isPlant) throws CommandExecuteException {
-		
-		Plant plant = null; 
-		Zombie zombie = null; 
-		
-		
-		for(int i = 0; i < lista.length ; i++) {
-			String[] objectInfo = lista[i].split(":"); 
-			
-			if(!isPlant) {
-				zombie = ZombieFactory.getZombie(objectInfo[0]); 
+		Plant plant = null;
+		Zombie zombie = null;
+
+		for (int i = 0; i < lista.length; i++) {
+			String[] objectInfo = lista[i].split(":");
+
+			if (!isPlant) {
+				zombie = ZombieFactory.getZombie(objectInfo[0]);
 
 				zombie.setResistance(Integer.parseInt(objectInfo[1]));
 				zombie.setX(Integer.parseInt(objectInfo[2]));
 				zombie.setY(Integer.parseInt(objectInfo[3]));
-				
+
 				zombie.setRemainigCycles(Integer.parseInt(objectInfo[4]));
 				zombie.setGame(this);
 				loadZombies(zombie);
 				zombie = null;
-			}
-			else {
+			} else {
 				plant = PlantsFactory.getPlant(objectInfo[0]);
 				plant.setResistance(Integer.parseInt(objectInfo[1]));
 				plant.setX(Integer.parseInt(objectInfo[2]));
@@ -425,33 +372,9 @@ public class Game {
 				loadPlant(plant);
 				plant = null;
 			}
-			
-			
+
 		}
-		
+
 	}
-	
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -55,8 +55,7 @@ public class AddCommand extends Command {
 			game.addPlant(p);
 			game.update();
 			executed = true;
-		}
-		else {
+		} else {
 			throw new CommandExecuteException("Unknown plant name " + name);
 		}
 

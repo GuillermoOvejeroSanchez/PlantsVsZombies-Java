@@ -43,7 +43,6 @@ public class SaveCommand extends Command {
 		return c;
 	}
 
-
 	public boolean execute(Game game) throws CommandExecuteException {
 		if (MyStringUtils.isValidFilename(fileName)) {
 			BufferedWriter bw = null;
@@ -58,8 +57,7 @@ public class SaveCommand extends Command {
 					bw.newLine();
 					bw.newLine();
 					bw.write(game.store());
-					
-					
+
 				}
 
 				else {
@@ -72,9 +70,8 @@ public class SaveCommand extends Command {
 					bw.newLine();
 					bw.write(game.store());
 				}
-				
-				System.out.println("SE HA GUARDAO CON EXITO");
 
+				System.out.println("SE HA GUARDAO CON EXITO");
 
 			} catch (Exception e) {
 				System.err.println(e.getClass() + " " + e.getMessage());

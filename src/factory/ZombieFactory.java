@@ -29,27 +29,24 @@ public class ZombieFactory {
 		zombie.setGame(game);
 		return zombie;
 	}
-	
+
 	public static Zombie getZombie(String shortName) {
-		
+
 		boolean encontrado = false;
-		int i = 0; 
-		Zombie zombie  = null; 
-		
-		while(!encontrado && i < availabeZombies.length) {
-			
-			if(availabeZombies[i].getShortName().equals(shortName)) {
-				zombie = availabeZombies[i].parse(shortName); 
-				encontrado = true; 
+		int i = 0;
+		Zombie zombie = null;
+
+		while (!encontrado && i < availabeZombies.length) {
+
+			if (availabeZombies[i].getShortName().equals(shortName)) {
+				zombie = availabeZombies[i].parse(shortName);
+				encontrado = true;
+			} else {
+				i++;
 			}
-			else {
-				i++; 
-			}
-			
+
 		}
-		
-		
-		
-		return zombie; 
+
+		return zombie;
 	}
 }

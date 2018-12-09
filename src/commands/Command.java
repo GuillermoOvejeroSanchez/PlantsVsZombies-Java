@@ -20,8 +20,6 @@ public abstract class Command {
 	public abstract Command parse(String[] comando) throws CommandParseException;
 
 	public abstract boolean execute(Game game) throws CommandExecuteException;
-	
-	
 
 	public String helpText() {
 		StringBuilder helpText = new StringBuilder();

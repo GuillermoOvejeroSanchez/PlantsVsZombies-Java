@@ -11,7 +11,6 @@ public class HelpCommand extends NoParamsCommand {
 		super(commandName, commandInfo, helpInfo);
 	}
 
-
 	@Override
 	public boolean execute(Game game) {
 		System.out.println(CommandParse.CommandHelp());

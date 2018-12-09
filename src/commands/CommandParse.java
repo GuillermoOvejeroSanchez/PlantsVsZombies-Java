@@ -4,21 +4,11 @@ import excepciones.CommandParseException;
 
 public class CommandParse {
 
+	private static Command[] avaliableCommands = { new AddCommand(), new HelpCommand(), new ResetCommand(),
+			new ExitCommand(), new ListCommand(), new UpdateCommand(), new ZombieListCommand(), new PrintModeCommand(),
+			new SaveCommand(), new LoadCommand()
 
-	private static Command[] avaliableCommands = { 
-			new AddCommand(), 
-			new HelpCommand(), 
-			new ResetCommand(),
-			new ExitCommand(), 
-			new ListCommand(), 
-			new UpdateCommand(), 
-			new ZombieListCommand(),
-			new PrintModeCommand(), 
-			new SaveCommand(), 
-			new LoadCommand()
-			
-		};
-
+	};
 
 	public static Command parseCommand(String[] textoComando) throws CommandParseException {
 		Command c = null;
@@ -32,7 +22,7 @@ public class CommandParse {
 			} else
 				i++;
 		}
-		if(c == null) {
+		if (c == null) {
 			throw new CommandParseException("Invalid Command: " + textoComando[0]);
 		}
 		return c;

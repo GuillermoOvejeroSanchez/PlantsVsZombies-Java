@@ -58,12 +58,12 @@ public class GameObjectList {
 		return insertado;
 
 	}
-	
+
 	public void loadObject(GameObject objeto) {
 		if (!llena()) {
 			ObjectList[this.contador] = objeto;
 			this.contador++;
-			
+
 		}
 	}
 
@@ -136,20 +136,18 @@ public class GameObjectList {
 		return eliminados;
 
 	}
-	
+
 	public String datosLista() {
 		StringBuilder datosLista = new StringBuilder();
-		
-			
-		for(int i = 0; i < this.contador; i++) {
-			
-			datosLista.append(ObjectList[i].datosObjeto()); 
+
+		for (int i = 0; i < this.contador; i++) {
+
+			datosLista.append(ObjectList[i].datosObjeto());
 			datosLista.append(", ");
-			
+
 		}
-		
-		
-		return datosLista.toString(); 
+
+		return datosLista.toString();
 	}
 
 }
