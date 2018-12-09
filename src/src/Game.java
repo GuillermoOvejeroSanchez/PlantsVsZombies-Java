@@ -200,6 +200,15 @@ public class Game {
 		zombieList.addObject(zombie);
 	};
 
+	public void loadPlanst(GameObject objeto) {
+		plantList.loadObeject(objeto);
+		
+	}
+	
+	public void loadZombies(GameObject objeto) {
+		zombieList.addObject(objeto); 
+	}
+	
 	public boolean isEmpty(int x, int y) {
 		boolean empty = false;
 		if (!plantList.encontrar(x, y))
@@ -434,8 +443,10 @@ public class Game {
 				zombie.setY(Integer.parseInt(objectInfo[3]));
 				
 				zombie.setRemainigCycles(Integer.parseInt(objectInfo[4]));
+				zombie.setGame(this);
+				loadZombies(zombie);
+			//	zombie.setGame(this);
 				
-				addZombie(zombie);
 				/*
 				if(object == null) {
 					throw new FileContentsException("El zombie del fichero es incorrecto"); 
@@ -448,8 +459,9 @@ public class Game {
 				plant.setX(Integer.parseInt(objectInfo[2]));
 				plant.setY(Integer.parseInt(objectInfo[3]));
 				plant.setRemainigCycles(Integer.parseInt(objectInfo[4]));
+				plant.setGame(this);
 				
-				addPlant(plant);
+				loadPlanst(plant);
 				
 			}
 			

@@ -58,6 +58,14 @@ public class GameObjectList {
 		return insertado;
 
 	}
+	
+	public void loadObeject(GameObject objeto) {
+		if (!llena()) {
+			ObjectList[this.contador] = objeto;
+			this.contador++;
+			
+		}
+	}
 
 	/*
 	 * //ARRAY DINAMICO public boolean addObjectRedi(GameObject objeto) { boolean
