@@ -394,7 +394,7 @@ public class Game {
 		
 
 	
-	public void loadList(String [] lista, GameObjectList objectList, boolean isPlant) throws CommandExecuteException {
+	public void loadList(String [] lista, GameObjectList objectList, boolean isPlant) throws CommandExecuteException, FileContentsException {
 		
 		Plant plant = null; 
 		Zombie zombie = null; 
@@ -405,6 +405,10 @@ public class Game {
 			
 			if(!isPlant) {
 				zombie = ZombieFactory.getZombie(objectInfo[0]); 
+				
+				if(zombie == null) {
+					throw new FileContentsException("Error al leer la informacion del zombie");
+				}
 
 				zombie.setResistance(Integer.parseInt(objectInfo[1]));
 				zombie.setX(Integer.parseInt(objectInfo[2]));
@@ -417,6 +421,11 @@ public class Game {
 			}
 			else {
 				plant = PlantsFactory.getPlant(objectInfo[0]);
+				
+				if(plant == null) {
+					throw new FileContentsException("Error al leer la informacion de la plnata"); 
+				}
+				
 				plant.setResistance(Integer.parseInt(objectInfo[1]));
 				plant.setX(Integer.parseInt(objectInfo[2]));
 				plant.setY(Integer.parseInt(objectInfo[3]));
