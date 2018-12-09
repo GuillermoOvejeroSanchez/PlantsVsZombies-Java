@@ -41,10 +41,8 @@ public class Controller {
 
 		if (game.checkWin()) {
 			System.out.println("****** YOU WIN ******");
-			// setNoPrintGameState();
 		} else if (game.checkZombieWin()) {
 			System.out.println("****** YOU LOST ******");
-			// setNoPrintGameState();
 		} else
 			System.out.println("****** Game over!: User exit ******");
 
