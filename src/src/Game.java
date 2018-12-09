@@ -4,11 +4,14 @@ import java.util.Random;
 
 //import com.sun.org.apache.xerces.internal.xs.datatypes.ObjectList;
 
+//import com.sun.org.apache.xerces.internal.xs.datatypes.ObjectList;
+
 import elems.GameObject;
 import elems.Plant;
 import elems.Zombie;
 import excepciones.CommandExecuteException;
 import excepciones.FileContentsException;
+import factory.PlantsFactory;
 import factory.ZombieFactory;
 import lista.GameObjectList;
 import print.GamePrinter;
@@ -18,6 +21,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.*;
+import elems.GameObject;
 
 public class Game {
 	
@@ -61,7 +65,9 @@ public class Game {
 		aumentarCiclos();
 		cleanBoard();
 	}
-
+	public void setLevel(Level level) {
+		this.level = level;
+	}
 	private void cleanBoard() {
 		plantList.clean();
 		zombieManager.setNumZombies(zombieManager.getNumZombies() - zombieList.clean());
@@ -74,6 +80,9 @@ public class Game {
 	public int getCiclos() {
 		return ciclos;
 	}
+	public void setCiclos(int ciclos) {
+		this.ciclos = ciclos;
+	}
 
 	public int getSuncoins() {
 		return suncoinManager.getSuncoins();
@@ -85,6 +94,9 @@ public class Game {
 
 	public int getRemainingZombies() {
 		return zombieManager.getRemainingZombies();
+	}
+	public void SetRemainingZombies(int remZombies) {
+		zombieManager.setRemainingZombies(remZombies);
 	}
 
 	public void modifySuncoins(int i) {
@@ -240,22 +252,22 @@ public class Game {
 
 		StringBuilder datosJuego = new StringBuilder();
 
-		datosJuego.append("cycles: ");
+		datosJuego.append("cycles:");
 		datosJuego.append(getCiclos());
 		datosJuego.append("\n");
-		datosJuego.append("sunCoins: ");
+		datosJuego.append("sunCoins:");
 		datosJuego.append(getSuncoins());
 		datosJuego.append("\n");
-		datosJuego.append("Level: ");
+		datosJuego.append("level:");
 		datosJuego.append(getLevel());
 		datosJuego.append("\n");
-		datosJuego.append("remZombies: ");
+		datosJuego.append("remZombies:");
 		datosJuego.append(getRemainingZombies());
 		datosJuego.append("\n"); 
-		datosJuego.append("plantList: ");
+		datosJuego.append("plantList:");
 		datosJuego.append(plantList.datosLista());
 		datosJuego.append("\n"); 
-		datosJuego.append("zombieList: "); 
+		datosJuego.append("zombieList:"); 
 		datosJuego.append(zombieList.datosLista()); 
 		
 		
@@ -263,6 +275,16 @@ public class Game {
 		
 
 	}
+	
+	private static String[] prefix = {
+			"cycles", 
+			"sunCoins", 
+			"level", 
+			"remZombies",
+			"plantList",
+			"zombieList"		
+	};
+	
 
 	public boolean isFinished() {
 		return exit;
@@ -281,8 +303,15 @@ public class Game {
 		this.gp = gp;
 	}
 	
-	public String[] loadLine(BufferedReader inStream, String prefix, boolean isList)
-			throws IOException, FileContentsException {
+	public boolean getUpdate() {
+		// TODO Auto-generated method stub
+		return update;
+	}
+	public void setUpdate(boolean update) {
+		this.update = update;
+	}
+	
+	public String[] loadLine(BufferedReader inStream, String prefix, boolean isList) throws IOException, FileContentsException {
 
 		String line = inStream.readLine().trim();
 		// absence of the prefix is invalid
@@ -319,13 +348,109 @@ public class Game {
 
 	}
 	
-
-	public boolean getUpdate() {
-		// TODO Auto-generated method stub
-		return update;
+	public void load(BufferedReader br) throws IOException, FileContentsException {
+	
+		String[] cycles; 
+		String[] sunCoins; 
+		String[] level; 
+		String[] remZombies; 
+		String[] listPlants; 
+		String[] listZombies; 
+		
+		int parCycles; 
+		int parSunCoins; 
+		int parRemZombies; 
+		Level lvl; 
+		
+		
+		cycles = loadLine(br, prefix[0], false); 
+		sunCoins  = loadLine(br, prefix[1], false);
+		level  = loadLine(br, prefix[2], false);
+		remZombies = loadLine(br, prefix[3], false);
+		listPlants = loadLine(br, prefix[4], true);
+		listZombies = loadLine(br, prefix[5], true);
+		
+		parCycles = Integer.parseInt(cycles[0]); 
+		parSunCoins = Integer.parseInt(sunCoins[0]); 
+		parRemZombies = Integer.parseInt(remZombies[0]); 
+		lvl = Level.parse(level[0]); 
+		
+		suncoinManager.loadSuncoins(parSunCoins);
+		setCiclos(parCycles);
+		
+		if(lvl == null) {
+			throw new FileContentsException("nivel erroneo"); 
+		}
+		setLevel(lvl);
+		SetRemainingZombies(parRemZombies);
+		
+		
+		this.zombieList = new GameObjectList(MAX_PLANTAS); 
+		loadList(listZombies, this.zombieList, false);
+		
+		this.plantList = new GameObjectList(MAX_PLANTAS); 
+		loadList(listPlants, this.plantList, true);
+		
+		
+		
+		
+		//System.out.println(this.ciclos); 
+		
+		
 	}
-	public void setUpdate(boolean update) {
-		this.update = update;
+	
+	public void loadList(String [] lista, GameObjectList objectList, boolean isPlant) {
+		
+		String[] objectInfo; 
+		GameObject object; 
+		
+		
+		for(int i = 0; i < lista.length; i++) {
+			objectInfo = lista[i].split(":"); 
+			
+			if(!isPlant) {
+				object = ZombieFactory.getZombie(objectInfo[0]); 
+				/*
+				if(object == null) {
+					throw new FileContentsException("El zombie del fichero es incorrecto"); 
+				}
+				*/
+			}
+			else {
+				object = PlantsFactory.getPlant(objectInfo[0]);
+			}
+			
+			object.setResistance(Integer.parseInt(lista[1]));
+			object.setX(Integer.parseInt(lista[2]));
+			object.setY(Integer.parseInt(lista[3]));
+			object.setRemainigCycles(Integer.parseInt(lista[4]));
+			
+			objectList.addObject(object); 
+		}
+		
 	}
+	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

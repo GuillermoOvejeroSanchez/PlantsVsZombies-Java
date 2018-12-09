@@ -5,6 +5,7 @@ import elems.Peashooter;
 import elems.Petacereza;
 import elems.Plant;
 import elems.Sunflower;
+import elems.Zombie;
 import src.Game;
 
 public class PlantsFactory {
@@ -35,4 +36,28 @@ public class PlantsFactory {
 			}
 		return plant;
 	}
+	
+public static Plant getPlant(String shortName) {
+		
+		boolean encontrado = false;
+		int i = 0; 
+		Plant plant  = null; 
+		
+		while(!encontrado && i < availablePlants.length) {
+			
+			if(availablePlants[i].getShortName().equals(shortName)) {
+				plant = availablePlants[i]; 
+				encontrado = true; 
+			}
+			else {
+				i++; 
+			}
+			
+		}
+		
+		
+		
+		return plant; 
+	}
+	
 }

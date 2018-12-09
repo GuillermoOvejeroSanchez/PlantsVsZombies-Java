@@ -43,31 +43,37 @@ public class SaveCommand extends Command {
 	}
 
 	public boolean execute(Game game) {
-		if (MyStringUtils.isValidFilename(fileName)) {
+		if (MyStringUtils.isValidFilename(fileName + ".dat")) {
 			BufferedWriter bw = null;
 			try {
 
-				if (!MyStringUtils.fileExists(fileName)) {
+				if (!MyStringUtils.fileExists(fileName + ".dat")) {
 
 					System.out.println("Se va a crear un nuevo fichero");
 
-					bw = new BufferedWriter(new FileWriter(fileName));
+					bw = new BufferedWriter(new FileWriter(fileName + ".dat"));
 					bw.write(cabecera);
 					bw.newLine();
+					bw.newLine();
 					bw.write(game.store());
+					
+					
 				}
 
 				else {
 					System.out.println("Ya existe un fichero con este nombre, la partida guardada se perdera");
 
-					bw = new BufferedWriter(new FileWriter(fileName));
+					bw = new BufferedWriter(new FileWriter(fileName + ".dat"));
 					bw.write(cabecera);
 					bw.newLine();
 					bw.newLine();
 					bw.write(game.store());
 				}
+				
+				System.out.println("SE HA GUARDAO CON EXITO");
 
-			} catch (Exception e) {
+			} 
+			catch (Exception e) {
 				// TODO: handle exception
 			} finally {
 				try {

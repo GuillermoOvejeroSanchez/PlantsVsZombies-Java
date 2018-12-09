@@ -28,6 +28,10 @@ public class ZombieManager {
 	public int getRemainingZombies() {
 		return this.remainingZombies;
 	}
+	
+	public void setRemainingZombies(int remainingZombies) {
+		this.remainingZombies = remainingZombies;
+	}
 
 	public boolean finPartida() {
 		boolean fin = false;
