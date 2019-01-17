@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import excepciones.CommandExecuteException;
+import excepciones.CommandParseException;
 import util.*;
 
 import src.Game;
@@ -30,13 +31,15 @@ public class SaveCommand extends Command {
 	}
 
 	@Override
-	public Command parse(String[] comando) {
+	public Command parse(String[] comando) throws CommandParseException {
 		Command c = null;
 
 		if ((comando[0].equalsIgnoreCase(commandName) || comando[0].equalsIgnoreCase(commandName.substring(0, 1)))) {
 
 			if (comando.length == 2) {
 				c = new SaveCommand(comando[1]);
+			} else {
+				throw new CommandParseException("Numero de parametros invalido para el comando save");
 			}
 		}
 
