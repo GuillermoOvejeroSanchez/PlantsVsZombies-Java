@@ -1,0 +1,27 @@
+Guillermo Ovejero Sanchez
+DNI 52907295
+Ej1
+He incluido el commando Firewave a la lista de comandos y he creado la clase Firewave para que se pueda usar.
+Añadido el metodo parse de firewave
+En execute se añade una funcion practicamente igual a la de disparar de los peashooters y se va iterando el tablero por filas
+ hasta que encuentra un zombie y le ataca
+entonces pasa a la siguiente fila y asi sucesivamente, el lugar por el que empieza a buscar esta determinado por side
+
+He tratado de crear una funcion que segun el lado ataque por ese, sin la necesidad de duplicar codigo, 
+por falta de tiempo no lo he creado finalmente
+
+Ej 2
+He creado una clase ShooterBase abstracta que hereda de Plant, y tiene la accion de atacar, despues en Peashooter 
+he borrado el metodo y lo he pasado a shooterBase, ahora la accion es un metodo de ShooterBase que se llama atack
+Ambas plantas que disparan heredean de ShooterBase
+
+Ej3
+Hemos creado la variable canHeal en la clase Planta y un metodo willHeal que determina si esa planta curara,
+willHeal se llama en la plant factory cuando creamos la planta, y le asignaremos si cura, 
+en el toString de la clase planta hemos incluido la exclamacion en caso de que sea curativa
+El boolean healPlant sera true cuando muera una planta con el atributo canHeal true
+En el update si el boolean healPlant es true 
+llamara a la funcion healPlants de la lista de plantas para que sume 1 a la vida de todas las plantas
+
+No se modifica en el fichero que se guarda por falta de tiempo,
+ seria incluir un campo mas que fuese 1 o 0 (true o false) para indicar si es curativa y lo mismo para el load

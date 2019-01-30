@@ -80,6 +80,7 @@ public class GameObjectList {
 	 * return insertado; }
 	 */
 
+	
 	public void delete(int i) {
 		for (; i < contador - 1; i++) {
 			ObjectList[i] = ObjectList[i + 1];
@@ -121,6 +122,12 @@ public class GameObjectList {
 			getObject(buscarPos(x, y)).takeDmg(go);
 		}
 	}
+	
+	public void getAttackedByFirewave(int x, int y, int dmg) {
+		if (encontrar(x, y)) {
+			getObject(buscarPos(x, y)).takeDmg(dmg);
+		}
+	}
 
 	public int clean() {
 		int eliminados = 0;
@@ -148,6 +155,13 @@ public class GameObjectList {
 		}
 
 		return datosLista.toString();
+	}
+
+	public void healPlants() {
+		for (int i = 0; i < this.contador; i++) {
+			getObject(i).heal(1);
+		}
+		
 	}
 
 }

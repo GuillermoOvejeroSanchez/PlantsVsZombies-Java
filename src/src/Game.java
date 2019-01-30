@@ -36,7 +36,7 @@ public class Game {
 	private int ciclos;
 	private boolean exit;
 	private Random rand;
-
+	private boolean healPlant;
 	public Game(Level level, int seed) {
 		rand = new Random();
 		rand.setSeed(seed);
@@ -44,10 +44,12 @@ public class Game {
 		this.ciclos = 0;
 		this.level = level;
 		this.exit = false;
+		this.healPlant = false;
 		zombieManager = new ZombieManager(this.level, this.seed, this.rand);
 		suncoinManager = new SuncoinManager();
 		zombieList = new GameObjectList(zombieManager.getNumZombies());
 		plantList = new GameObjectList(MAX_PLANTAS);
+		
 		this.setGamePrinter(new ReleasePrinter(FILAS, COLUMNAS, this));
 	}
 
@@ -56,6 +58,10 @@ public class Game {
 		zombieList.update();
 		aumentarCiclos();
 		cleanBoard();
+		if(healPlant) {
+			plantList.healPlants();
+			this.healPlant = false;
+		}
 	}
 
 	public void setLevel(Level level) {
@@ -380,6 +386,25 @@ public class Game {
 
 		}
 
+	}
+
+	public boolean attackFirewave(int x, int y, int dmg) {
+		boolean attacked = false;
+		if (zombieList.encontrar(x, y)) {
+			zombieList.getAttackedByFirewave(x, y, dmg);
+			attacked = true;
+		}
+
+		return attacked;
+	}
+	
+	public Random getRand() {
+		return this.rand;
+	}
+
+	public void setHeal(boolean b) {
+		healPlant = b;
+		
 	}
 
 }

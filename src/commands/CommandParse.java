@@ -6,7 +6,7 @@ public class CommandParse {
 
 	private static Command[] avaliableCommands = { new AddCommand(), new HelpCommand(), new ResetCommand(),
 			new ExitCommand(), new ListCommand(), new UpdateCommand(), new ZombieListCommand(), new PrintModeCommand(),
-			new SaveCommand(), new LoadCommand()
+			new SaveCommand(), new LoadCommand(), new FirewaveCommand()
 
 	};
 

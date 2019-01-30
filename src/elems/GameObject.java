@@ -87,7 +87,15 @@ public abstract class GameObject {
 	public void takeDmg(GameObject gameObject) {
 		this.setResistance(this.res - gameObject.dmg);
 	}
-
+	
+	public void takeDmg(int dmg) {
+		this.setResistance(this.res - dmg);
+	}
+	
+	//
+	public void heal(int healing) {
+		this.setResistance(this.res + healing);
+	}
 	public boolean isDead() {
 		return this.res <= 0;
 	}

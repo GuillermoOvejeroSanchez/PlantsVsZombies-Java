@@ -4,12 +4,13 @@ import elems.Nuez;
 import elems.Peashooter;
 import elems.Petacereza;
 import elems.Plant;
+import elems.Repeater;
 import elems.Sunflower;
 import src.Game;
 
 public class PlantsFactory {
 
-	private static Plant[] availablePlants = { new Nuez(), new Peashooter(), new Petacereza(), new Sunflower() };
+	private static Plant[] availablePlants = { new Nuez(), new Peashooter(), new Petacereza(), new Sunflower(), new Repeater() };
 
 	public static String listOfAvailablePlants() {
 		StringBuilder str = new StringBuilder();
@@ -28,6 +29,7 @@ public class PlantsFactory {
 			plant = availablePlants[i].parse(plantName);
 			if (plant != null) {
 				encontrado = true;
+				plant.setcanHeal(plant.willHeal());
 				plant.setX(x);
 				plant.setY(y);
 				plant.setGame(game);
